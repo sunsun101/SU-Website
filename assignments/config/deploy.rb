@@ -50,10 +50,3 @@ after 'deploy:publishing', 'puma:restart'
 # Uncomment the following to require manually verifying the host key before first deploy.
 # set :ssh_options, verify_host_key: :secure
 
-require "capistrano/rbenv"
-require "capistrano/rbenv_install"
-require "capistrano/bundler"
-require "capistrano/rails/assets"
-require "capistrano/rails/migrations"
-require "capistrano/yarn"
-require "capistrano/puma"

@@ -7,8 +7,6 @@
 # server "example.com", user: "deploy", roles: %w{app web}, other_property: :other_value
 # server "db.example.com", user: "deploy", roles: %w{db}
 
-
-
 # role-based syntax
 # ==================
 
@@ -21,8 +19,6 @@
 # role :web, %w{user1@primary.com user2@additional.com}, other_property: :other_value
 # role :db,  %w{deploy@example.com}
 
-
-
 # Configuration
 # =============
 # You can set any configuration variable like in config/deploy.rb
@@ -30,8 +26,6 @@
 # For available Capistrano configuration variables see the documentation page.
 # http://capistranorb.com/documentation/getting-started/configuration/
 # Feel free to add new variables to customise your setup.
-
-
 
 # Custom SSH Options
 # ==================
@@ -60,18 +54,19 @@
 #     # password: "please use keys"
 #   }
 
-set :default_env, {'http_proxy'=>'192.41.170.23:3128',
-                   'https_proxy'=>'192.41.170.23:3128'}
+set :default_env, { "http_proxy" => "192.41.170.23:3128",
+                    "https_proxy" => "192.41.170.23:3128",
+                    "BAZOOKA_USER" => "st122283" }
 
 server "web4", user: "deploy", roles: %w{app db web}
 
-set :deploy_to, "/home/deploy/assignments"
+set :deploy_to, "/home/deploy/web4-app/assignments"
 
-set :yarn_flags, '--production --silent --no-progress --network-timeout 1000000'
-require "capistrano/rbenv"
-require "capistrano/rbenv_install"
-require "capistrano/bundler"
-require "capistrano/rails/assets"
-require "capistrano/rails/migrations"
-require "capistrano/yarn"
-require "capistrano/puma"
+set :yarn_flags, "--production --silent --no-progress --network-timeout 1000000"
+# require "capistrano/rbenv"
+# require "capistrano/rbenv_install"
+# require "capistrano/bundler"
+# require "capistrano/rails/assets"
+# require "capistrano/rails/migrations"
+# require "capistrano/yarn"
+# require "capistrano/puma"
