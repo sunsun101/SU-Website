@@ -63,10 +63,3 @@ server "web4", user: "deploy", roles: %w{app db web}
 set :deploy_to, "/home/deploy/web4-app/assignments"
 
 set :yarn_flags, "--production --silent --no-progress --network-timeout 1000000"
-# require "capistrano/rbenv"
-# require "capistrano/rbenv_install"
-# require "capistrano/bundler"
-# require "capistrano/rails/assets"
-# require "capistrano/rails/migrations"
-# require "capistrano/yarn"
-# require "capistrano/puma"
