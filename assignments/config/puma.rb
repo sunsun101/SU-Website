@@ -10,6 +10,7 @@ if rails_env == "production"
   ENV['http_proxy'] = 'http://192.41.170.23:3128'
   workers 2
   preload_app!
+  state_path 'tmp/sockets/puma.state'
   # Location of the control socket. Must be created in advance.
   app_dir = File.expand_path("../..", __FILE__)
   bind "unix://#{app_dir}/tmp/sockets/puma.sock"
