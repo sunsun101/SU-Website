@@ -31,24 +31,36 @@ class BasicsController < ApplicationController
     end
 
     def parse_ny_news
+        headers = []
+        links = []
+        images = []
+        content = []
+
         url = 'https://www.nytimes.com/international/section/world'
         html = URI.open(url)
         doc = Nokogiri::HTML(html)
-        headers = doc.xpath("//div[@class='css-gfgt40 ekkqrpp1']//article//h2/a")
-        links = doc.xpath("//div[@class='css-gfgt40 ekkqrpp1']//article//h2//a/@href")
-        images = doc.xpath("//div[@class='css-gfgt40 ekkqrpp1']//article//figure/a/img/@src")
+        headers1  = doc.xpath("//div[@class='css-gfgt40 ekkqrpp1']//article//h2/a")
+        headers2 = doc.xpath("//li[@class='css-ye6x8s']//a/h2")
+        links1 = doc.xpath("//div[@class='css-gfgt40 ekkqrpp1']//article//h2//a/@href")
+        links2 = doc.xpath("//li[@class='css-ye6x8s']//a/@href")
+        images1 = doc.xpath("//div[@class='css-gfgt40 ekkqrpp1']//article//figure/a/img/@src")
+        images2 = doc.xpath("//li[@class='css-ye6x8s']//a//figure//img/@src")
         # authors = doc.xpath("//div[@class='css-gfgt40 ekkqrpp1']//article//span[@class='css-1baulvz']")
-        content = doc.xpath("//div[@class='css-gfgt40 ekkqrpp1']//article//p[@class='css-tskdi9 e4e4i5l4']")
-        binding.pry
+        content1 = doc.xpath("//div[@class='css-gfgt40 ekkqrpp1']//article//p[@class='css-tskdi9 e4e4i5l4']")
+        content2 = doc.xpath("//li[@class='css-ye6x8s']//a/p")
+        headers = headers1 + headers2
+        links = links1 + links2
+        images = images1 + images2
+        content = content1 + content2
+
+        # binding.pry
 
         news = []
-        
-        # binding.pry
         (0..headers.count - 1).each do |i|
             p i
             h = {}
             h[:header] = headers[i].text
-            h[:link] = "https://www.nytimes.com/section" + links[i].text
+            h[:link] = "https://www.nytimes.com" + links[i].text
             h[:image] = images[i].text
             # h[:author] = authors[i].text
             h[:content] = content[i].text
