@@ -57,7 +57,6 @@ class BasicsController < ApplicationController
 
         news = []
         (0..headers.count - 1).each do |i|
-            p i
             h = {}
             h[:header] = headers[i].text
             h[:link] = "https://www.nytimes.com" + links[i].text
@@ -73,6 +72,11 @@ class BasicsController < ApplicationController
         @ktm_news = parse_ktm_news
         @ny_news = parse_ny_news
         
+    end
+
+    def divide_by_zero
+        Rails.logger.warn 'About to divide by 0'
+        var = 4/0
     end
 end
 
