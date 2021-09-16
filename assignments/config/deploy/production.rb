@@ -63,3 +63,7 @@ server "web4", user: "deploy", roles: %w{app db web}
 set :deploy_to, "/home/deploy/web4-app/assignments"
 
 set :yarn_flags, "--production"
+
+#For logger
+Rails.logger = Logger.new(STDOUT)
+config.logger = ActiveSupport::Logger.new("log/#{Rails.env}.log")
