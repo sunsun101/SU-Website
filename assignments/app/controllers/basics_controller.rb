@@ -78,6 +78,9 @@ class BasicsController < ApplicationController
     def divide
         Rails.logger.warn 'About to divide by 0'
         var = 4/0
+    rescue => e
+        @error_msg = e.message
+        @stack_trace = e.backtrace
     end
 end
 

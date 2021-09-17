@@ -4,9 +4,13 @@
     <%= button_to 'Divide', basics_divide_path, class: 'btn btn-success', method: :get %>
 </div>
 
-<h5>Explaination</h5>
+<h5>Explanation</h5>
 <p>
-The button above when clicked calls a method which divides 4 by 0 and raises divide by zero exception.
+The button above when clicked calls a method which divides 4 by 0 and raises divide by zero exception.<br><br>
 
-"About to divide by 0" warning has been added to the log using Rails.logger.
+Using <i>Rails.logger.warn</i> we added "About to divide by 0" warning in the log before the exception occurs.
 </p>
+
+<p>Screen shot of production log</p>
+<%= image_tag "log.png"%>
+
