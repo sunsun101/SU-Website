@@ -1,4 +1,12 @@
 <h3>Divide by zero</h3>
 <hr>
+<div class="mb-3">
+    <%= button_to 'Divide', basics_divide_path, class: 'btn btn-success', method: :get %>
+</div>
+
 <h5>Explaination</h5>
-<p></p>
+<p>
+The button above when clicked calls a method which divides 4 by 0 and raises divide by zero exception.
+
+"About to divide by 0" warning has been added to the log using Rails.logger.
+</p>

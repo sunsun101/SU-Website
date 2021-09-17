@@ -3,5 +3,6 @@ Rails.application.routes.draw do
   # get 'basics', to: 'basics#index'
   get 'basics/news', to: 'basics#news'
   get 'basics/divide_by_zero', to: 'basics#divide_by_zero'
+  get 'basics/divide', to: 'basics#divide'
   root 'site#index'
 end

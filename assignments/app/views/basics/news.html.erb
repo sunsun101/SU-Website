@@ -1,20 +1,20 @@
 <div class = "row">
     <div class="col-md-6"> 
-        <h3>The kathmandu Post News</h3>
+        <h4 style="text-align: center">The kathmandu Post News</h4>
         <% @ktm_news.each do |news| %>
             <div class="card p-5">
                 <a href=<%= news[:link] %>><h5><%= news[:header] %></h5></a>
-                <img src=<%= news[:image]%> alt="image" width=400 height=265>
+                <img src=<%= news[:image]%> alt="image" width=100% height=265>
                 <p><%= news[:content]%></p>
             </div>
         <% end %>
     </div>
     <div class="col-md-6"> 
-        <h3>The New York Times News</h3>
+        <h4 style="text-align: center">The New York Times News</h4>
         <% @ny_news.each do |news| %>
             <div class="card p-5">
                 <a href=<%= news[:link] %>><h5><%= news[:header] %></h5></a>
-                <img src=<%= news[:image]%> alt="image" width=400 height=265>
+                <img src=<%= news[:image]%> alt="image" width=100% height=265>
                 <p><%= news[:content]%></p>
             </div>
         <% end %>
