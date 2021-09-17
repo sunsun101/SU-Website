@@ -76,7 +76,6 @@ class BasicsController < ApplicationController
     # end
 
     def divide
-        Rails.logger.info 'About to divide by 0'
         Rails.logger.warn 'About to divide by 0'
         var = 4/0
     end
