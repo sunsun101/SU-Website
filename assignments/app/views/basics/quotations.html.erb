@@ -1,0 +1,70 @@
+<h3>Search quote</h3>
+<br>
+<%= form_tag(basics_quotations_path, method: :get) do%>
+  <%= text_field_tag(:search, params[:search])%>
+  <%= submit_tag("Search")%>
+<% end %>
+<ul>
+  <br>
+  <%= @resp %>
+  <% if @newquotes%>
+    <% for quotation in @newquotes %>
+      <li><%= h quotation.author_name %>: <%= h quotation.quote %></li>
+    <% end %>
+  <% end %>
+</ul>
+<br/>
+<h3>Quotations</h3>
+<ul>
+  <% if @quotations%>
+    <% for quotation in @quotations %>
+      <li><%= h quotation.author_name %>: <%= h quotation.quote %></li>
+    <% end %>
+  <% end %>
+</ul>
+<br/>
+<% if params[:sort_by] == "date" %>
+  <%= link_to "Sort by category", :action => :quotations, :sort_by => :category %>
+<% else %>
+  <%= link_to "Sort by date", :action => :quotations, :sort_by => :date %>
+<% end %>
+<hr/>
+<h3>New quotation</h3>
+<br>
+<%= form_for @quotation, :url => { :action => :quotations } do |form| %>
+  <% @quotation.errors.full_messages.each do |msg| %>
+    <div class="alert alert-warning alert-dismissible fade show col-6" role="alert">
+      <%= msg %>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  <% end %>
+  <fieldset>
+    <legend>Enter details</legend>
+    <div class="form_row col-4">
+      <% form.label :author_name %>
+      <%= form.text_field :author_name, class:"form-control" , placeholder: :author_name%>
+    </div>
+    <br>
+    <div class="form-group row col-5" >
+      <%= form.label 'Category: ', class:"col-sm-2 col-form-label"%>
+      <div class="col-sm-8">
+        <%= form.select( :category, @quotations.collect {|q| [ q.category] }.uniq,{}, {class:"form-select"})%>
+      </div>
+    </div>
+    <br>
+    <div class="form_row col-4">
+      <% form.label :category %>
+      <%= form.text_field :newcategory, class:"form-control", placeholder: 'New Category' %>
+    </div>
+    <br>
+    <div class="form_row col-6">
+      <%= form.label :quote %>
+      <%= form.text_area :quote , class:"form-control"%>
+    </div>
+  </fieldset>
+  <p>
+    <div class="form-row">
+      <%= form.submit 'Create', class: "btn btn-secondary"%>
+    </div>
+  </p>
+<% end %>

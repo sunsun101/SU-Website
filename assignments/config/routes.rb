@@ -4,5 +4,7 @@ Rails.application.routes.draw do
   get 'basics/news', to: 'basics#news'
   get 'basics/divide_by_zero', to: 'basics#divide_by_zero'
   get 'basics/divide', to: 'basics#divide'
+  get 'basics/quotations', to: 'basics#quotations'
+  post 'basics/quotations', to: 'basics#quotations'
   root 'site#index'
 end
