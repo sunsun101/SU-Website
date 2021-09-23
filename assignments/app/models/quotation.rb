@@ -6,7 +6,7 @@ class Quotation < ApplicationRecord
 
   def self.search(search)
     if search
-      where('author_name LIKE ? OR quote LIKE ?', '%' + search + '%',
+      where('author_name ILIKE ? OR quote ILIKE ?', '%' + search + '%',
             '%' + search + '%')
     else
       all
