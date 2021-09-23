@@ -18,9 +18,12 @@
 <ul>
   <% if @quotations%>
     <% for quotation in @quotations %>
-      <li><%= h quotation.author_name %>: <%= h quotation.quote %></li>
-    <% end %>
+      <li><%= h quotation.author_name %>: <%= h quotation.quote %>&nbsp;
+      <%= link_to raw("<i class=\"fa fa-trash\"></i>"), 
+          basics_quotations_path(:quotation_id => quotation.id), 
+          method: :get %></li>
   <% end %>
+<% end %>
 </ul>
 <br/>
 <% if params[:sort_by] == "date" %>

@@ -1,10 +1,10 @@
-require 'nokogiri'
-require 'open-uri'
-require 'pry'
+require "nokogiri"
+require "open-uri"
+require "pry"
 
 class BasicsController < ApplicationController
   def parse_ktm_news
-    url = 'https://kathmandupost.com/world'
+    url = "https://kathmandupost.com/world"
     html = URI.open(url)
     doc = Nokogiri::HTML(html)
     headers = doc.xpath("//div[@class='block--morenews']/article/a/h3")
@@ -18,7 +18,7 @@ class BasicsController < ApplicationController
     (0..headers.count - 1).each do |i|
       h = {}
       h[:header] = headers[i].text
-      h[:link] = 'https://kathmandupost.com' + links[i].text
+      h[:link] = "https://kathmandupost.com" + links[i].text
       h[:image] = images[i].text
       h[:content] = content[i].text
       news << h
@@ -32,7 +32,7 @@ class BasicsController < ApplicationController
     images = []
     content = []
 
-    url = 'https://www.nytimes.com/international/section/world'
+    url = "https://www.nytimes.com/international/section/world"
     html = URI.open(url)
     doc = Nokogiri::HTML(html)
     headers1 = doc.xpath("//div[@class='css-gfgt40 ekkqrpp1']//article//h2/a")
@@ -54,7 +54,7 @@ class BasicsController < ApplicationController
     (0..headers.count - 1).each do |i|
       h = {}
       h[:header] = headers[i].text
-      h[:link] = 'https://www.nytimes.com' + links[i].text
+      h[:link] = "https://www.nytimes.com" + links[i].text
       h[:image] = images[i].text
       h[:content] = content[i].text
       news << h
@@ -73,45 +73,72 @@ class BasicsController < ApplicationController
   # end
 
   def divide
-    Rails.logger.warn 'About to divide by 0'
+    Rails.logger.warn "About to divide by 0"
     var = 4 / 0
   rescue StandardError => e
     @error_msg = e.message
     @stack_trace = e.backtrace
   end
 
+  def create_cookie
+    cookies[:quotations_id] = Quotation.distinct.pluck(:id)
+  end
+
+  def delete_cookie
+    cookies.delete :quotations_id
+  end
+
+  # def alter_cookie(killed_quotes)
+  #   delete_cookie
+  #   cookies[:quotations_id] = Quotation.where("id not in (?)", killed_quotes).pluck(:id)
+  # end
+
+  def index
+
+  end
+
   def quotations
-    @quotation = Quotation.new
+    if cookies[:quotations_id]
+      p("all cookies in browser ==>",cookies[:quotations_id].split('&'))
+      @quotation = Quotation.where("id not in (?)",cookies[:quotations_id].split('&') )
+    else
+      create_cookie
+    end
+    
+
+    if params[:quotation_id]
+      cookies[:quotations_id] = params[:quotation_id]
+      p("Quotation id to be killed ===>", params[:quotation_id])
+      # alter_cookie()
+    end
+
     if params[:search]
       if params[:search].present?
         @newquotes = Quotation.search(params[:search])
-      elsif params[:search] == ''
-        @resp = 'No results found'
+      elsif params[:search] == ""
+        @resp = "No results found"
       end
-
     elsif params[:quotation] && !params[:search]
       p params
       @quotation = if params[:quotation][:newcategory].present?
-                     Quotation.new(author_name: params[:quotation][:author_name],
-                                   category: params[:quotation][:newcategory], quote: params[:quotation][:quote])
-
-                   else
-                     Quotation.new(author_name: params[:quotation][:author_name],
-                                   category: params[:quotation][:category], quote: params[:quotation][:quote])
-
-                   end
+          Quotation.new(author_name: params[:quotation][:author_name],
+                        category: params[:quotation][:newcategory], quote: params[:quotation][:quote])
+        else
+          Quotation.new(author_name: params[:quotation][:author_name],
+                        category: params[:quotation][:category], quote: params[:quotation][:quote])
+        end
       if @quotation.save
-        flash[:notice] = 'Quotation was successfully created.'
+        flash[:notice] = "Quotation was successfully created."
         @quotation = Quotation.new
       end
     else
       @quotation = Quotation.new
     end
-    @quotations = if params[:sort_by] == 'date'
-                    Quotation.order(:created_at)
-                  else
-                    Quotation.order(:category)
-                  end
+    @quotations = if params[:sort_by] == "date"
+        Quotation.order(:created_at)
+      else
+        Quotation.order(:category)
+      end
   end
 end
 
