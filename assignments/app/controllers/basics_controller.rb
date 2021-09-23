@@ -74,7 +74,7 @@ class BasicsController < ApplicationController
 
   def divide
     Rails.logger.warn 'About to divide by 0'
-    var = 4 / 0
+    4 / 0
   rescue StandardError => e
     @error_msg = e.message
     @stack_trace = e.backtrace
@@ -82,12 +82,9 @@ class BasicsController < ApplicationController
 
   def quotations
     @quotation = Quotation.new
-    if params[:search]
-      if params[:search].present?
-        @newquotes = Quotation.search(params[:search])
-      elsif params[:search] == ''
-        @resp = 'No results found'
-      end
+    if params[:search] && params[:search].present?
+      @newquotes = Quotation.search(params[:search])
+      @resp = 'No results found' if @newquotes.empty? || params[:search] == ''
 
     elsif params[:quotation] && !params[:search]
       p params
@@ -114,6 +111,3 @@ class BasicsController < ApplicationController
                   end
   end
 end
-
-news = BasicsController.new
-news.news
