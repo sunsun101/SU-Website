@@ -4,26 +4,17 @@
   <%= text_field_tag(:search, params[:search])%>
   <%= submit_tag("Search")%>
 <% end %>
-<ul>
-  <br>
-  <%= @resp %>
-  <% if @newquotes%>
-    <% for quotation in @newquotes %>
-      <li><%= h quotation.author_name %>: <%= h quotation.quote %></li>
-    <% end %>
-  <% end %>
-</ul>
 <br/>
 <h3>Quotations</h3>
 <ul>
+  <%= @resp %>
   <% if @quotations%>
     <% for quotation in @quotations %>
-      <li><%= h quotation.author_name %>: <%= h quotation.quote %>&nbsp;
-      <%= link_to raw("<i class=\"fa fa-trash\"></i>"), 
-          basics_quotations_path(:quotation_id => quotation.id), 
-          method: :get %></li>
+      <li><%= h quotation.author_name %>: <%= h quotation.quote %>: <%= h quotation.category %>&nbsp;
+        <%= link_to 'delete', :action => :quotations, :quotation_id =>  quotation.id%>
+      </li>
+    <% end %>
   <% end %>
-<% end %>
 </ul>
 <br/>
 <% if params[:sort_by] == "date" %>
@@ -51,7 +42,11 @@
     <div class="form-group row col-5" >
       <%= form.label 'Category: ', class:"col-sm-2 col-form-label"%>
       <div class="col-sm-8">
-        <%= form.select( :category, @quotations.collect {|q| [ q.category] }.uniq,{}, {class:"form-select"})%>
+        <% if @quotations %>
+          <%= form.select( :category, @quotations.collect {|q| [ q.category] }.uniq,{}, {class:"form-select"})%>
+        <% else %>
+          <%= form.select( :category, {},{}, {class:"form-select"})%>
+        <% end %>
       </div>
     </div>
     <br>

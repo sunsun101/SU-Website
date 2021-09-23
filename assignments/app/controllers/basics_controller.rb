@@ -67,11 +67,6 @@ class BasicsController < ApplicationController
     @ny_news = parse_ny_news
   end
 
-  # def divide_by_zero
-  #     Rails.logger.warn 'About to divide by 0'
-  #     var = 4/0
-  # end
-
   def divide
     Rails.logger.warn 'About to divide by 0'
     4 / 0
@@ -80,49 +75,25 @@ class BasicsController < ApplicationController
     @stack_trace = e.backtrace
   end
 
-  def create_cookie
-    cookies[:quotations_id] = Quotation.distinct.pluck(:id)
-  end
-
-  def delete_cookie
-    cookies.delete :quotations_id
-  end
-
-  # def alter_cookie(killed_quotes)
-  #   delete_cookie
-  #   cookies[:quotations_id] = Quotation.where("id not in (?)", killed_quotes).pluck(:id)
-  # end
-
   def index; end
 
   def quotations
     @quotation = Quotation.new
-    if params[:search] && params[:search].present?
-      @newquotes = Quotation.search(params[:search])
-      @resp = 'No results found' if @newquotes.empty? || params[:search] == ''
-    end
-
-    if cookies[:quotations_id]
-      p('all cookies in browser ==>', cookies[:quotations_id].split('&'))
-      @quotation = Quotation.where('id not in (?)', cookies[:quotations_id].split('&'))
-    else
-      create_cookie
-    end
 
     if params[:quotation_id]
-      cookies[:quotations_id] = params[:quotation_id]
-      p('Quotation id to be killed ===>', params[:quotation_id])
-      # alter_cookie()
+      if cookies[:quotations_id]
+        values = []
+        cookies[:quotations_id].split('&').each do |i|
+          values << i
+        end
+        values << params[:quotation_id]
+        cookies[:quotations_id] = values.join(',')
+      else
+        cookies[:quotations_id] = params[:quotation_id]
+      end
     end
 
-    if params[:search]
-      if params[:search].present?
-        @newquotes = Quotation.search(params[:search])
-      elsif params[:search] == ''
-        @resp = 'No results found'
-      end
-    elsif params[:quotation] && !params[:search]
-      p params
+    if params[:quotation]
       @quotation = if params[:quotation][:newcategory].present?
                      Quotation.new(author_name: params[:quotation][:author_name],
                                    category: params[:quotation][:newcategory], quote: params[:quotation][:quote])
@@ -134,13 +105,24 @@ class BasicsController < ApplicationController
         flash[:notice] = 'Quotation was successfully created.'
         @quotation = Quotation.new
       end
-    else
-      @quotation = Quotation.new
+
+    end
+
+    @quotations = if cookies[:quotations_id]
+                    Quotation.where('id NOT IN (?)', cookies[:quotations_id].split(','))
+                  else
+                    Quotation.all
+                  end
+
+    if params[:search] && params[:search].present?
+      @quotations = @quotations.where('author_name ILIKE ? OR quote ILIKE ?', '%' + params[:search] + '%',
+                                      '%' + params[:search] + '%')
+      @resp = 'No results found' if @quotations.empty?
     end
     @quotations = if params[:sort_by] == 'date'
-                    Quotation.order(:created_at)
+                    @quotations.order(:created_at)
                   else
-                    Quotation.order(:category)
+                    @quotations.order(:category)
                   end
   end
 end
