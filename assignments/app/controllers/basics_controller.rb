@@ -159,7 +159,7 @@ class BasicsController < ApplicationController
       begin
         response = URI.open(params[:import_link]).string
       rescue StandardError => e
-        Rails.loggger.info('Could not import from the link')
+        Rails.logger.info('Could not import from the link')
         response = ''
       end
       xml_content = Nokogiri::XML(response)
