@@ -22,8 +22,14 @@
 <% else %>
   <%= link_to "Sort by date", :action => :quotations, :sort_by => :date %>
 <% end %>
-<%= link_to "Export JSON", :action => :quotations, :export_type => 'JSON' %>
-<%= link_to "Export XML", :action => :quotations, :export_type => 'XML' %>
+<%= link_to "Export JSON", :action => :quotations, :format=>'json' %>
+<%= link_to "Export XML", :action => :quotations, :format=>'xml' %>
+<hr/>
+<h5>Import XML</h5>
+<%= form_tag(basics_quotations_path, method: :post) do%>
+  <%= text_field_tag(:import_link, params[:import_link])%>
+  <%= submit_tag("Import")%>
+<% end %>
 <hr/>
 <h3>New quotation</h3>
 <br>
@@ -67,4 +73,5 @@
       <%= form.submit 'Create', class: "btn btn-secondary"%>
     </div>
   </p>
+
 <% end %>

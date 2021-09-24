@@ -1,0 +1,375 @@
+********* QUERY **********
+CREATE TABLE my_stocks (
+	symbol VARCHAR(20) NOT NULL
+	,n_shares INTEGER NOT NULL
+	,date_acquired DATE NOT NULL
+	);
+**************************
+
+CREATE TABLE
+********* QUERY **********
+COPY my_stocks
+FROM '/mnt/c/users/sunsun/desktop/stock-list.txt';
+**************************
+
+COPY 5
+********* QUERY **********
+SELECT *
+FROM my_stocks ms;
+**************************
+
+ symbol | n_shares | date_acquired 
+--------+----------+---------------
+ LBL    |     4000 | 2021-09-23
+ NBL    |     5000 | 2021-09-22
+ BOKL   |     6000 | 2021-09-21
+ SANIMA |     7000 | 2021-09-20
+ PRVU   |     8000 | 2021-09-19
+(5 rows)
+
+********* QUERY **********
+CREATE TABLE stock_prices AS (
+	SELECT symbol
+	,CURRENT_DATE AS quote_date
+	,31.415 AS price FROM my_stocks
+	);
+**************************
+
+SELECT 5
+********* QUERY **********
+SELECT * FROM stock_prices;
+**************************
+
+ symbol | quote_date | price  
+--------+------------+--------
+ LBL    | 2021-09-24 | 31.415
+ NBL    | 2021-09-24 | 31.415
+ BOKL   | 2021-09-24 | 31.415
+ SANIMA | 2021-09-24 | 31.415
+ PRVU   | 2021-09-24 | 31.415
+(5 rows)
+
+********* QUERY **********
+CREATE TABLE newly_acquired_stocks (
+	symbol VARCHAR(20) NOT NULL
+	,n_shares INTEGER NOT NULL
+	,date_acquired DATE NOT NULL
+	);
+**************************
+
+CREATE TABLE
+********* QUERY **********
+INSERT INTO newly_acquired_stocks (
+	SELECT * FROM my_stocks WHERE symbol IN (
+		'LBL'
+		,'NBL'
+		)
+	);
+**************************
+
+INSERT 0 2
+********* QUERY **********
+SELECT *
+FROM newly_acquired_stocks;
+**************************
+
+ symbol | n_shares | date_acquired 
+--------+----------+---------------
+ LBL    |     4000 | 2021-09-23
+ NBL    |     5000 | 2021-09-22
+(2 rows)
+
+********* QUERY **********
+SELECT ms.symbol
+	,ms.n_shares AS number_of_shares
+	,sp.price AS price_per_share
+	,(sp.price * ms.n_shares) AS current_value
+FROM my_stocks AS ms
+INNER JOIN stock_prices AS sp ON ms.symbol = sp.symbol;
+**************************
+
+ symbol | number_of_shares | price_per_share | current_value 
+--------+------------------+-----------------+---------------
+ LBL    |             4000 |          31.415 |    125660.000
+ NBL    |             5000 |          31.415 |    157075.000
+ BOKL   |             6000 |          31.415 |    188490.000
+ SANIMA |             7000 |          31.415 |    219905.000
+ PRVU   |             8000 |          31.415 |    251320.000
+(5 rows)
+
+********* QUERY **********
+INSERT INTO my_stocks
+VALUES (
+	'NMB'
+	,50
+	,CURRENT_DATE
+	);
+**************************
+
+INSERT 0 1
+********* QUERY **********
+SELECT ms.symbol
+	,ms.n_shares AS number_of_shares
+	,sp.price AS price_per_share
+	,(sp.price * ms.n_shares) AS current_value
+FROM my_stocks AS ms
+FULL OUTER JOIN stock_prices AS sp ON ms.symbol = sp.symbol;
+**************************
+
+ symbol | number_of_shares | price_per_share | current_value 
+--------+------------------+-----------------+---------------
+ LBL    |             4000 |          31.415 |    125660.000
+ NBL    |             5000 |          31.415 |    157075.000
+ BOKL   |             6000 |          31.415 |    188490.000
+ SANIMA |             7000 |          31.415 |    219905.000
+ PRVU   |             8000 |          31.415 |    251320.000
+ NMB    |               50 |                 |              
+(6 rows)
+
+********* QUERY **********
+CREATE
+	OR replace FUNCTION output_stock_value (
+	passed_symbol IN VARCHAR
+	,stock_value OUT DECIMAL
+	) AS $$
+
+BEGIN
+	stock_value := NULL;
+
+	SELECT sum(ascii(regexp_split_to_table))
+	FROM regexp_split_to_table(passed_symbol, '')
+	INTO stock_value;
+
+	RETURN;
+END;$$
+
+LANGUAGE plpgsql;
+**************************
+
+CREATE FUNCTION
+********* QUERY **********
+SELECT *
+FROM output_stock_value('LBL');
+**************************
+
+ stock_value 
+-------------
+         218
+(1 row)
+
+********* QUERY **********
+SELECT *
+FROM output_stock_value('lbl');
+**************************
+
+ stock_value 
+-------------
+         314
+(1 row)
+
+********* QUERY **********
+UPDATE stock_prices
+SET price = output_stock_value(subquery.symbol)
+FROM (
+	SELECT symbol
+	FROM stock_prices
+	) AS subquery
+WHERE stock_prices.symbol = subquery.symbol;
+**************************
+
+UPDATE 5
+********* QUERY **********
+SELECT *
+FROM stock_prices;
+**************************
+
+ symbol | quote_date | price 
+--------+------------+-------
+ LBL    | 2021-09-24 |   218
+ NBL    | 2021-09-24 |   220
+ BOKL   | 2021-09-24 |   296
+ SANIMA | 2021-09-24 |   441
+ PRVU   | 2021-09-24 |   333
+(5 rows)
+
+********* QUERY **********
+CREATE
+	OR replace FUNCTION portfolio_value () RETURNS DECIMAL AS $$
+
+DECLARE 
+	aggregate_value DECIMAL := 0.0;
+	cur_output record;
+	cur cursor FOR
+	SELECT (ms.n_shares * sp.price) AS portfolio
+	FROM my_stocks ms
+	INNER JOIN stock_prices sp ON ms.symbol = sp.symbol;
+
+BEGIN
+	OPEN cur;
+	
+	LOOP 
+		FETCH cur INTO cur_output;
+		EXIT WHEN NOT FOUND;
+		aggregate_value := aggregate_value + cur_output.portfolio;
+	END LOOP;
+	CLOSE cur;
+	RETURN aggregate_value;
+END;
+$$LANGUAGE plpgsql;
+**************************
+
+CREATE FUNCTION
+********* QUERY **********
+SELECT portfolio_value();
+**************************
+
+ portfolio_value 
+-----------------
+       9499000.0
+(1 row)
+
+********* QUERY **********
+INSERT INTO my_stocks (
+	SELECT ms.symbol as symbol
+	,(ms.n_shares) AS n_shares
+	,CURRENT_DATE AS date_acquired FROM my_stocks ms INNER JOIN stock_prices sp ON sp.symbol = ms.symbol WHERE sp.price > (
+		SELECT avg(price)
+		FROM stock_prices
+		)
+	);
+**************************
+
+INSERT 0 2
+********* QUERY **********
+SELECT * FROM my_stocks;
+**************************
+
+ symbol | n_shares | date_acquired 
+--------+----------+---------------
+ LBL    |     4000 | 2021-09-23
+ NBL    |     5000 | 2021-09-22
+ BOKL   |     6000 | 2021-09-21
+ SANIMA |     7000 | 2021-09-20
+ PRVU   |     8000 | 2021-09-19
+ NMB    |       50 | 2021-09-24
+ SANIMA |     7000 | 2021-09-24
+ PRVU   |     8000 | 2021-09-24
+(8 rows)
+
+********* QUERY **********
+INSERT INTO my_stocks
+VALUES (
+	'NMB'
+	,50
+	,CURRENT_DATE
+	);
+**************************
+
+INSERT 0 1
+********* QUERY **********
+SELECT ms.symbol
+	,ms.n_shares AS number_of_shares
+	,sp.price AS price_per_share
+	,(sp.price * ms.n_shares) AS current_value
+FROM my_stocks AS ms
+FULL OUTER JOIN stock_prices AS sp ON ms.symbol = sp.symbol;
+**************************
+
+ symbol | number_of_shares | price_per_share | current_value 
+--------+------------------+-----------------+---------------
+ LBL    |             4000 |             218 |        872000
+ NBL    |             5000 |             220 |       1100000
+ BOKL   |             6000 |             296 |       1776000
+ SANIMA |             7000 |             441 |       3087000
+ PRVU   |             8000 |             333 |       2664000
+ NMB    |               50 |                 |              
+ SANIMA |             7000 |             441 |       3087000
+ PRVU   |             8000 |             333 |       2664000
+ NMB    |               50 |                 |              
+(9 rows)
+
+********* QUERY **********
+SELECT ms.symbol
+	,sum(ms.n_shares) AS number_of_shares
+FROM my_stocks AS ms
+GROUP BY ms.symbol;
+**************************
+
+ symbol | number_of_shares 
+--------+------------------
+ SANIMA |            14000
+ BOKL   |             6000
+ NBL    |             5000
+ LBL    |             4000
+ PRVU   |            16000
+ NMB    |              100
+(6 rows)
+
+********* QUERY **********
+SELECT sp.symbol
+	,(sp.price * subquery.number_of_shares) AS total_value
+FROM stock_prices AS sp
+INNER JOIN (
+	SELECT ms.symbol
+		,sum(ms.n_shares) AS number_of_shares
+	FROM my_stocks AS ms
+	GROUP BY ms.symbol
+	) AS subquery ON subquery.symbol = sp.symbol;
+**************************
+
+ symbol | total_value 
+--------+-------------
+ LBL    |      872000
+ NBL    |     1100000
+ BOKL   |     1776000
+ SANIMA |     6174000
+ PRVU   |     5328000
+(5 rows)
+
+********* QUERY **********
+SELECT sp.symbol
+	,subquery.number_of_shares
+	,(sp.price * subquery.number_of_shares) AS total_value
+FROM stock_prices AS sp
+INNER JOIN (
+	SELECT ms.symbol
+		,sum(ms.n_shares) AS number_of_shares
+	FROM my_stocks AS ms
+	GROUP BY ms.symbol
+	HAVING count(symbol) > 1
+	) AS subquery ON subquery.symbol = sp.symbol;
+**************************
+
+ symbol | number_of_shares | total_value 
+--------+------------------+-------------
+ SANIMA |            14000 |     6174000
+ PRVU   |            16000 |     5328000
+(2 rows)
+
+********* QUERY **********
+CREATE VIEW stocks_i_like
+AS
+SELECT sp.symbol
+	,subquery.number_of_shares
+	,(sp.price * subquery.number_of_shares) AS total_value
+FROM stock_prices AS sp
+INNER JOIN (
+	SELECT ms.symbol
+		,sum(ms.n_shares) AS number_of_shares
+	FROM my_stocks AS ms
+	GROUP BY ms.symbol
+	HAVING count(symbol) > 1
+	) AS subquery ON subquery.symbol = sp.symbol;
+**************************
+
+CREATE VIEW
+********* QUERY **********
+SELECT * from stocks_i_like;
+**************************
+
+ symbol | number_of_shares | total_value 
+--------+------------------+-------------
+ SANIMA |            14000 |     6174000
+ PRVU   |            16000 |     5328000
+(2 rows)
+

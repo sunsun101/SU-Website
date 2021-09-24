@@ -125,17 +125,42 @@ class BasicsController < ApplicationController
       end
     
     export_data
+    import_data
    
   end
 
   def export_data
-    if params[:export_type]
-      if params[:export_type] == 'JSON'
-        json_data = @quotations.to_json
-        send_data json_data, :type => "application/json; header=present", :disposition => "attachment; filename=quotations.json"
-      else
-        xml_data = JSON.parse(@quotations.to_json).to_xml
-        send_data xml_data, :type => "application/xml; header=present", :disposition => "attachment; filename=quotations.xml"
+
+    # Code to download the the JSON and XML files
+    # if params[:export_type]
+    #   if params[:export_type] == 'JSON'
+    #     json_data = @quotations.to_json
+    #     send_data json_data, :type => "application/json; header=present", :disposition => "attachment; filename=quotations.json"
+    #   else
+    #     xml_data = JSON.parse(@quotations.to_json).to_xml
+    #     send_data xml_data, :type => "application/xml; header=present", :disposition => "attachment; filename=quotations.xml"
+    #   end
+    # end
+    respond_to do |format|
+      format.html
+      format.xml { render xml: @quotations.as_json }
+      format.json { render json: @quotations }
+    end
+  end
+
+  def import_data
+    if params[:import_link].present?
+      begin
+        response=URI.open(params[:import_link]).string
+      rescue => exception
+        Rails.loggger.info("Could not import from the link")
+        response =''
+      end
+      xml_content = Nokogiri::XML(response)
+      xml_content.css('object').each do |tag|
+        children = tag.children
+        @quotation = Quotation.new(:author_name => children.css('author-name').inner_text,:category => children.css('category').inner_text,:quote => children.css('quote').inner_text)
+        @quotation.save
       end
     end
   end
