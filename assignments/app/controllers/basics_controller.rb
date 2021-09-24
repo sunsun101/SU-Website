@@ -77,8 +77,14 @@ class BasicsController < ApplicationController
 
   def index; end
 
+  def killCookie
+    cookies.delete :quotations_id if params[:restore]
+  end
+
   def quotations
     @quotation = Quotation.new
+
+    killCookie
 
     if params[:quotation_id]
       if cookies[:quotations_id]
@@ -108,11 +114,13 @@ class BasicsController < ApplicationController
 
     end
 
-    @quotations = if cookies[:quotations_id]
-                    Quotation.where('id NOT IN (?)', cookies[:quotations_id].split(','))
-                  else
-                    Quotation.all
-                  end
+    if cookies[:quotations_id]
+      @quotations = Quotation.where('id NOT IN (?)', cookies[:quotations_id].split(','))
+      @cookie_exist = true
+    else
+      @quotations = Quotation.all
+      @cookie_exist = false
+    end
 
     if params[:search] && params[:search].present?
       @quotations = @quotations.where('author_name ILIKE ? OR quote ILIKE ?', '%' + params[:search] + '%',

@@ -6,22 +6,42 @@
 <% end %>
 <br/>
 <h3>Quotations</h3>
-<ul>
-  <%= @resp %>
-  <% if @quotations%>
-    <% for quotation in @quotations %>
-      <li><%= h quotation.author_name %>: <%= h quotation.quote %>: <%= h quotation.category %>&nbsp;
-        <%= link_to 'delete', :action => :quotations, :quotation_id =>  quotation.id%>
-      </li>
-    <% end %>
+<table class= "table table-striped table-bordered table-hover">
+  <thead style = "background-color:#506477; color:white">
+    <tr>
+      <th>Author</th>
+      <th>Quote</th>
+      <th colspan="1"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @quotations.each do |quotation| %>
+      <tr>
+        <td><%= quotation.author_name %></td>
+        <td><%= quotation.quote %></td>
+        <td><%= link_to 'delete', :action => :quotations, :quotation_id =>  quotation.id%></td>
+      </tr>
+    <% end.empty? %>
+    <tr>
+      <td colspan="3" style="text-align:center"><%= @resp %></td>
+    </tr>
   <% end %>
-</ul>
+</tbody>
+</table>
 <br/>
-<% if params[:sort_by] == "date" %>
-  <%= link_to "Sort by category", :action => :quotations, :sort_by => :category %>
-<% else %>
-  <%= link_to "Sort by date", :action => :quotations, :sort_by => :date %>
-<% end %>
+<div class="row">
+  <div class="col-sm">
+    <% if params[:sort_by] == "date" %>
+      <%= link_to "Sort by category",:action => :quotations, :sort_by => :category %>
+    <% else %>
+      <%= link_to "Sort by date",:action => :quotations, :sort_by => :date %>
+    <% end %>
+  </div>
+  <div class="col-sm">
+    <% if @cookie_exist %>
+      <%= link_to "Restore", :action => :quotations, :restore => ''%>
+    <% end %></div>
+</div>
 <hr/>
 <h3>New quotation</h3>
 <br>
