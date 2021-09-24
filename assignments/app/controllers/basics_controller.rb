@@ -1,10 +1,10 @@
-require 'nokogiri'
-require 'open-uri'
-require 'pry'
+require "nokogiri"
+require "open-uri"
+require "pry"
 
 class BasicsController < ApplicationController
   def parse_ktm_news
-    url = 'https://kathmandupost.com/world'
+    url = "https://kathmandupost.com/world"
     html = URI.open(url)
     doc = Nokogiri::HTML(html)
     headers = doc.xpath("//div[@class='block--morenews']/article/a/h3")
@@ -18,7 +18,7 @@ class BasicsController < ApplicationController
     (0..headers.count - 1).each do |i|
       h = {}
       h[:header] = headers[i].text
-      h[:link] = 'https://kathmandupost.com' + links[i].text
+      h[:link] = "https://kathmandupost.com" + links[i].text
       h[:image] = images[i].text
       h[:content] = content[i].text
       news << h
@@ -32,7 +32,7 @@ class BasicsController < ApplicationController
     images = []
     content = []
 
-    url = 'https://www.nytimes.com/international/section/world'
+    url = "https://www.nytimes.com/international/section/world"
     html = URI.open(url)
     doc = Nokogiri::HTML(html)
     headers1 = doc.xpath("//div[@class='css-gfgt40 ekkqrpp1']//article//h2/a")
@@ -54,7 +54,7 @@ class BasicsController < ApplicationController
     (0..headers.count - 1).each do |i|
       h = {}
       h[:header] = headers[i].text
-      h[:link] = 'https://www.nytimes.com' + links[i].text
+      h[:link] = "https://www.nytimes.com" + links[i].text
       h[:image] = images[i].text
       h[:content] = content[i].text
       news << h
@@ -68,7 +68,7 @@ class BasicsController < ApplicationController
   end
 
   def divide
-    Rails.logger.warn 'About to divide by 0'
+    Rails.logger.warn "About to divide by 0"
     4 / 0
   rescue StandardError => e
     @error_msg = e.message
@@ -83,11 +83,11 @@ class BasicsController < ApplicationController
     if params[:quotation_id]
       if cookies[:quotations_id]
         values = []
-        cookies[:quotations_id].split('&').each do |i|
+        cookies[:quotations_id].split("&").each do |i|
           values << i
         end
         values << params[:quotation_id]
-        cookies[:quotations_id] = values.join(',')
+        cookies[:quotations_id] = values.join(",")
       else
         cookies[:quotations_id] = params[:quotation_id]
       end
@@ -95,34 +95,37 @@ class BasicsController < ApplicationController
 
     if params[:quotation]
       @quotation = if params[:quotation][:newcategory].present?
-                     Quotation.new(author_name: params[:quotation][:author_name],
-                                   category: params[:quotation][:newcategory], quote: params[:quotation][:quote])
-                   else
-                     Quotation.new(author_name: params[:quotation][:author_name],
-                                   category: params[:quotation][:category], quote: params[:quotation][:quote])
-                   end
+          Quotation.new(author_name: params[:quotation][:author_name],
+                        category: params[:quotation][:newcategory], quote: params[:quotation][:quote])
+        else
+          Quotation.new(author_name: params[:quotation][:author_name],
+                        category: params[:quotation][:category], quote: params[:quotation][:quote])
+        end
       if @quotation.save
-        flash[:notice] = 'Quotation was successfully created.'
+        flash[:notice] = "Quotation was successfully created."
         @quotation = Quotation.new
       end
-
     end
 
     @quotations = if cookies[:quotations_id]
-                    Quotation.where('id NOT IN (?)', cookies[:quotations_id].split(','))
-                  else
-                    Quotation.all
-                  end
+        Quotation.where("id NOT IN (?)", cookies[:quotations_id].split(","))
+      else
+        Quotation.all
+      end
 
     if params[:search] && params[:search].present?
-      @quotations = @quotations.where('author_name ILIKE ? OR quote ILIKE ?', '%' + params[:search] + '%',
-                                      '%' + params[:search] + '%')
-      @resp = 'No results found' if @quotations.empty?
+      @quotations = @quotations.where("author_name ILIKE ? OR quote ILIKE ?", "%" + params[:search] + "%",
+                                      "%" + params[:search] + "%")
+      @resp = "No results found" if @quotations.empty?
     end
-    @quotations = if params[:sort_by] == 'date'
-                    @quotations.order(:created_at)
-                  else
-                    @quotations.order(:category)
-                  end
+    @quotations = if params[:sort_by] == "date"
+        @quotations.order(:created_at)
+      else
+        @quotations.order(:category)
+      end
+  end
+
+  def sql_tasks
+    
   end
 end
