@@ -18,10 +18,10 @@ class BasicsController < ApplicationController
     # binding.pry
     (0..headers.count - 1).each do |i|
       h = {}
-      h[:header] = headers[i].text
-      h[:link] = 'https://kathmandupost.com' + links[i].text
-      h[:image] = images[i].text
-      h[:content] = content[i].text
+      h[:header] = headers[i]?(headers[i].text):''
+      h[:link] = links[i]?('https://kathmandupost.com' + links[i].text):''
+      h[:image] = images[i]?(images[i].text):''
+      h[:content] = content[i]?(content[i].text):''
       news << h
     end
     news
@@ -54,10 +54,10 @@ class BasicsController < ApplicationController
     news = []
     (0..headers.count - 1).each do |i|
       h = {}
-      h[:header] = headers[i].text
-      h[:link] = 'https://www.nytimes.com' + links[i].text
-      h[:image] = images[i].text
-      h[:content] = content[i].text
+      h[:header] = headers[i]?(headers[i].text):''
+      h[:link] = links[i]?('https://www.nytimes.com' + links[i].text):''
+      h[:image] = images[i]?(images[i].text):''
+      # h[:content] = content[i] ?(content[i].text):''
       news << h
     end
     news
