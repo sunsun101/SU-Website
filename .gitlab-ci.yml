@@ -23,10 +23,10 @@ Setup environment:
         - docker info
         - docker -D login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
         # Comment out the next line if you haven't yet gotten a successful image build
-        - docker pull $CI_REGISTRY_IMAGE:latest
+        # - docker pull $CI_REGISTRY_IMAGE:latest
          # Comment out this line and uncomment the line after if you don't have a successful build yet
-        - docker -D build --cache-from $CI_REGISTRY_IMAGE:latest -f env/Dockerfile.test -t $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA -t $CI_REGISTRY_IMAGE:latest env/
-        # - docker -D build -f env/Dockerfile.test -t $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA -t $CI_REGISTRY_IMAGE:latest env/
+        # - docker -D build --cache-from $CI_REGISTRY_IMAGE:latest -f env/Dockerfile.test -t $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA -t $CI_REGISTRY_IMAGE:latest env/
+        - docker -D build -f env/Dockerfile.test -t $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA -t $CI_REGISTRY_IMAGE:latest env/
         - docker -D push $CI_REGISTRY_IMAGE
 
 Test application:
