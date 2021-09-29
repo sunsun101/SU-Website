@@ -45,3 +45,41 @@ Test application:
         - bundle exec rake db:migrate
         - bundle exec rake test
         - bundle exec rake cucumber
+    artifacts:
+        paths:
+            - assignments/coverage/
+            - assignments/cucumber-report.html
+            - assignments/.bundle
+
+pages:
+    stage: publish
+    dependencies:
+        - Test application
+    image: $CI_REGISTRY_IMAGE
+    script:
+        - cp -r assignments/coverage gitlab-pages/
+        - cp assignments/cucumber-report.html gitlab-pages/
+        - cd gitlab-pages
+        - gem install bundler
+        - bundle install
+        - bundle exec jekyll build -d ../public
+    artifacts:
+        paths:
+            - public
+
+Deploy to production:
+    stage: deploy
+    when: manual
+    dependencies:
+        - Test application
+    image: $CI_REGISTRY_IMAGE
+    script:
+        - cd assignments
+        - bundle config set --local path '.bundle'
+        - mkdir -p /root/.ssh
+        - cp $DEPLOY_SSH_PRIV_KEY /root/.ssh/gitlab_ed25519
+        - chmod 600 /root/.ssh/gitlab_ed25519
+        - eval $(ssh-agent)
+        - ssh-add /root/.ssh/gitlab_ed25519
+        - export BAZOOKA_USER=st122283
+        - bundle exec cap production deploy
