@@ -1,6 +1,8 @@
 stages:
     - setup
     - test
+    - publish
+    - deploy
 
 variables:
     DOCKER_DRIVER: overlay2  # Improves performance.
@@ -12,7 +14,7 @@ Setup environment:
     only:
         changes:
             - env/Dockerfile.test
-            - .gitlab-ci.yml
+            # - .gitlab-ci.yml
     interruptible: true
     image: docker:19.03.0
     services:
@@ -22,7 +24,7 @@ Setup environment:
         - docker -D login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
         # Comment out the next line if you haven't yet gotten a successful image build
         - docker pull $CI_REGISTRY_IMAGE:latest
-        # Comment out this line and uncomment the line after if you don't have a successful build yet
+         # Comment out this line and uncomment the line after if you don't have a successful build yet
         - docker -D build --cache-from $CI_REGISTRY_IMAGE:latest -f env/Dockerfile.test -t $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA -t $CI_REGISTRY_IMAGE:latest env/
         # - docker -D build -f env/Dockerfile.test -t $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA -t $CI_REGISTRY_IMAGE:latest env/
         - docker -D push $CI_REGISTRY_IMAGE
@@ -35,6 +37,7 @@ Test application:
         - cd assignments
         - bundle config set --local path '.bundle'
         - bundle install
+        - bundle exec rubocop
         - yarn install --check-files
         - su postgres -c "initdb -D /var/lib/postgresql/data"
         - mkdir -p /run/postgresql
@@ -42,6 +45,43 @@ Test application:
         - su postgres -c "pg_ctl start -D /var/lib/postgresql/data"
         - su postgres -c "createuser -s root"
         - bundle exec rake db:create
-        - bundle exec rake db:migrate
         - bundle exec rake test
-        - bundle exec rake cucumber
+        - bundle exec cucumber --format html --out cucumber-report.html
+    artifacts:
+        paths:
+            - assignments/coverage/
+            - assignments/cucumber-report.html
+            - assignments/.bundle
+
+pages:
+    stage: publish
+    dependencies:
+        - Test application
+    image: $CI_REGISTRY_IMAGE
+    script:
+        - cp -r assignments/coverage gitlab-pages/
+        - cp assignments/cucumber-report.html gitlab-pages/
+        - cd gitlab-pages
+        - gem install bundler
+        - bundle install
+        - bundle exec jekyll build -d ../public
+    artifacts:
+        paths:
+            - public
+
+Deploy to production:
+    stage: deploy
+    when: manual
+    dependencies:
+        - Test application
+    image: $CI_REGISTRY_IMAGE
+    script:
+        - cd assignments
+        - bundle config set --local path '.bundle'
+        - mkdir -p /root/.ssh
+        - cp $DEPLOY_SSH_PRIV_KEY /root/.ssh/gitlab_ed25519
+        - chmod 600 /root/.ssh/gitlab_ed25519
+        - eval $(ssh-agent)
+        - ssh-add /root/.ssh/gitlab_ed25519
+        - export BAZOOKA_USER=st122283
+        - bundle exec cap production deploy
