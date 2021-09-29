@@ -85,3 +85,4 @@ Deploy to production:
         - ssh-add /root/.ssh/gitlab_ed25519
         - export BAZOOKA_USER=st122331
         - bundle exec cap production deploy
+   
