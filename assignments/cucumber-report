@@ -30,8 +30,22 @@
 <script>
 window.CUCUMBER_MESSAGES = [
 {"meta":{"protocol_version":"17.1.1","implementation":{"name":"cucumber-ruby","version":"7.0.0"},"runtime":{"name":"ruby","version":"3.0.2"},"os":{"name":"linux","version":"#40~20.04.1-Ubuntu SMP Sat Sep 18 02:14:19 UTC 2021"},"cpu":{"name":"x86_64"},"ci":null}},
-{"testRunStarted":{"timestamp":{"seconds":1632934920,"nanos":966606854}}},
-{"testRunFinished":{"success":false,"timestamp":{"seconds":1632934920,"nanos":966899700}}}];
+{"hook":{"id":"7ea4892d-72f1-411c-af62-6358b2513f6e","sourceReference":{"uri":"cucumber-rails-2.4.0/lib/cucumber/rails/hooks/active_record.rb","location":{"line":14}},"tagExpression":"@javascript"}},
+{"hook":{"id":"2d01ba2b-530a-4f83-859a-fd2393588a9e","sourceReference":{"uri":"cucumber-rails-2.4.0/lib/cucumber/rails/hooks/active_record.rb","location":{"line":18}},"tagExpression":"not @javascript"}},
+{"hook":{"id":"9e23511a-333e-41a0-b725-3082f0c7124a","sourceReference":{"uri":"cucumber-rails-2.4.0/lib/cucumber/rails/hooks/active_record.rb","location":{"line":22}},"tagExpression":""}},
+{"hook":{"id":"f23839d0-d0a2-4aee-930d-9e441a9c2dc7","sourceReference":{"uri":"cucumber-rails-2.4.0/lib/cucumber/rails/hooks/database_cleaner.rb","location":{"line":14}},"tagExpression":"not @no-database-cleaner"}},
+{"hook":{"id":"eeff1d03-882b-4578-8eba-345e0e94282a","sourceReference":{"uri":"cucumber-rails-2.4.0/lib/cucumber/rails/hooks/database_cleaner.rb","location":{"line":18}},"tagExpression":"not @no-database-cleaner"}},
+{"hook":{"id":"c9225124-bbfa-4e35-8303-72332b640bfd","sourceReference":{"uri":"cucumber-rails-2.4.0/lib/cucumber/rails/hooks/allow_rescue.rb","location":{"line":3}},"tagExpression":"@allow-rescue"}},
+{"hook":{"id":"0a51064c-9fc5-4d75-b7cd-72f104eb3436","sourceReference":{"uri":"cucumber-rails-2.4.0/lib/cucumber/rails/hooks/allow_rescue.rb","location":{"line":8}},"tagExpression":"@allow-rescue"}},
+{"hook":{"id":"f2329947-1625-46ff-862d-0afbe63e5d9d","sourceReference":{"uri":"cucumber-rails-2.4.0/lib/cucumber/rails/hooks/mail.rb","location":{"line":4}},"tagExpression":""}},
+{"hook":{"id":"4e5c1928-223c-453c-8f9e-c8b9b3560660","sourceReference":{"uri":"capybara-3.35.3/lib/capybara/cucumber.rb","location":{"line":10}},"tagExpression":""}},
+{"hook":{"id":"f27f11e2-d5db-4c44-ab02-405245a626fb","sourceReference":{"uri":"capybara-3.35.3/lib/capybara/cucumber.rb","location":{"line":14}},"tagExpression":""}},
+{"hook":{"id":"2aff2233-8d4c-4d1c-9e5b-31b3c157caf9","sourceReference":{"uri":"capybara-3.35.3/lib/capybara/cucumber.rb","location":{"line":18}},"tagExpression":"@javascript"}},
+{"hook":{"id":"3d5e25e2-a33d-482c-a882-240a1805f227","sourceReference":{"uri":"capybara-3.35.3/lib/capybara/cucumber.rb","location":{"line":22}},"tagExpression":""}},
+{"hook":{"id":"d46c2e78-a4c3-4724-9110-972eaba3089c","sourceReference":{"uri":"cucumber-rails-2.4.0/lib/cucumber/rails/capybara/javascript_emulation.rb","location":{"line":109}},"tagExpression":"not @no-js-emulation"}},
+{"hook":{"id":"eae3fd3a-76ff-4928-8ab4-90b7926c0610","sourceReference":{"uri":"cucumber-rails-2.4.0/lib/cucumber/rails/capybara/javascript_emulation.rb","location":{"line":116}},"tagExpression":"@no-js-emulation"}},
+{"testRunStarted":{"timestamp":{"seconds":1632938664,"nanos":255430029}}},
+{"testRunFinished":{"success":false,"timestamp":{"seconds":1632938664,"nanos":255637109}}}];
 </script>
 <script>
 
