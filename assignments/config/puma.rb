@@ -14,6 +14,7 @@ if rails_env == "production"
   # Location of the control socket. Must be created in advance.
   app_dir = File.expand_path("../..", __FILE__)
   bind "unix://#{app_dir}/tmp/sockets/puma.sock"
+  directory '/home/deploy/web4-app/assignments/current'
 end
 
 # 1-5 threads per worker
