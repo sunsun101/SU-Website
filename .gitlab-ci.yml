@@ -34,7 +34,7 @@ Test application:
     image: $CI_REGISTRY_IMAGE
     interruptible: true
     script:
-        - cd assignments
+        - cd web4-app/assignments
         - bundle config set --local path '.bundle'
         - bundle install
         - bundle exec rubocop
@@ -49,9 +49,9 @@ Test application:
         - bundle exec cucumber --format html --out cucumber-report.html
     artifacts:
         paths:
-            - assignments/coverage/
-            - assignments/cucumber-report.html
-            - assignments/.bundle
+            - web4-app/assignments/coverage/
+            - web4-app/assignments/cucumber-report.html
+            - web4-app/assignments/.bundle
 
 pages:
     stage: publish
@@ -59,8 +59,8 @@ pages:
         - Test application
     image: $CI_REGISTRY_IMAGE
     script:
-        - cp -r assignments/coverage gitlab-pages/
-        - cp assignments/cucumber-report.html gitlab-pages/
+        - cp -r web4-app/assignments/coverage gitlab-pages/
+        - cp web4-app/assignments/cucumber-report.html gitlab-pages/
         - cd gitlab-pages
         - gem install bundler
         - bundle install
@@ -74,9 +74,9 @@ Deploy to production:
     when: manual
     dependencies:
         - Test application
-    image: $CI_REGISTRY_IMAGE
+    image: $CI_REGISTRY_IMAGEs
     script:
-        - cd assignments
+        - cd web4-app/assignments
         - bundle config set --local path '.bundle'
         - mkdir -p /root/.ssh
         - cp $DEPLOY_SSH_PRIV_KEY /root/.ssh/gitlab_ed25519
