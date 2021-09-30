@@ -8,5 +8,6 @@ Rails.application.routes.draw do
   get 'basics/quotations', to: 'basics#quotations'
   post 'basics/quotations', to: 'basics#quotations'
   get 'basics/sql_tasks', to: 'basics#sql_tasks'
+  get 'plan/index'
   
 end
