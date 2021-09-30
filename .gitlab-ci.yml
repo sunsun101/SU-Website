@@ -77,6 +77,8 @@ Deploy to production:
     image: $CI_REGISTRY_IMAGE
     script:
         - cd assignments
+        - cp $MASTER_KEY config/master.key
+        - chmod 600 config/master.key
         - bundle config set --local path '.bundle'
         - mkdir -p /root/.ssh
         - cp $DEPLOY_SSH_PRIV_KEY /root/.ssh/gitlab_ed25519
