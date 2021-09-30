@@ -54,13 +54,12 @@
 #     # password: "please use keys"
 #   }
 
-set :default_env, { "http_proxy" => "192.41.170.23:3128",
-                    "https_proxy" => "192.41.170.23:3128",
-                    "BAZOOKA_USER" => "st122283" }
+set :default_env, { 'http_proxy' => '192.41.170.23:3128',
+                    'https_proxy' => '192.41.170.23:3128',
+                    'BAZOOKA_USER' => ENV['BAZOOKA_USER'] }
 
-server "web4", user: "deploy", roles: %w{app db web}
+server 'web4', user: 'deploy', roles: %w[app db web]
 
-set :deploy_to, "/home/deploy/web4-app/assignments"
+set :deploy_to, '/home/deploy/web4-app/assignments'
 
-set :yarn_flags, "--production"
-
+set :yarn_flags, '--production'
