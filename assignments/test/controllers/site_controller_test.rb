@@ -1,7 +1,8 @@
-require "test_helper"
+require 'test_helper'
 
 class SiteControllerTest < ActionDispatch::IntegrationTest
-  # test "the truth" do
-  #   assert true
-  # end
+  test 'should get site index' do
+    get root_url
+    assert_response :success
+  end
 end
