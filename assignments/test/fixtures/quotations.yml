@@ -1,11 +1,11 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  author_name: MyString
-  category: MyString
-  quote: MyText
+  author_name: "Ram"
+  category: "Humour"
+  quote: "Be the change you wish to see in the world"
 
 two:
-  author_name: MyString
-  category: MyString
-  quote: MyText
+  author_name: "Rumi"
+  category: "Life"
+  quote: "Respond to every call that excites your spirit"

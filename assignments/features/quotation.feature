@@ -1,10 +1,15 @@
 Feature: Quotation
 
-Scenario: Add quotations to a project
-    A user should be able to add quotations to a project.
+Scenario: Manipulate quotations to a project
+    A user should be able to add and delete quotations to a project.
     
-    Given I want to add a quotation to the project
-    # When I hide the quotations
-    # Then I should add quotation id to cookie
-    # When I click restore
-    # Then I should see all existing quotations
+    Given I have a quotation
+    Given I visit the problem set two  page
+    Then I should see a link for the ps two
+    When I click the link for the ps two
+    Then I should see a form to add quotations
+    When I submit the form 
+    Then I should see the added quotations
+    Then I should see restore option
+    When I click the restore
+    Then I should see the quotations
