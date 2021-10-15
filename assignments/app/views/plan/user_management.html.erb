@@ -1,0 +1,34 @@
+<h5>User Management</h5>
+<div class="card mb-5">
+  <div class="card-body">
+    <p><b>Q. All social Web applications have users, content, and some kind of user-to-content map. Specify what
+        kind of information each of these areas will have in your application.</b></p>
+    <p>This application has two user roles - Admin (SU President, Committee Members) and Students.<br>
+      Content includes the event information posted by the admin or complaints submitted by the students.<br>
+      User to content map can be understood as follows:
+      <li>An admin should be able to create/edit events</li>
+      <li>A student should be able to view the upcoming events</li>
+      <li>A student should be able to view the student union information page</li>
+      <li>A student should be able to submit complains</li>
+      <li>An admin should be able to update the status of the complains raised by students</li>
+      <li>An admin should be able to view complaints in list format</li>
+    </p>
+  </div>
+</div>
+<div class="card mb-5">
+  <div class="card-body">
+    <p><b>Q. Learn how to avoid SQL injection and XSS attacks in your development framework and document and
+        follow your plan for the rest of the project.</b></p>
+    <%# https://guides.rubyonrails.org/security.html %>
+    <p>SQL injection attacks aim at influencing database queries by manipulating web application parameters.To avoid SQL injection we can follow some methods:
+      <li>Use built in filter of Ruby on Rails which will escape ' , " , NULL character, and line breaks. Using Model.find(id) or Model.find_by_some thing(something) automatically applies this countermeasure.</li>
+      <li>Instead of passing a string to the conditions option, pass an array to sanitize tainted strings</li>
+      <code>Model.where("login = ? AND password = ?", entered_user_name, entered_password).first
+      </code>
+      <br>
+      Cross-Site Scripting(XSS) is a malicious attack that injects client-side executable code. The common entry points of these code are input fields for Users for example message posts, user comments, and guest books.XSS can steal the cookie, hijack the session, redirect the victim to a fake website, display advertisements for the benefit of the attacker, change elements on the web site to get confidential information or install malicious software through security holes in the web browser.<br>
+      Countermeasure for XSS <br>
+      <li></li> 
+    </p>
+  </div>
+</div>
