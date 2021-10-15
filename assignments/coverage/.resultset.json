@@ -1,18 +1,43 @@
 {
   "RSpec": {
     "coverage": {
-      "/home/mufaddal/Projects/web4/web4-app/assignments/app/models/quotation.rb": {
+      "/home/mufaddal/Projects/web4/web4-app/assignments/app/models/user.rb": {
         "lines": [
           1,
+          null,
+          null,
+          1,
+          null,
+          null,
+          null,
           1,
           1,
+          0,
+          0,
+          0,
+          null,
+          null,
+          null,
           1,
-          1,
+          0,
+          null,
+          0,
+          null,
           null
         ]
       },
       "/home/mufaddal/Projects/web4/web4-app/assignments/app/models/application_record.rb": {
         "lines": [
+          1,
+          1,
+          null
+        ]
+      },
+      "/home/mufaddal/Projects/web4/web4-app/assignments/app/models/quotation.rb": {
+        "lines": [
+          1,
+          1,
+          1,
           1,
           1,
           null
@@ -203,7 +228,7 @@
           1,
           null,
           1,
-          13,
+          14,
           null,
           null
         ]
@@ -214,7 +239,19 @@
           null
         ]
       },
+      "/home/mufaddal/Projects/web4/web4-app/assignments/app/helpers/admin_helper.rb": {
+        "lines": [
+          1,
+          null
+        ]
+      },
       "/home/mufaddal/Projects/web4/web4-app/assignments/app/helpers/basics_helper.rb": {
+        "lines": [
+          1,
+          null
+        ]
+      },
+      "/home/mufaddal/Projects/web4/web4-app/assignments/app/helpers/omniauth_helper.rb": {
         "lines": [
           1,
           null
@@ -232,19 +269,73 @@
           null
         ]
       },
+      "/home/mufaddal/Projects/web4/web4-app/assignments/app/controllers/plan_controller.rb": {
+        "lines": [
+          1,
+          null
+        ]
+      },
       "/home/mufaddal/Projects/web4/web4-app/assignments/app/controllers/site_controller.rb": {
         "lines": [
           1,
           null
         ]
       },
-      "/home/mufaddal/Projects/web4/web4-app/assignments/app/controllers/plan_controller.rb": {
+      "/home/mufaddal/Projects/web4/web4-app/assignments/app/controllers/admin_controller.rb": {
         "lines": [
+          1,
+          1,
+          1,
+          1,
+          null,
+          null,
           1,
           null
         ]
+      },
+      "/home/mufaddal/Projects/web4/web4-app/assignments/app/controllers/omniauth_controller.rb": {
+        "lines": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "branches": {
+        }
+      },
+      "/home/mufaddal/Projects/web4/web4-app/assignments/app/controllers/session_controller.rb": {
+        "lines": [
+          0,
+          0,
+          null,
+          0,
+          null,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0
+        ],
+        "branches": {
+        }
       }
     },
-    "timestamp": 1633279813
+    "timestamp": 1634319634
   }
 }
