@@ -10,10 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_15_135952) do
+ActiveRecord::Schema.define(version: 2021_10_15_163420) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "my_stocks", id: false, force: :cascade do |t|
+    t.string "symbol", limit: 20, null: false
+    t.integer "n_shares", null: false
+    t.date "date_acquired", null: false
+  end
+
+  create_table "newly_acquired_stocks", id: false, force: :cascade do |t|
+    t.string "symbol", limit: 20, null: false
+    t.integer "n_shares", null: false
+    t.date "date_acquired", null: false
+  end
 
   create_table "quotations", force: :cascade do |t|
     t.string "author_name"
@@ -32,6 +44,12 @@ ActiveRecord::Schema.define(version: 2021_10_15_135952) do
     t.index ["updated_at"], name: "index_sessions_on_updated_at"
   end
 
+  create_table "stock_prices", id: false, force: :cascade do |t|
+    t.string "symbol", limit: 20
+    t.date "quote_date"
+    t.decimal "price"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -43,10 +61,10 @@ ActiveRecord::Schema.define(version: 2021_10_15_135952) do
     t.string "uid"
     t.string "provider"
     t.boolean "is_admin", default: false
-    t.string "status"
+    t.string "status", default: "A"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-    t.check_constraint "(status)::text = ANY ((ARRAY['A'::character varying, 'D'::character varying])::text[])", name: "status_check"
+    t.check_constraint "(status)::text = ANY (ARRAY[('A'::character varying)::text, ('D'::character varying)::text])", name: "status_check"
   end
 
 end
