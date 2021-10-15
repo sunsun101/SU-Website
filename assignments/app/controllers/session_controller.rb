@@ -1,11 +1,11 @@
 class SessionController < ApplicationController
   def omniauth
-    binding.pry
+    # binding.pry
   end
 
   private
 
   def auth
-    request.env["omniauth.auth"]
+    request.env['omniauth.auth']
   end
 end
