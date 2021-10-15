@@ -15,18 +15,6 @@ ActiveRecord::Schema.define(version: 2021_10_15_135952) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "my_stocks", id: false, force: :cascade do |t|
-    t.string "symbol", limit: 20, null: false
-    t.integer "n_shares", null: false
-    t.date "date_acquired", null: false
-  end
-
-  create_table "newly_acquired_stocks", id: false, force: :cascade do |t|
-    t.string "symbol", limit: 20, null: false
-    t.integer "n_shares", null: false
-    t.date "date_acquired", null: false
-  end
-
   create_table "quotations", force: :cascade do |t|
     t.string "author_name"
     t.string "category"
@@ -42,12 +30,6 @@ ActiveRecord::Schema.define(version: 2021_10_15_135952) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["session_id"], name: "index_sessions_on_session_id", unique: true
     t.index ["updated_at"], name: "index_sessions_on_updated_at"
-  end
-
-  create_table "stock_prices", id: false, force: :cascade do |t|
-    t.string "symbol", limit: 20
-    t.date "quote_date"
-    t.decimal "price"
   end
 
   create_table "users", force: :cascade do |t|
