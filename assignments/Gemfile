@@ -49,6 +49,7 @@ group :development do
   gem 'capistrano-puma'
   gem 'ed25519'
   gem 'bcrypt_pbkdf'
+  gem 'dotenv-rails'
 end
 
 group :test do
@@ -71,3 +72,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'nokogiri'
 gem 'pry'
 gem 'whenever', require: false
+gem 'devise'
+gem 'omniauth'
+gem 'omniauth-rails_csrf_protection'
+gem 'omniauth-google-oauth2'
+gem 'activerecord-session_store'
