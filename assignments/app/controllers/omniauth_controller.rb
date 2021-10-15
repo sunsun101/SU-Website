@@ -1,4 +1,6 @@
 class OmniauthController < ApplicationController
+  skip_before_action :verify_authenticity_token
+  
   def failure
     flash[:error] = 'There was a problem signing you in. Please register or try signinig in later'
     redirect_to new_user_registration_url
