@@ -11,5 +11,6 @@ Rails.application.routes.draw do
   get 'basics/sql_tasks', to: 'basics#sql_tasks'
   get 'plan/index'
   get 'plan/profiles'
-  # get '/auth/:provider/callback' => 'session#omniauth'
+  get "plan/user_management"
+
 end
