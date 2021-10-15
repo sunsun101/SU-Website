@@ -7,18 +7,24 @@
       <th>Email</th>
       <th>Registered Date</th>
       <th>Status</th>
+      <th>Edit</th>
     </tr>
   </thead>
   <tbody>
     <% if @users.each do |user| %>
       <tr>
         <td><%= user.email %></td>
-        <td><%= user.created_at %></td>
-        <td><%= user.status %></td>
+        <td><%= user.created_at.strftime("%d/%m/%Y") %></td>
+        <% if user.status = 'A' %>
+          <td style="color:green">Active</td>
+        <% else %>
+          <td style="color:red">Banned</td>
+        <% end %>
+        <td><%= link_to 'Ban', :action => :users, :user_id =>  user.id%></td>
       </tr>
     <% end.empty? %>
     <tr>
-      <td colspan="3" style="text-align:center"> No users </td>
+      <td colspan="4" style="text-align:center"> No users </td>
     </tr>
   <% end %>
 </tbody>
