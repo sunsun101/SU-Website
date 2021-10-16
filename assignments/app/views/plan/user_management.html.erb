@@ -67,42 +67,42 @@
             <td>Stores password encrypted by devise</td>
           </tr>
           <tr class="table-striped" >
-           <td>reset_password_token</td>
+            <td>reset_password_token</td>
             <td>string</td>
             <td>Devise generated field</td>
           </tr>
-         <tr class="table-striped">
-           <td>uid</td>
+          <tr class="table-striped">
+            <td>uid</td>
             <td>string</td>
             <td>This field stores the uid returned from the third party authentication api(Google, Facebook, Github,etc )</td>
           </tr>
-            <tr class="table-striped">
-           <td>provider</td>
+          <tr class="table-striped">
+            <td>provider</td>
             <td>string</td>
             <td>This field stores the name of third party authentication provider for our app.</td>
           </tr>
           <tr class="table-striped">
-           <td>status</td>
+            <td>status</td>
             <td>string</td>
             <td>This field stores status of user. Check constraint to only allow 'A' for active user and 'D' for banned/deactivated user</td>
           </tr>
-           <tr class="table-striped">
-           <td>is_admin</td>
+          <tr class="table-striped">
+            <td>is_admin</td>
             <td>boolean</td>
             <td>Default to false.</td>
           </tr>
-             <tr class="table-striped">
+          <tr class="table-striped">
             <td>reset_password_sent_at</td>
             <td>datetime</td>
             <td>Devise generated field</td>
           </tr>
           <tr class="table-striped">
-           <td>created_at</td>
+            <td>created_at</td>
             <td>datetime</td>
             <td>Devise generated field</td>
           </tr>
           <tr class="table-striped">
-           <td>updated_at</td>
+            <td>updated_at</td>
             <td>datetime</td>
             <td>Devise generated field</td>
           </tr>
@@ -114,6 +114,13 @@
     <div class="card-body">
       <p><b>Q. Sketch your user registration and management page 
           ow.</b></p>
-          <%= image_tag "user_registration_managment_flow.jpg",alt: "flowchart", class: "_image"%>
+      <%= image_tag "user_registration_managment_flow.jpg",alt: "flowchart", class: "_image"%>
+    </div>
+  </div>
+  <div class="card mb-5">
+    <div class="card-body">
+      <p><b>Q. Again using BDD, build the user administration pages. Make sure admin can 1) see recently registered
+          users, 2) ban a user, and 3) see statistics on user registrations.</b></p>
+      <%= image_tag "admin_dashboard.PNG",alt: "admin", class: "_image"%>
     </div>
   </div>
