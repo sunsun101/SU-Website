@@ -23,10 +23,10 @@ Then('I should see a list of registered users') do
   expect(page).to have_css('table', text: @user.email)
 end
 
-# Then('I should see user statistics') do
-#   # save_and_open_page
-#   expect(page).to have_css('#chart-1')
-# end
+Then('I should see user statistics') do
+  # save_and_open_page
+  expect(page).to have_css('#curve_chart')
+end
 
 And('I should see a link to ban user') do
   expect(page).to have_link('Ban', href: '/admin/users?user_ban=' + @user.id.to_s)

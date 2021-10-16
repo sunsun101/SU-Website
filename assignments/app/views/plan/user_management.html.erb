@@ -119,8 +119,24 @@
   </div>
   <div class="card mb-5">
     <div class="card-body">
+      <p><b>Q. Using the techniques of test-first and behavior-driven development we've studied in class and lab,
+          build up the basic user registration and login pages. Make sure you have SSL enabled for the complete
+          application to prevent password sning, make sure your session cookies are HttpOnly.</b></p><br>
+          <p>Test-first and behavior-driven development approach has been followed. Passed cucumber cases can be seen in screenshot below. Test coverage can be viewed at <%= link_to 'Coverage',  'https://ait-wae-2021.gitlab.io/web4/web4-app/coverage/index.html#_AllFiles' %></p><br>
+      <%= image_tag "web4_cucumber.PNG",alt: "admin", class: "_image"%>
+    </div>
+  </div>
+  <div class="card mb-5">
+    <div class="card-body">
       <p><b>Q. Again using BDD, build the user administration pages. Make sure admin can 1) see recently registered
           users, 2) ban a user, and 3) see statistics on user registrations.</b></p>
       <%= image_tag "admin_dashboard.PNG",alt: "admin", class: "_image"%>
     </div>
   </div>
+  <p class="mb-5">References :
+    <a style="font-size:14px" href="https://guides.rubyonrails.org/security.html">Rails Security Guide</a>&nbsp;&nbsp;
+    <a style="font-size:14px" href="https://developers-dot-devsite-v2-prod.appspot.com/chart/interactive/docs/gallery/linechart.html">Google Charts</a>&nbsp;&nbsp;
+    <a style="font-size:14px" href="https://blog.arkency.com/2017/07/how-to-quickly-add-graphs-and-charts-to-rails-app/">Add Google charts to Rails</a>&nbsp;&nbsp;
+    <a style="font-size:14px" href="https://medium.com/swlh/google-authentication-strategy-for-rails-5-application-cd37947d2b1bl">Google Authentication</a>&nbsp;&nbsp;
+    <a style="font-size:14px" href="https://www.youtube.com/watch?v=Dd8dOAL6WYs&t=2159s">Rails + Devise + OmniAuth</a>&nbsp;&nbsp;
+  </p>

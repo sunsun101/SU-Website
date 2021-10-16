@@ -8,7 +8,7 @@ Scenario: Manage users
     And A user has registered   
     When I visit the admin page
     Then I should see a list of registered users
-    # And I should see user statistics
+    And I should see user statistics
     And I should see a link to ban user
     When I click the link to ban the user
     Then I should see that the user is banned
