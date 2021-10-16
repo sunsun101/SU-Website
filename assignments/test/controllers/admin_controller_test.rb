@@ -5,6 +5,12 @@ class AdminControllerTest < ActionDispatch::IntegrationTest
     @admin = users(:one)
     @user = users(:two)
   end
+
+  # test 'should show user stats' do
+  #   get admin_users_path
+  #   user_stats = [['15 October', 1], ['16 October', 1]]
+  #   expect(user_stats).to_not eq(nil)
+  # end
   test 'should get users' do
     get admin_users_url
     assert_response :success

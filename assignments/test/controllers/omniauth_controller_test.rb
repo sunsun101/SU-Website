@@ -45,15 +45,10 @@ class OmniauthControllerTest < ActionDispatch::IntegrationTest
                                                                        })
   end
 
-  def fail_login_setup
-    OmniAuth.config.test_mode = true
-    OmniAuth.config.mock_auth[:google_oauth2] = OmniAuth::AuthHash.new({ 'provider' => 'google_oauth2' })
-  end
   # test 'should get failure' do
-  #   get '/users/auth/google_oauth2/failure'
-  #   # fail_login_setup
-  #   # get user_google_oauth2_omniauth_authorize_url
-  #   # request.env['omniauth.auth'] = OmniAuth.config.mock_auth[:google_oauth2]
+  #   OmniAuth.config.test_mode = true
+  #   get user_google_oauth2_omniauth_callback_url
+  #   OmniAuth.config.on_failure = OmniAuth.config.mock_auth[:failure]
   # end
 
   test 'should get authorize omniauth' do
