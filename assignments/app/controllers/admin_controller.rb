@@ -2,7 +2,7 @@ class AdminController < ApplicationController
   def users
     ban_user(params[:user_ban]) if params[:user_ban]
     un_ban_user(params[:user_unban]) if params[:user_unban]
-    @users = User.count_by_date
+    @users = User.all
     @users = @users.order(:created_at)
     @data = User.count_by_date
   end
