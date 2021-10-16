@@ -29,8 +29,6 @@ When(/^I click the link for delete quotation$/) do
 end
 
 Then(/^I should not see the quote$/) do
-  p @quotation.id.to_s
-  # save_and_open_page
   expect(page).to have_content @quotation.author_name
   expect(page).to have_content @quotation.category
   expect(page).to have_content @quotation.quote
