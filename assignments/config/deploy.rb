@@ -1,16 +1,18 @@
 # config valid for current version and patch releases of Capistrano
-lock "~> 3.16.0"
+lock '~> 3.16.0'
 
-set :application, "assignments"
-set :repo_url, "git@gitlab.com:ait-wae-2021/web4/web4-app.git"
+set :application, 'assignments'
+set :repo_url, 'git@gitlab.com:ait-wae-2021/web4/web4-app.git'
 set :rbenv_type, :user
 set :rbenv_ruby, '3.0.2'
 set :repo_tree, 'assignments'
-set :branch, ENV['BRANCH'] ? ENV['BRANCH'] : 'main'
+set :branch, ENV['BRANCH'] || 'main'
 
-append :linked_files, "config/database.yml", "config/master.key"
+set :linked_files, %w[.env]
 
-append :linked_dirs, "log", "tmp", "public/system", "public/assets", "public/packs", ".bundle"
+append :linked_files, 'config/database.yml', 'config/master.key'
+
+append :linked_dirs, 'log', 'tmp', 'public/system', 'public/assets', 'public/packs', '.bundle'
 
 set :keep_releases, 5
 
@@ -49,4 +51,3 @@ after 'deploy:publishing', 'puma:restart'
 
 # Uncomment the following to require manually verifying the host key before first deploy.
 # set :ssh_options, verify_host_key: :secure
-
