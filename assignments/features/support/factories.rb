@@ -9,13 +9,15 @@ FactoryBot.define do
     email { 'joe_admin@ait' }
     password { 'password' }
     password_confirmation { 'password' }
-    is_admin? { true }
+    is_admin { true }
+    status { 'A' }
   end
 
   factory :user, class: User do
     email { 'joe_user@ait' }
     password { 'password' }
     password_confirmation { 'password' }
-    is_admin? { false }
+    is_admin { false }
+    status { 'A' }
   end
 end

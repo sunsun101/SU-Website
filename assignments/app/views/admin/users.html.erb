@@ -15,12 +15,13 @@
       <tr>
         <td><%= user.email %></td>
         <td><%= user.created_at.strftime("%d/%m/%Y") %></td>
-        <% if user.status = 'A' %>
+        <% if user.status == 'A' %>
           <td style="color:green">Active</td>
+          <td><%= link_to 'Ban', :action => :users, :user_ban =>  user.id%></td>
         <% else %>
           <td style="color:red">Banned</td>
+          <td><%= link_to 'UnBan', :action => :users, :user_unban =>  user.id%></td>
         <% end %>
-        <td><%= link_to 'Ban', :action => :users, :user_id =>  user.id%></td>
       </tr>
     <% end.empty? %>
     <tr>
