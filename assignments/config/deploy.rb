@@ -8,9 +8,7 @@ set :rbenv_ruby, '3.0.2'
 set :repo_tree, 'assignments'
 set :branch, ENV['BRANCH'] || 'main'
 
-set :linked_files, %w[.env]
-
-append :linked_files, 'config/database.yml', 'config/master.key'
+append :linked_files, 'config/database.yml', 'config/master.key', %w[.env]
 
 append :linked_dirs, 'log', 'tmp', 'public/system', 'public/assets', 'public/packs', '.bundle'
 
