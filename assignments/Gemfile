@@ -76,4 +76,5 @@ gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-rails_csrf_protection'
 gem 'pry'
+gem 'rails_admin', '~> 2.0'
 gem 'whenever', require: false

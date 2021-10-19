@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users, controllers: { omniauth_callbacks: 'omniauth' }
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   # get 'basics', to: 'basics#index'
-  get 'admin/users'
+  # get 'admin/users'
   get 'basics/news', to: 'basics#news'
   get 'basics/divide_by_zero', to: 'basics#divide_by_zero'
   get 'basics/divide', to: 'basics#divide'
