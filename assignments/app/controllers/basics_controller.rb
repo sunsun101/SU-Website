@@ -3,7 +3,7 @@ require 'open-uri'
 require 'pry'
 
 class BasicsController < ApplicationController
-  skip_before_action :verify_authenticity_token
+  # skip_before_action :verify_authenticity_token
   def parse_ktm_news
     url = 'https://kathmandupost.com/world'
     html = URI.open(url)
@@ -18,10 +18,10 @@ class BasicsController < ApplicationController
     # binding.pry
     (0..headers.count - 1).each do |i|
       h = {}
-      h[:header] = headers[i]?(headers[i].text):''
-      h[:link] = links[i]?('https://kathmandupost.com' + links[i].text):''
-      h[:image] = images[i]?(images[i].text):''
-      h[:content] = content[i]?(content[i].text):''
+      h[:header] = headers[i] ? headers[i].text : ''
+      h[:link] = links[i] ? ('https://kathmandupost.com' + links[i].text) : ''
+      h[:image] = images[i] ? images[i].text : ''
+      h[:content] = content[i] ? content[i].text : ''
       news << h
     end
     news
@@ -54,9 +54,9 @@ class BasicsController < ApplicationController
     news = []
     (0..headers.count - 1).each do |i|
       h = {}
-      h[:header] = headers[i]?(headers[i].text):''
-      h[:link] = links[i]?('https://www.nytimes.com' + links[i].text):''
-      h[:image] = images[i]?(images[i].text):''
+      h[:header] = headers[i] ? headers[i].text : ''
+      h[:link] = links[i] ? ('https://www.nytimes.com' + links[i].text) : ''
+      h[:image] = images[i] ? images[i].text : ''
       # h[:content] = content[i] ?(content[i].text):''
       news << h
     end
