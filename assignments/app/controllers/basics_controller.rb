@@ -3,7 +3,7 @@ require 'open-uri'
 require 'pry'
 
 class BasicsController < ApplicationController
-  # skip_before_action :verify_authenticity_token
+  skip_before_action :verify_authenticity_token
   def parse_ktm_news
     url = 'https://kathmandupost.com/world'
     html = URI.open(url)
