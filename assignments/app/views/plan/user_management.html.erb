@@ -38,8 +38,8 @@
     <div class="card-body">
       <p><b>Q. Audit your software for any sensitive data like database passwords make sure they are secure. Document
           the result of your audit and plan..</b></p>
-      <p>In this application we are using devise for the authentication. We have included the OmniAuth feature supported by the devise for the Login using google feature.<br>
-        Devise is a secure authentication framework. It uses Bcrypt to securely store information.<br>
+      <p>In this application we are using devise for the authentication. We have included the OmniAuth feature supported by the devise for the Login using google.<br>
+        Devise is a secure authentication framework. It uses Bcrypt to secure passwords.<br>
         Additional features of devise like two factor authentication, email verification during sign up can be included for more security.
       </p>
     </div>
@@ -113,7 +113,7 @@
   <div class="card mb-5">
     <div class="card-body">
       <p><b>Q. Sketch your user registration and management page 
-          ow.</b></p>
+          flow.</b></p>
       <%= image_tag "user_registration_managment_flow.jpg",alt: "flowchart", class: "_image"%>
     </div>
   </div>
@@ -121,7 +121,7 @@
     <div class="card-body">
       <p><b>Q. Using the techniques of test-first and behavior-driven development we've studied in class and lab,
           build up the basic user registration and login pages. Make sure you have SSL enabled for the complete
-          application to prevent password sning, make sure your session cookies are HttpOnly.</b></p><br>
+          application to prevent password sniffing, make sure your session cookies are HttpOnly.</b></p><br>
           <p>Test-first and behavior-driven development approach has been followed. Passed cucumber cases can be seen in screenshot below. Test coverage can be viewed at <%= link_to 'Coverage',  'https://ait-wae-2021.gitlab.io/web4/web4-app/coverage/index.html#_AllFiles' %></p><br>
       <%= image_tag "web4_cucumber.PNG",alt: "admin", class: "_image"%>
     </div>
