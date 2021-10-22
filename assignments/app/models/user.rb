@@ -14,26 +14,6 @@ class User < ApplicationRecord
   end
 
   def make_first_user_an_admin
-    return unless User.count.zero?
-
-    self.is_admin = true
+    self.is_admin = true if User.count.zero?
   end
-
-  # def self.count_by_date
-  #   find_by_sql(<<-SQL
-  #     SELECT
-  #       date_trunc('day', created_at) AS created_date,
-  #       count(id) as total_count
-  #     FROM users
-  #     WHERE date_part ('year', created_at) = date_part('year',current_date)
-  #     GROUP BY created_date
-  #     ORDER BY created_date, total_count
-  #   SQL
-  #              ).map do |row|
-  #     [
-  #       row['created_date'].strftime('%e %B'),
-  #       row.total_count
-  #     ]
-  #   end
-  # end
 end

@@ -1,0 +1,36 @@
+<%= form_with url: "/admin/users", method: :get do |f| %>
+  <div class="form-row" >
+    <%= f.hidden_field :adsearch, value: true%>
+  </div>
+  <div class="form-group row col-12" >
+    <%= f.label :date_from, "Date From: ",  class:"col-sm-3 col-form-label" %><br/>
+    <div class="col-sm-7">
+      <%= f.date_field :date_from, class: "form-control datepicker", placeholder: "Date from" %><br/>
+    </div>
+  </div>
+  <br>
+  <div class="form-group row col-12" >
+    <%= f.label :date_to, "Date To: ", class:"col-sm-3 col-form-label" %><br/>
+    <div class="col-sm-7">
+      <%= f.date_field :date_to, class: "form-control datepicker", placeholder: "Date to" %><br/>
+    </div>
+  </div>
+  <br>
+  <div class="form-group row col-12" >
+    <%= f.label 'User Status: ', class:"col-sm-3 col-form-label"%>
+    <div class="col-sm-8">
+      <%= f.select( :user_status, [nil,'Active', 'Banned'],{}, {class:"form-select"})%>
+    </div>
+  </div>
+  <br>
+  <div class="form-group row col-12" >
+    <%= f.label 'Role: ', class:"col-sm-3 col-form-label"%>
+    <div class="col-sm-8">
+      <%= f.select( :admin, ['All','Admin', 'Members'],{}, {class:"form-select"})%>
+    </div>
+  </div>
+  <br>
+  <div class = "form-row" style = "float:right">
+    <div style="float:right;" ><button type="button" class="btn btn-secondary" data-mdb-dismiss="modal" style="margin-right: 10px;"> Close</button><%= f.submit 'Search', class: "btn btn-primary" %></div>
+  </div>
+<% end %>

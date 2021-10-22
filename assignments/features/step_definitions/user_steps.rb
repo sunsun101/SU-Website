@@ -24,34 +24,65 @@ Then('I should see a list of registered users') do
 end
 
 Then('I should see user statistics') do
-  # save_and_open_page
   expect(page).to have_css('#curve_chart')
 end
 
-And('I should see a link to ban user') do
-  expect(page).to have_link('Ban', href: '/admin/users?user_ban=' + @user.id.to_s)
+When('I click button to edit user') do
+  find('tr', text: @user.email).click_link('Edit')
 end
 
-When('I click the link to ban the user') do
-  find_link('Ban', href: '/admin/users?user_ban=' + @user.id.to_s).click
+Then('I should see form to edit user') do
+  expect(page).to have_selector('form#edit_user_' + @user.id.to_s)
+end
+
+When('I submit the edit form') do
+  within('#edit_user_' + @user.id.to_s) do
+    page.select('Ban', from: 'user_status')
+    click_button 'Save changes'
+  end
 end
 
 Then('I should see that the user is banned') do
-  # save_and_open_page
   tr = find('tr', text: @user.email)
   expect(tr).to have_content('Banned')
 end
 
-And('I should see a link to un-ban user') do
-  expect(page).to have_link('Ban', href: '/admin/users?user_unban=' + @user.id.to_s)
-end
-
-When('I click the link to un-ban the user') do
-  find_link('Ban', href: '/admin/users?user_unban=' + @user.id.to_s).click
+When('I submit the edit form to unban') do
+  within('#edit_user_' + @user.id.to_s) do
+    page.select('Active', from: 'user_status')
+    click_button 'Save changes'
+  end
 end
 
 Then('I should see that the user is active') do
   # save_and_open_page
   tr = find('tr', text: @user.email)
   expect(tr).to have_content('Active')
+end
+
+When('I submit the edit form to make user admin') do
+  within('#edit_user_' + @user.id.to_s) do
+    find('#user_is_admin').check
+    click_button 'Save changes'
+  end
+end
+
+Then('I should see that the user is admin') do
+  within('#edit_user_' + @user.id.to_s) do
+    expect(page).to have_field('user_is_admin', checked: true)
+  end
+end
+
+When('I submit the edit form to remove admin priviledge') do
+  within('#edit_user_' + @user.id.to_s) do
+    find('#user_is_admin').uncheck
+    click_button 'Save changes'
+  end
+end
+
+Then('I should see that the user is not an admin') do
+  # save_and_open_page
+  within('#edit_user_' + @user.id.to_s) do
+    expect(page).to have_field('user_is_admin', checked: false)
+  end
 end

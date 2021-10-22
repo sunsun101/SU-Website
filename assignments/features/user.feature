@@ -9,9 +9,29 @@ Scenario: Manage users
     When I visit the admin page
     Then I should see a list of registered users
     And I should see user statistics
-    And I should see a link to ban user
-    When I click the link to ban the user
+    When I click button to edit user
+    Then I should see form to edit user
+    When I submit the edit form
     Then I should see that the user is banned
-    And I should see a link to un-ban user
-    When I click the link to un-ban the user
+    When I click button to edit user
+    Then I should see form to edit user
+    When I submit the edit form to unban
     Then I should see that the user is active
+
+Scenario: Manage admins
+
+    A User Admin should be able to view and make users admins.
+    
+    Given I am an Admin
+    And I am logged in
+    And A user has registered   
+    When I visit the admin page
+    Then I should see a list of registered users
+    When I click button to edit user
+    Then I should see form to edit user
+    When I submit the edit form to make user admin
+    Then I should see that the user is admin
+    When I click button to edit user
+    Then I should see form to edit user
+    When I submit the edit form to remove admin priviledge
+    Then I should see that the user is not an admin
