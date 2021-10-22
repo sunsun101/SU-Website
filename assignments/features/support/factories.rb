@@ -20,4 +20,13 @@ FactoryBot.define do
     is_admin { false }
     status { 'A' }
   end
+
+  factory :su_member, class: SuMember do
+    first_name { 'Test' }
+    last_name { 'test' }
+    designation { 'President' }
+    nationality { 'Nepal' }
+    department { 'SET' }
+    program {'CS'}
+  end
 end
