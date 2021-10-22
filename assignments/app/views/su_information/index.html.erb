@@ -80,12 +80,14 @@
   <% @su_members.each do |member| %>
     <div class="col-md-4  mt-5">
       <div class="card mb-4" style="max-width: 22rem;">
-        <div class="card-body">
+        <div class="card-body" style="text-align:center" >
           <% if member.avatar.attached? %>
-            <%= image_tag(member.avatar,alt: "pp_image", class: "card-img-top _image")%>
+            <%= image_tag(member.avatar,alt: "pp_image", class: "card-img-top circular_image")%>
           <% else %>
-            <%= image_tag "pp.jpg",alt: "pp_image", class: "_image"%>
+            <%= image_tag "pp.jpg",alt: "pp_image", class: "circular_image"%>
           <% end %>
+          <br>
+          <br>
           <p style="text-align:center"><b><%= member.first_name + ' ' + member.last_name %></b></p>
           <p style="text-align:center"><b><%= member.designation %></b></p>
           <p style="text-align:center"><b><%= member.nationality %></b> </p>
