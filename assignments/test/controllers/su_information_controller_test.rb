@@ -14,4 +14,7 @@ class SuInformationControllerTest < ActionDispatch::IntegrationTest
       post su_information_path, params: { su_member: { first_name: @su_member.first_name, last_name: @su_member.last_name, designation: @su_member.designation, nationality: @su_member.nationality, department: @su_member.department, program: @su_member.program } }
     end
   end
+  test "error in su member creation" do
+      post su_information_path, params: { su_member: { first_name: @su_member.first_name, last_name: @su_member.last_name, designation: @su_member.designation, nationality: @su_member.nationality, department: @su_member.department} }
+  end
 end
