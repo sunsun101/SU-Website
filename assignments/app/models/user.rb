@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: [:google_oauth2]
-
+  has_many :complains, dependent: :delete_all
   before_save :make_first_user_an_admin
   def self.create_from_google_data(provider_data)
     where(provider: provider_data.provider, uid: provider_data.uid).first_or_create do |user|
