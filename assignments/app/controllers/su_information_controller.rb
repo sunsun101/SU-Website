@@ -5,14 +5,12 @@ class SuInformationController < ApplicationController
   end
   def create 
     @su_member = SuMember.new(su_member_params)
-    respond_to do |format|
-      if @su_member.save
-        format.html { redirect_to su_information_path, notice: 'Project was successfully created.' }
-        format.json { render :index, status: :created, location: su_information_path }
-      else
-        format.html { render :index, status: :unprocessable_entity }
-        format.json { render json: su_information_path.errors, status: :unprocessable_entity }
-      end
+    if @su_member.save
+      flash[:notice] = "SU Member created successfully"
+      redirect_to su_information_path
+    else
+      flash[:notice] = "Error in creating SU Member"
+      redirect_to su_information_path
     end
   end
   private

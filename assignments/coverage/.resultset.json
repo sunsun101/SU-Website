@@ -74,6 +74,164 @@
           null
         ]
       },
+      "/mnt/e/Projects/web-4/assignments/app/controllers/site_controller.rb": {
+        "lines": [
+          1,
+          null
+        ]
+      },
+      "/mnt/e/Projects/web-4/assignments/app/controllers/application_controller.rb": {
+        "lines": [
+          1,
+          1,
+          null,
+          1,
+          21,
+          null,
+          null
+        ]
+      },
+      "/mnt/e/Projects/web-4/assignments/app/helpers/application_helper.rb": {
+        "lines": [
+          1,
+          null
+        ]
+      },
+      "/mnt/e/Projects/web-4/assignments/app/helpers/admin_helper.rb": {
+        "lines": [
+          1,
+          null
+        ]
+      },
+      "/mnt/e/Projects/web-4/assignments/app/helpers/basics_helper.rb": {
+        "lines": [
+          1,
+          null
+        ]
+      },
+      "/mnt/e/Projects/web-4/assignments/app/helpers/omniauth_helper.rb": {
+        "lines": [
+          1,
+          null
+        ]
+      },
+      "/mnt/e/Projects/web-4/assignments/app/helpers/plan_helper.rb": {
+        "lines": [
+          1,
+          null
+        ]
+      },
+      "/mnt/e/Projects/web-4/assignments/app/helpers/site_helper.rb": {
+        "lines": [
+          1,
+          null
+        ]
+      },
+      "/mnt/e/Projects/web-4/assignments/app/helpers/su_information_helper.rb": {
+        "lines": [
+          1,
+          null
+        ]
+      },
+      "/mnt/e/Projects/web-4/assignments/app/controllers/omniauth_controller.rb": {
+        "lines": [
+          1,
+          null,
+          null,
+          1,
+          null,
+          2,
+          2,
+          null,
+          1,
+          null,
+          null,
+          1,
+          1,
+          null,
+          null,
+          null,
+          1,
+          0,
+          0,
+          null,
+          null
+        ]
+      },
+      "/mnt/e/Projects/web-4/assignments/app/controllers/su_information_controller.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          1,
+          null,
+          1,
+          2,
+          2,
+          1,
+          1,
+          null,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          2,
+          null,
+          null
+        ]
+      },
+      "/mnt/e/Projects/web-4/assignments/app/controllers/admin_controller.rb": {
+        "lines": [
+          1,
+          1,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          0,
+          0,
+          0,
+          0,
+          null,
+          null,
+          null,
+          1,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          1,
+          null,
+          null,
+          1,
+          3,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "/mnt/e/Projects/web-4/assignments/app/controllers/plan_controller.rb": {
+        "lines": [
+          1,
+          null
+        ]
+      },
       "/mnt/e/Projects/web-4/assignments/app/controllers/basics_controller.rb": {
         "lines": [
           1,
@@ -252,168 +410,8 @@
           null,
           null
         ]
-      },
-      "/mnt/e/Projects/web-4/assignments/app/controllers/application_controller.rb": {
-        "lines": [
-          1,
-          1,
-          null,
-          1,
-          20,
-          null,
-          null
-        ]
-      },
-      "/mnt/e/Projects/web-4/assignments/app/helpers/application_helper.rb": {
-        "lines": [
-          1,
-          null
-        ]
-      },
-      "/mnt/e/Projects/web-4/assignments/app/helpers/admin_helper.rb": {
-        "lines": [
-          1,
-          null
-        ]
-      },
-      "/mnt/e/Projects/web-4/assignments/app/helpers/basics_helper.rb": {
-        "lines": [
-          1,
-          null
-        ]
-      },
-      "/mnt/e/Projects/web-4/assignments/app/helpers/omniauth_helper.rb": {
-        "lines": [
-          1,
-          null
-        ]
-      },
-      "/mnt/e/Projects/web-4/assignments/app/helpers/plan_helper.rb": {
-        "lines": [
-          1,
-          null
-        ]
-      },
-      "/mnt/e/Projects/web-4/assignments/app/helpers/site_helper.rb": {
-        "lines": [
-          1,
-          null
-        ]
-      },
-      "/mnt/e/Projects/web-4/assignments/app/helpers/su_information_helper.rb": {
-        "lines": [
-          1,
-          null
-        ]
-      },
-      "/mnt/e/Projects/web-4/assignments/app/controllers/plan_controller.rb": {
-        "lines": [
-          1,
-          null
-        ]
-      },
-      "/mnt/e/Projects/web-4/assignments/app/controllers/su_information_controller.rb": {
-        "lines": [
-          1,
-          1,
-          1,
-          1,
-          null,
-          1,
-          1,
-          1,
-          1,
-          2,
-          1,
-          null,
-          0,
-          0,
-          null,
-          null,
-          null,
-          1,
-          1,
-          1,
-          null,
-          null
-        ]
-      },
-      "/mnt/e/Projects/web-4/assignments/app/controllers/omniauth_controller.rb": {
-        "lines": [
-          1,
-          null,
-          null,
-          1,
-          null,
-          2,
-          2,
-          null,
-          1,
-          null,
-          null,
-          1,
-          1,
-          null,
-          null,
-          null,
-          1,
-          0,
-          0,
-          null,
-          null
-        ]
-      },
-      "/mnt/e/Projects/web-4/assignments/app/controllers/admin_controller.rb": {
-        "lines": [
-          1,
-          1,
-          3,
-          3,
-          3,
-          3,
-          3,
-          3,
-          3,
-          3,
-          0,
-          0,
-          0,
-          0,
-          null,
-          null,
-          null,
-          1,
-          1,
-          1,
-          null,
-          null,
-          1,
-          1,
-          1,
-          null,
-          null,
-          1,
-          3,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ]
-      },
-      "/mnt/e/Projects/web-4/assignments/app/controllers/site_controller.rb": {
-        "lines": [
-          1,
-          null
-        ]
       }
     },
-    "timestamp": 1634904071
+    "timestamp": 1634905113
   }
 }
