@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get 'plan/index'
   get 'plan/profiles'
   get 'plan/user_management'
+  get 'plan/documentation'
   get 'su_information', to: "su_information#index"
   post 'su_information', to: "su_information#create"
 end
