@@ -11,7 +11,7 @@ class SuInformationControllerTest < ActionDispatch::IntegrationTest
   end
   test "create su member" do
     assert_difference("SuMember.count") do
-      post su_information_path, params: { su_member: { first_name: @su_member.first_name, last_name: @su_member.last_name, designation: @su_member.designation, nationalitiy: @su_member.nationality, department: @su_member.department, program: @su_member.program } }
+      post su_information_path, params: { su_member: { first_name: @su_member.first_name, last_name: @su_member.last_name, designation: @su_member.designation, nationality: @su_member.nationality, department: @su_member.department, program: @su_member.program } }
     end
   end
 end
