@@ -1,91 +1,46 @@
-<div>
-  <h5>Student Union Information</h5>
-  <% if current_user&.is_admin %>
-    <button type="button" class="btn btn-primary" data-mdb-toggle="modal" data-mdb-target="#createSuModal">
-      <i class="fas fa-plus"></i>
-      Add Member
-    </button>
-  <% end %>
-</div>
-<div
-  class="modal fade"
-  id="createSuModal"
-  tabindex="-1"
-  aria-labelledby="SuModalLabel"
-  aria-hidden="true"
->
-  <% if flash[:notice] %>
-    <div class="notice"><%= flash[:notice] %></div>
-  <% end %>
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="SuModalLabel">Create SU Member</h5>
-        <button
-          type="button"
-          class="btn-close"
-          data-mdb-dismiss="modal"
-          aria-label="Close"
-        ></button>
-      </div>
-      <div class="modal-body">
-        <%= form_with(model: @su_member, local:true, url: su_information_path) do |form| %>
-          <% if @su_member.errors.any? %>
-            <div id="error_explanation" class="mb-4 text-center">
-              <h2><%= pluralize(@su_member.errors.count, "error") %> prohibited this SU Member from being saved:</h2>
-              <ul>
-                <% @su_member.errors.full_messages.each do |message| %>
-                  <li><%= message %></li>
-                <% end %>
-              </ul>
-            </div>
-          <% end %>
-          <div class="form-outline mb-4">
-            <%= form.text_field :first_name, class: 'form-control' %>
-            <%= form.label :first_name, class: 'form-label' %>
-          </div>
-          <div class="form-outline mb-4">
-            <%= form.text_field :last_name, class: 'form-control' %>
-            <%= form.label :last_name, class: 'form-label' %>
-          </div>
-          <div class="form-outline mb-4">
-            <%= form.text_field :designation, class: 'form-control' %>
-            <%= form.label :designation, class: 'form-label' %>
-          </div>
-          <div class="form-outline mb-4">
-            <%= form.text_field :nationality, class: 'form-control' %>
-            <%= form.label :nationality, class: 'form-label' %>
-          </div>
-          <div class="form-outline mb-4">
-            <%= form.text_field :program, class: 'form-control' %>
-            <%= form.label :program, class: 'form-label' %>
-          </div>
-          <div class="form-outline mb-4">
-            <%= form.label :department, class: 'form-label' %>
-            <%= form.select :department, ["SET", "SOM", "SERD"], class: 'form-label' %>
-          </div>
-          <div class="form-outline mb-4">
-            <%= form.label :profile_photo, class: 'form-label' %>
-            <%= form.file_field :avatar %>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <%= form.submit 'Submit', class: 'btn btn-primary mb-4' %>
-        <% end %>
-      </div>
-    </div>
-  </div>
-</div>
+<% if flash.any?%>
+  <%= render 'layouts/alerts'%>
+<% end %>
+<h5>Student Union Information</h5>
+<% if current_user&.is_admin %>
+  <button type="button" class="btn btn-primary" data-mdb-toggle="modal" data-mdb-target="#SUAddModal">
+    <i class="fas fa-plus"></i>
+    Add Member
+  </button>
+<% end %>
 <div class="row">
   <% @su_members.each do |member| %>
     <div class="col-md-4  mt-5">
       <div class="card mb-4" style="max-width: 22rem;">
-        <div class="card-body" style="text-align:center" >
-          <% if member.avatar.attached? %>
-            <%= image_tag(member.avatar,alt: "pp_image", class: "card-img-top circular_image")%>
-          <% else %>
-            <%= image_tag "pp.jpg",alt: "pp_image", class: "circular_image"%>
+        <div class="card-body">
+          <div style = "float: right;">
+            <% if current_user&.is_admin %>
+              <%= link_to  '#', 'data-mdb-target' => "#myModal_#{member.id}", 'data-mdb-toggle' => 'modal' do%>
+                <i class="fas fa-edit" style = 'border-radius: 50%;'></i>
+              <% end %>
+            </div>
+            <br>
+            <div class="modal fade" id='<%= "myModal_#{member.id}" %>' tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id='<%= "myModal_#{member.id}" %>'>Edit Member - <%= member.first_name %></h5>
+                    <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close" ></button>
+                  </div>
+                  <div class="modal-body">
+                    <%= render 'form', su_member: member %>
+                  </div>
+                </div>
+              </div>
+            </div>
           <% end %>
+          <div style = "text-align:center">
+            <% if member.avatar.attached? %>
+              <%= image_tag(member.avatar,alt: "pp_image", class: "card-img-top circular_image")%>
+            <% else %>
+              <%= image_tag "pp.jpg",alt: "pp_image", class: "circular_image"%>
+            <% end %>
+          </div>
           <br>
           <br>
           <p style="text-align:center"><b><%= member.first_name + ' ' + member.last_name %></b></p>
@@ -96,4 +51,21 @@
       </div>
     </div>
   <% end %>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="SUAddModal" tabindex="-1" aria-labelledby="SUAddModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="SUAddModal">Add memeber</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-mdb-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body"><%= render 'form', su_member: @su_member%></div>
+    </div>
+  </div>
 </div>
