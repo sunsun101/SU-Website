@@ -13,12 +13,10 @@
     <div class="col-md-4  mt-5">
       <div class="card mb-4" style="max-width: 22rem;">
         <div class="card-body">
-          <div style = "float: right;">
-            <% if current_user&.is_admin %>
-              <%= link_to  '#', 'data-mdb-target' => "#myModal_#{member.id}", 'data-mdb-toggle' => 'modal' do%>
-                <i class="fas fa-edit" style = 'border-radius: 50%;'></i>
-              <% end %>
-            </div>
+          <% if current_user&.is_admin %>
+            <%= link_to  '#', 'data-mdb-target' => "#myModal_#{member.id}", 'data-mdb-toggle' => 'modal', style: 'float: right' do%>
+              <i class="fas fa-edit" style = 'border-radius: 50%;'></i>
+            <% end %>
             <br>
             <div class="modal fade" id='<%= "myModal_#{member.id}" %>' tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
               <div class="modal-dialog">
