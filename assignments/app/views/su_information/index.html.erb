@@ -1,64 +1,46 @@
-<div>
-  <h5>Student Union Information</h5>
-  <% if current_user&.is_admin %>
-    <button type="button" class="btn btn-primary" data-mdb-toggle="modal" data-mdb-target="#createSuModal">
-      <i class="fas fa-plus"></i>
-      Add Member
-    </button>
-  <% end %>
-</div>
-<div
-  class="modal fade"
-  id="createSuModal"
-  tabindex="-1"
-  aria-labelledby="SuModalLabel"
-  aria-hidden="true"
->
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="SuModalLabel">Create SU Member</h5>
-        <button
-          type="button"
-          class="btn-close"
-          data-mdb-dismiss="modal"
-          aria-label="Close"
-        ></button>
-      </div>
-      <div class="modal-body">
-        <%= render 'form_add', su_member: @su_member %>
-      </div>
-    </div>
-  </div>
-</div>
+<% if flash.any?%>
+  <%= render 'layouts/alerts'%>
+<% end %>
+<h5>Student Union Information</h5>
+<% if current_user&.is_admin %>
+  <button type="button" class="btn btn-primary" data-mdb-toggle="modal" data-mdb-target="#SUAddModal">
+    <i class="fas fa-plus"></i>
+    Add Member
+  </button>
+<% end %>
 <div class="row">
   <% @su_members.each do |member| %>
     <div class="col-md-4  mt-5">
       <div class="card mb-4" style="max-width: 22rem;">
-        <div class="card-body" style="text-align:center">
-          <% if current_user&.is_admin %>
-            <%= link_to  '#', 'data-mdb-target' => "#myModal_#{member.id}", 'data-mdb-toggle' => 'modal', :class=>"btn btn-primary", :style=>'float: right;' do%>
-              <i class="fas fa-edit"></i>
-            <% end %>
+        <div class="card-body">
+          <div style = "float: right;">
+            <% if current_user&.is_admin %>
+              <%= link_to  '#', 'data-mdb-target' => "#myModal_#{member.id}", 'data-mdb-toggle' => 'modal' do%>
+                <i class="fas fa-edit" style = 'border-radius: 50%;'></i>
+              <% end %>
+            </div>
+            <br>
             <div class="modal fade" id='<%= "myModal_#{member.id}" %>' tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-              <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel"><%= member.first_name %> </h5>
+                    <h5 class="modal-title" id='<%= "myModal_#{member.id}" %>'>Edit Member - <%= member.first_name %></h5>
                     <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close" ></button>
                   </div>
                   <div class="modal-body">
-                    <%= render 'form_add', member: member %>
+                    <%= render 'form', su_member: member %>
                   </div>
                 </div>
               </div>
             </div>
           <% end %>
-          <% if member.avatar.attached? %>
-            <%= image_tag(member.avatar,alt: "pp_image", class: "card-img-top circular_image")%>
-          <% else %>
-            <%= image_tag "pp.jpg",alt: "pp_image", class: "circular_image"%>
-          <% end %>
+          <div style = "text-align:center">
+            <% if member.avatar.attached? %>
+              <%= image_tag(member.avatar,alt: "pp_image", class: "card-img-top circular_image")%>
+            <% else %>
+              <%= image_tag "pp.jpg",alt: "pp_image", class: "circular_image"%>
+            <% end %>
+          </div>
           <br>
           <br>
           <p style="text-align:center"><b><%= member.first_name + ' ' + member.last_name %></b></p>
@@ -69,4 +51,21 @@
       </div>
     </div>
   <% end %>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="SUAddModal" tabindex="-1" aria-labelledby="SUAddModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="SUAddModal">Add memeber</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-mdb-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body"><%= render 'form', su_member: @su_member%></div>
+    </div>
+  </div>
 </div>

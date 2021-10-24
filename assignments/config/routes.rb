@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   get 'plan/index'
   get 'plan/profiles'
   get 'plan/user_management'
-  get 'su_information', to: "su_information#index"
-  post 'su_information', to: "su_information#create"
+  get 'su_information', to: 'su_information#index'
+  post 'su_information', to: 'su_information#create'
+  patch 'su_information', to: 'su_information#edit'
+  delete 'su_information', to: 'su_information#destroy'
 end

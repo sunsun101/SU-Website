@@ -1,0 +1,8 @@
+<div>
+  <% flash.each do |key, value| %>
+    <div class="<%= flash_class(key)%> alert-dismissible fade show">
+      <%= value %>
+      <button type="button" class="close" data-mdb-dismiss="alert" aria-label="Close" style = 'float: right'><i class="fas fa-times"></i></button>
+    </div>
+  <% end %>
+</div>
