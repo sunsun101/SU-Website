@@ -11,6 +11,7 @@ FactoryBot.define do
     password_confirmation { 'password' }
     is_admin { true }
     status { 'A' }
+    confirmed_at { 1.day.ago }
   end
 
   factory :user, class: User do
