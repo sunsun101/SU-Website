@@ -1,17 +1,16 @@
-<h3>Divide by zero</h3>
-<hr>
-<div class="mb-3">
+<div class="container">
+  <h3>Divide by zero</h3>
+  <hr>
+  <div class="mb-3">
     <%= button_to 'Divide', basics_divide_path, class: 'btn btn-success', method: :get %>
+  </div>
+  <h5>Explanation</h5>
+  <p>
+    The button above when clicked calls a method which divides 4 by 0 and raises divide by zero exception.<br>
+    <br>
+    Using <i>Rails.logger.warn</i> we added "About to divide by 0" warning in the log before the exception occurs as shown in the screen shot below.
+    The divide by zero exception was handled to get the error message and the stack trace. 
+  </p>
+  <p>Screen shot of production log</p>
+  <%= image_tag "log.png",alt: "log_image", class: "_image"%>
 </div>
-
-<h5>Explanation</h5>
-<p>
-The button above when clicked calls a method which divides 4 by 0 and raises divide by zero exception.<br><br>
-
-Using <i>Rails.logger.warn</i> we added "About to divide by 0" warning in the log before the exception occurs as shown in the screen shot below.
-The divide by zero exception was handled to get the error message and the stack trace. 
-</p>
-
-<p>Screen shot of production log</p>
-<%= image_tag "log.png",alt: "log_image", class: "_image"%>
-

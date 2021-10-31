@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   # get 'basics', to: 'basics#index'
   get 'admin/users'
   patch 'admin/users'
+  get 'problem-sets', to: 'site#problem_sets'
   get 'basics/news', to: 'basics#news'
   get 'basics/divide_by_zero', to: 'basics#divide_by_zero'
   get 'basics/divide', to: 'basics#divide'
@@ -19,4 +20,6 @@ Rails.application.routes.draw do
   post 'su_information', to: 'su_information#create'
   patch 'su_information', to: 'su_information#edit'
   delete 'su_information', to: 'su_information#destroy'
+  get 'events', to: 'events#index'
+  post 'events', to: 'events#create'
 end

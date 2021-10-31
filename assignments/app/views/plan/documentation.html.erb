@@ -1,70 +1,72 @@
-<div class="card mb-5">
-  <div class="card-body">
-    <p><b>Q.Think about how to classify each of the types of content on your site. Articles, comments on articles,
-        news items, questions and answers, documents to be approved or rejected with comments, and so on.
-        Each type of content will require a dierent flavor of data model and moderation/approval/versioning
-        process.</b></p>
-    <p>The application has following content - 
-      <li>Events - containing images</li>
-      <li>Student complains - contains image, tags</li>
-      <li>SU Member information - standalone entity</li>
-      <li>Tags - created by the admin</li>
-    </p>
+<div class="container">
+  <div class="card mb-5">
+    <div class="card-body">
+      <p><b>Q.Think about how to classify each of the types of content on your site. Articles, comments on articles,
+          news items, questions and answers, documents to be approved or rejected with comments, and so on.
+          Each type of content will require a dierent flavor of data model and moderation/approval/versioning
+          process.</b></p>
+      <p>The application has following content - 
+        <li>Events - containing images</li>
+        <li>Student complains - contains image, tags</li>
+        <li>SU Member information - standalone entity</li>
+        <li>Tags - created by the admin</li>
+      </p>
+    </div>
   </div>
-</div>
-<div class="card mb-5">
-  <div class="card-body">
-    <p><b>Q.Design your content data model and discuss the implications of your design choices with potential
-        users of the system. In general, there should be at least one category of user-submitted content with
-        authoring workflow specific to your project and at least one question and answer forum. However,
-        the specifics will be very dependent on your project's requirements. Document the design and your
-        discussions on your site.</b></p>
-    <p>The database design is depicted by the ER diagram below. The tables for active storage is used for storing images and all files.
-      <%= image_tag "ER-diagram.PNG",alt: "admin", class: "_image"%>
-    </p>
-    <p>Complains are the user submitted content whose default status is Pending. The status of complains are updated to in progress, completed or rejected by the admin.</p>
+  <div class="card mb-5">
+    <div class="card-body">
+      <p><b>Q.Design your content data model and discuss the implications of your design choices with potential
+          users of the system. In general, there should be at least one category of user-submitted content with
+          authoring workflow specific to your project and at least one question and answer forum. However,
+          the specifics will be very dependent on your project's requirements. Document the design and your
+          discussions on your site.</b></p>
+      <p>The database design is depicted by the ER diagram below. The tables for active storage is used for storing images and all files.
+        <%= image_tag "ER-diagram.PNG",alt: "admin", class: "_image"%>
+      </p>
+      <p>Complains are the user submitted content whose default status is Pending. The status of complains are updated to in progress, completed or rejected by the admin.</p>
+    </div>
   </div>
-</div>
-<div class="card mb-5">
-  <div class="card-body">
-    <p><b>Q.Specify the workflow for each kind of content on your site and discuss the implications of your design
-        choices with potential users of the sytem. Document the workflow design and your discussions on your
-        site.</b></p>
-    <p>Workflow for SU Information page - Admin is able to create and edit members. The information of SU and its member can be viewed by both admin and students.<br>
-      Workflow for Events - Admin is able to create events in the system. The created events can be viewed by the students on their main page. The events can be searched and filtered by the students.<br>
-      Workflow for Complains - Students are able to register complains. Admin can filter, search, update the status in the list of complains.  
-    </p>
+  <div class="card mb-5">
+    <div class="card-body">
+      <p><b>Q.Specify the workflow for each kind of content on your site and discuss the implications of your design
+          choices with potential users of the sytem. Document the workflow design and your discussions on your
+          site.</b></p>
+      <p>Workflow for SU Information page - Admin is able to create and edit members. The information of SU and its member can be viewed by both admin and students.<br>
+        Workflow for Events - Admin is able to create events in the system. The created events can be viewed by the students on their main page. The events can be searched and filtered by the students.<br>
+        Workflow for Complains - Students are able to register complains. Admin can filter, search, update the status in the list of complains.  
+      </p>
+    </div>
   </div>
-</div>
-<div class="card mb-5">
-  <div class="card-body">
-    <p><b>Q.Design your versioning system. What is the versioning system for each type of content? Do you need
-        a complete history of every version, or just a current version with the author of the last version? Make
-        sure you think carefully about the needs of the user community. Document the versioning design on
-        your site.</b></p>
-    <p>For versioning of our content we have added two fields created_by and updated_by to store information of the user who created the content and latest user who updated it.<br>
-      For this system we do not require complete history of every version.
-    </p>
+  <div class="card mb-5">
+    <div class="card-body">
+      <p><b>Q.Design your versioning system. What is the versioning system for each type of content? Do you need
+          a complete history of every version, or just a current version with the author of the last version? Make
+          sure you think carefully about the needs of the user community. Document the versioning design on
+          your site.</b></p>
+      <p>For versioning of our content we have added two fields created_by and updated_by to store information of the user who created the content and latest user who updated it.<br>
+        For this system we do not require complete history of every version.
+      </p>
+    </div>
   </div>
-</div>
-<div class="card mb-5">
-  <div class="card-body">
-    <p><b>Q.Write UATs for a "skeletal" implmentation of the workflow for at least one type of content on your
-        site then get the UATs to pass. Users should be able to get something up on your server and see it
-        published.</b></p>
-    <p>Workflow for SU Information page has been completed. Admin can create SU Members and students are able to view the details of the SU Members.<br>
-      Cucumber and unit tests has been written for the workflow<br>
-      <%= image_tag "su_info_cucumber.PNG",alt: "admin", class: "_image"%>
-      <%= image_tag "su_info_unit.PNG",alt: "admin", class: "_image"%>
-    </p>
+  <div class="card mb-5">
+    <div class="card-body">
+      <p><b>Q.Write UATs for a "skeletal" implmentation of the workflow for at least one type of content on your
+          site then get the UATs to pass. Users should be able to get something up on your server and see it
+          published.</b></p>
+      <p>Workflow for SU Information page has been completed. Admin can create SU Members and students are able to view the details of the SU Members.<br>
+        Cucumber and unit tests has been written for the workflow<br>
+        <%= image_tag "su_info_cucumber.PNG",alt: "admin", class: "_image"%>
+        <%= image_tag "su_info_unit.PNG",alt: "admin", class: "_image"%>
+      </p>
+    </div>
   </div>
-</div>
-<div class="card mb-5">
-  <div class="card-body">
-    <p><b>Q.Put your work online and commit to your Git repository when you are done. As with Problem Set 4,
-        you should give us access to an administrator account so we can see your document workflow in action.<br>
-      </b>
-    </p>
-    <p>Credential sent via email to Professor Matthew Dailey and Kiran Dhakal.</p>
+  <div class="card mb-5">
+    <div class="card-body">
+      <p><b>Q.Put your work online and commit to your Git repository when you are done. As with Problem Set 4,
+          you should give us access to an administrator account so we can see your document workflow in action.<br>
+        </b>
+      </p>
+      <p>Credential sent via email to Professor Matthew Dailey and Kiran Dhakal.</p>
+    </div>
   </div>
 </div>
