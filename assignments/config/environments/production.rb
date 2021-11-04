@@ -122,7 +122,7 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
   config.action_mailer.raise_delivery_errors = false
   config.action_mailer.delivery_method = :google_http_actionmailer
-  config.action_mailer.default_url_options = { host: "web16.cs.ait.ac.th" }
+  config.action_mailer.default_url_options = { host: "web4.cs.ait.ac.th" }
   j = JSON.parse(File.read("config/client_secrets.json"))
   config.gmail_api_secrets = j["web"]
   j = JSON.parse(File.read("config/tokens.json"))
