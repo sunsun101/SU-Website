@@ -77,3 +77,4 @@ gem 'omniauth-google-oauth2'
 gem 'omniauth-rails_csrf_protection'
 gem 'pry'
 gem 'whenever', require: false
+gem 'google-http-actionmailer'
