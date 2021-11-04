@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root 'site#index'
-  devise_for :users, controllers: { omniauth_callbacks: 'omniauth' }
+  devise_for :users, controllers: { omniauth_callbacks: 'omniauth', registrations: "registrations" }
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   # get 'basics', to: 'basics#index'
   get 'admin/users'
