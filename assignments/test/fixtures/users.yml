@@ -8,8 +8,10 @@ one:
   email: 'admin@example.com'
   is_admin: true
   status: 'A'
+  confirmed_at: "2020-09-09 07:01:51.461869"
 
 two:
   email: 'user@example.com'
   is_admin: false
   status: 'A'
+  confirmed_at: "2020-09-09 07:01:51.461869"

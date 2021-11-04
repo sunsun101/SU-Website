@@ -1,95 +1,62 @@
-<%= flash[:message] %>
-<div class="row">
-  <div class="col-md-4">
-    <div class="card mb-4">
-      <div class="card-body">
-        <h5 class="card-header">Problem Set 1: Basics</h5>
-        <p class="card-text">
-          <ul>
-            <li>
-              <p><%= link_to 'Divide by zero', basics_divide_by_zero_path%></p>
-            </li>
-            <li>
-              <p><%= link_to 'News', basics_news_path%></p>
-            </li>
-          </ul>
-          <p class="mb-0">Online references :
-            <a style="font-size:14px" href="https://www.zyte.com/blog/an-introduction-to-xpath-with-examples/#:~:text=XPath%20is%20a%20powerful%20language,extract%20web%20data%20using%20Scrapy.">Intro to Xpath</a>&nbsp;&nbsp;
-            <a style="font-size:14px" href="https://medium.com/@jennyjean8675309/web-scraping-with-ruby-and-nokogiri-73e75a6f34ed">Web Scraping with Nokogiri</a>&nbsp;&nbsp;
-            <a style="font-size:14px" href="https://stackify.com/rails-logger-and-rails-logging-best-practices/">Rails Logger</a>
-          </p>
-          <p>News website:
-            <a style="font-size:14px" href="https://kathmandupost.com/">The Kathmandu Post</a>&nbsp;&nbsp;
-            <a style="font-size:14px" href="https://www.nytimes.com/">The New York Times</a>
-          </p>
-        </p>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-4">
-    <div class="card mb-4">
-      <div class="card-body">
-        <h5 class="card-header">Problem Set 2: Basics</h5>
-        <p class="card-text">
-          <ul>
-            <li>
-              <p><%= link_to 'Quotations', basics_quotations_path%></p>
-            </li>
-            <li>
-              <p><%= link_to 'SQL Tasks', basics_sql_tasks_path%></p>
-            </li>
-          </ul>
-        </p>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-4">
-    <div class="card mb-4">
-      <div class="card-body">
-        <h5 class="card-header">Problem Set 3: Planning, Odds and Ends</h5>
-        <p class="card-text">
-          <ul>
-            <li>
-              <p><%= link_to 'Project Plan', plan_index_path%></p>
-            </li>
-            <li>
-              <p><%= link_to 'Profile Pages', plan_profiles_path%></p>
-            </li>
-          </ul>
-        </p>
+  <div
+          id="ait-background"
+          class="p-5 text-center bg-image"
+          style="background-image: url(<%= asset_path 'background.jpg' %>);"
+  >
+  <div class="mask" style="background-color: rgba(0, 0, 0, 0.7);">
+    <div class="d-flex justify-content-center align-items-center h-100">
+      <div class="text-white">
+        <%# <h1 class="mb-3">Welcome to AIT Student Union Official Website</h1> %>
+        <%= link_to 'View Events', events_path , class: "btn btn-outline-light btn-lg m-2", role: "button"%>
+        <%= link_to 'Register Complain', contact_form_path , class: "btn btn-outline-light btn-lg m-2", role: "button"%>
       </div>
     </div>
   </div>
 </div>
-<div class="row">
-  <div class="col-md-4" >
-    <div class="card mb-4">
-      <div class="card-body">
-        <h5 class="card-header">Problem Set 4: Odds, Ends, and User Management</h5>
-        <p class="card-text">
-          <ul>
-            <li>
-              <p><%= link_to 'User Management', plan_user_management_path%></p>
-            </li>
-            <li>
-              <p><%= link_to 'Database Dump', asset_url('db_backup_20211016113301.psql'), target: "_blank" %></p>
-            </li>
-          </ul>
-        </p>
-      </div>
+<% if @events.present? %>
+  <div class="container mt-5 mb-5">
+    <div class="d-flex justify-content-between">
+      <h5 class = "text-uppercase fw-bold mb-4">Upcoming Events</h5>
+      <%= link_to 'More Events', events_path %>
+    </div>
+    <div class="row">
+      <% @events.each do |event| %>
+        <div class="col-md-4">
+          <div class="card text-center h-100" style="max-width: 22rem;">
+            <div class="card-header"><%= event.title %></div>
+            <div class="card-body">
+              <%# <h5 class="card-title">Special title treatment</h5> %>
+              <% if event.pictures.attached? %>
+                <%= image_tag(event.pictures.first,alt: "event_image", class: "event--img")%>
+              <% end %>
+              <p class="mt-4">Event Date: <%= event.event_date %></p>
+              <p class="card-text" style="width:inherit ; white-space: nowrap; overflow: hidden; text-overflow:ellipsis;">
+                <%= event.description %>
+              </p>
+            </div>
+          </div>
+        </div>
+      <% end %>
     </div>
   </div>
-  <div class="col-md-4" >
-    <div class="card mb-4">
-      <div class="card-body">
-        <h5 class="card-header">Problem Set 5: Content Management, Part I</h5>
-        <p class="card-text">
-          <ul>
-            <li>
-              <p><%= link_to 'Documentation', plan_documentation_path%></p>
-            </li>
-          </ul>
-        </p>
+<% end %>
+<div class="p-5 text-center bg-image"
+          style="background-color: rgba(127, 149, 111, 0.7); height: 500px">
+  <div class="mask">
+    <div class="d-flex justify-content-center align-items-center h-100">
+      <div class="container p-2">
+        <div class="text-white">
+          <h1 class="mb-3">A message to the students</h1>
+          <h5>Dear AIT Students,</h5>
+          <p>
+            First of all, on behalf of Student Union, we would like to extend a warm welcome to be a part of the AIT family. Student Union or you can call “SU” tries to help all students to settle down in AIT as their new home by providing difference academic and non-academic activities.
+            We wish all new overseas students good health and speedy processing of their entry into Thailand.  We would be looking forward to the day when all of the students manage to reside in campus and the SU activities are resumed for the 2020 August semester in AIT’s journey as it transforms itself under the motto of “Social Impact With Innovation.”
+          </p>
+          <p>
+            SU Interim Committee<br>
+            2020 August
+          </p>
+        </div>
       </div>
     </div>
   </div>

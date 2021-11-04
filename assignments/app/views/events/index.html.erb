@@ -1,0 +1,112 @@
+<div class="row">
+  <div class="col-lg-8 col-md-8 col-sm-8">
+    <div class="container event-container">
+      <% if current_user&.is_admin %>
+        <button type="button" class="btn btn-light" data-mdb-toggle="modal" data-mdb-target="#EventModal">
+          <i class="fas fa-plus"></i>
+          Create Event
+        </button>
+      <% end %>
+      <% if @events.present? %>
+        <% @events.each do |event| %>
+          <div class="card mb-2 mt-2">
+            <div class="card-body">
+              <h5 class="text-uppercase fw-bold mb-4"><%= event.title %></h5>
+              <h6 class="fw-bold mb-4"><i class="fas fa-calendar"></i> <%= event&.event_date&.strftime("%Y-%m-%d %I:%M %p") %></h6>
+              <% if event.pictures.attached? %>
+                <% if event.pictures.count == 1 %>
+                  <%= image_tag(event.pictures[0], alt: "event_image", class: 'img-fluid') %>
+                <% elsif event.pictures.count == 2 %>
+                  <div class="row">
+                    <% event.pictures.each do |picture| %>
+                      <div class="col-md-6">
+                        <%= image_tag(picture, alt: "event_image", class: 'img-fluid') %>
+                      </div>
+                    <% end %>
+                  </div>
+                <% elsif event.pictures.count == 3 %>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <%= image_tag(event.pictures[0], alt: "event_image", class: 'img-fluid') %>
+                    </div>
+                    <div class="col-md-6">
+                      <%= image_tag(event.pictures[1], alt: "event_image", class: 'img-fluid') %>
+                    </div>
+                    <div class="col-md-6">
+                      <%= image_tag(event.pictures[2], alt: "event_image", class: 'img-fluid') %>
+                    </div>
+                  </div>
+                <% elsif event.pictures.count == 4 %>
+                  <div class="row">
+                    <% event.pictures.each do |picture| %>
+                      <div class="col-md-6">
+                        <%= image_tag(picture, alt: "event_image", class: 'img-fluid') %>
+                      </div>
+                    <% end %>
+                  </div>
+                <% else %>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <%= image_tag(event.pictures[0], alt: "event_image", class: 'img-fluid') %>
+                    </div>
+                    <div class="col-md-6">
+                      <%= image_tag(event.pictures[1], alt: "event_image", class: 'img-fluid') %>
+                    </div>
+                    <div class="col-md-4">
+                      <%= image_tag(event.pictures[2], alt: "event_image", class: 'img-fluid') %>
+                    </div>
+                    <div class="col-md-4">
+                      <%= image_tag(event.pictures[3], alt: "event_image", class: 'img-fluid') %>
+                    </div>
+                    <div class="col-md-4">
+                      <%= image_tag(event.pictures[4], alt: "event_image", class: 'img-fluid') %>
+                    </div>
+                  </div>
+                <% end %>
+              <% end %>
+              <p class="card-text" style="white-space: pre-wrap;">
+                <%= event.description %>
+              </p>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  <div class="col-lg-4 col-md-4 col-sm-4 d-flex justify-content-center">
+    <div>
+      <h5 class = "text-uppercase fw-bold mb-4 mt-4 text-center">Coming Soon</h5>
+      <% @events.each do |event| %>
+        <div class="card text-center mb-4" style="max-width: 22rem;">
+          <div class="card-header"><%= event.title %></div>
+          <div class="card-body">
+            <% if event.pictures.attached? %>
+              <%= image_tag(event.pictures.first,alt: "event_image", class: "event--img")%>
+            <% end %>
+            <p class="fw-bold mt-4"><i class="fas fa-calendar"></i> <%= event&.event_date&.strftime("%Y-%m-%d %I:%M %p") %></p>
+            <p class="card-text" style="width:inherit ; white-space: nowrap; overflow: hidden; text-overflow:ellipsis;">
+              <%= event.description %>
+            </p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="EventModal" tabindex="-1" aria-labelledby="EventModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="EventModal">Create Event</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-mdb-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body"><%= render 'form', event: @event%></div>
+    </div>
+  </div>
+</div>
+</div>

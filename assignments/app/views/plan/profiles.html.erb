@@ -1,69 +1,150 @@
-<div class="row mb-5">
-  <div class="col-md-4">
-    <div class="card mb-4">
-      <div class="card-body">
-        <%= image_tag "pp.jpg",alt: "pp_image", class: "_image"%>
-        <p><b>Role:</b> Admin</p>
-        <p><b>Name:</b> Regina Phalange</p>
-        <p><b>Age:</b> 25</p>
-        <p><b>Occupation:</b> Student</p>
-        <p><b>Marital Status:</b> Unmarried</p>
-        <p><b>Short Term Goals:</b> Manage tasks daily, Interact with the commitee members </p>
-        <p><b>Long Term Goals:</b> To bridge the gap between students and the AIT management.</p>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-4">
-    <div class="card mb-4">
-      <div class="card-body">
-        <%= image_tag "pp.jpg",alt: "pp_image", class: "_image"%>
-        <p><b>Role:</b> SU Member</p>
-        <p><b>Name:</b> Ken Adams</p>
-        <p><b>Age:</b> 26</p>
-        <p><b>Occupation:</b> Student</p>
-        <p><b>Marital Status:</b> Unmarried</p>
-        <p><b>Short Term Goals:</b> To be able to view their assigned tasks and student's submitted forms </p>
-        <p><b>Long Term Goals:</b> To use the webapp to be upto date with SU activities.</p>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-4">
-    <div class="card mb-4">
-      <div class="card-body">
-        <%= image_tag "pp.jpg",alt: "pp_image", class: "_image"%>
-        <p><b>Role:</b> Student/Guest</p>
-        <p><b>Short Term Goals:</b> View events, Submit forms </p>
-        <p><b>Long Term Goals:</b> To be able to interact easily with SU ecosystem</p>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="card">
-  <div class="card-body">
-    <p><b>Q. For each class of user identified in Exercise 1a, produce a textual or graphical usage scenario for how
-        that user will experience your service.</b></p>
-    <div class="card-title">
-      <b>Admin Dashboard (Sample Features For Admin User)</b>
-    </div>
-    <div class="row">
-      <div class="col-md-6">
-        <div class="card-text mb-3">
-          Create SU members
+<div class="container">
+  <div class="row mb-5">
+    <div class="col-md-4">
+      <div class="card mb-4">
+        <div class="card-body">
+          <%= image_tag "pp.jpg",alt: "pp_image", class: "_image"%>
+          <p><b>Role:</b> Admin</p>
+          <p><b>Name:</b> Regina Phalange</p>
+          <p><b>Age:</b> 25</p>
+          <p><b>Occupation:</b> Student</p>
+          <p><b>Marital Status:</b> Unmarried</p>
+          <p><b>Short Term Goals:</b> Manage tasks daily, Interact with the commitee members </p>
+          <p><b>Long Term Goals:</b> To bridge the gap between students and the AIT management.</p>
         </div>
-        <form>
-          <!-- Email input -->
-          <div class="form-outline mb-4">
-            <input type="email"  class="form-control" />
-            <label class="form-label" >Email address</label>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card mb-4">
+        <div class="card-body">
+          <%= image_tag "pp.jpg",alt: "pp_image", class: "_image"%>
+          <p><b>Role:</b> SU Member</p>
+          <p><b>Name:</b> Ken Adams</p>
+          <p><b>Age:</b> 26</p>
+          <p><b>Occupation:</b> Student</p>
+          <p><b>Marital Status:</b> Unmarried</p>
+          <p><b>Short Term Goals:</b> To be able to view their assigned tasks and student's submitted forms </p>
+          <p><b>Long Term Goals:</b> To use the webapp to be upto date with SU activities.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card mb-4">
+        <div class="card-body">
+          <%= image_tag "pp.jpg",alt: "pp_image", class: "_image"%>
+          <p><b>Role:</b> Student/Guest</p>
+          <p><b>Short Term Goals:</b> View events, Submit forms </p>
+          <p><b>Long Term Goals:</b> To be able to interact easily with SU ecosystem</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-body">
+      <p><b>Q. For each class of user identified in Exercise 1a, produce a textual or graphical usage scenario for how
+          that user will experience your service.</b></p>
+      <div class="card-title">
+        <b>Admin Dashboard (Sample Features For Admin User)</b>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card-text mb-3">
+            Create SU members
           </div>
-          <!-- Password input -->
-          <div class="form-outline mb-4">
-            <input type="password"  class="form-control" />
-            <label class="form-label">Password</label>
+          <form>
+            <!-- Email input -->
+            <div class="form-outline mb-4">
+              <input type="email"  class="form-control" />
+              <label class="form-label" >Email address</label>
+            </div>
+            <!-- Password input -->
+            <div class="form-outline mb-4">
+              <input type="password"  class="form-control" />
+              <label class="form-label">Password</label>
+            </div>
+            <!-- Submit button -->
+            <button type="submit" class="btn btn-primary mb-4">Create</button>
+          </form>
+        </div>
+        <div class="col-md-6">
+          <div class="card-text mb-3">
+            Create Posts
           </div>
-          <!-- Submit button -->
-          <button type="submit" class="btn btn-primary mb-4">Create</button>
-        </form>
+          <form>
+            <!-- Post input -->
+            <div class="form-outline mb-4">
+              <input type="text"  class="form-control" />
+              <label class="form-label" >Post</label>
+            </div>
+            <label class="form-label" for="customFile">Upload File</label>
+            <input type="file" class="form-control mb-4" id="customFile" />
+            <!-- Submit button -->
+            <button type="submit" class="btn btn-primary mb-4">Post</button>
+          </form>
+        </div>
+      </div>
+      <div class="row">
+        <div class="card-title">
+          Actions for Admin User
+        </div>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">SU Member</th>
+              <th scope="col">Committee</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody class="table-striped">
+            <tr class="table-striped">
+              <th scope="row">Ken Adamns</th>
+              <td>Accomodation</td>
+              <td>
+                <button type="button" class="btn btn-danger">Delete</button>
+                <button type="button" class="btn btn-warning">Edit</button>
+              </td>
+            </tr>
+            <tr class="table-striped">
+              <th scope="row">Ram Shrestha</th>
+              <td>Sports</td>
+              <td>
+                <button type="button" class="btn btn-danger">Delete</button>
+                <button type="button" class="btn btn-warning">Edit</button>
+              </td>
+            </tr>
+            <tr class="table-striped" >
+              <th scope="row">Dipesh Poudel</th>
+              <td>Academic Affairs</td>
+              <td>
+                <button type="button" class="btn btn-danger">Delete</button>
+                <button type="button" class="btn btn-warning">Edit</button>
+              </td>
+            </tr>
+            <tr class="table-striped">
+              <th scope="row">Hari Sharma</th>
+              <td>Campus and Environment</td>
+              <td>
+                <button type="button" class="btn btn-danger">Delete</button>
+                <button type="button" class="btn btn-warning">Edit</button>
+              </td>
+            </tr>
+            <tr class="table-striped">
+              <th scope="row">Test User</th>
+              <td>Media Affairs</td>
+              <td>
+                <button type="button" class="btn btn-danger">Delete</button>
+                <button type="button" class="btn btn-warning">Edit</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-body">
+      <div class="card-title">
+        <b>SU Member Dashboard</b>
       </div>
       <div class="col-md-6">
         <div class="card-text mb-3">
@@ -81,154 +162,75 @@
           <button type="submit" class="btn btn-primary mb-4">Post</button>
         </form>
       </div>
-    </div>
-    <div class="row">
-      <div class="card-title">
-        Actions for Admin User
+      <div class="row">
+        <div class="card-title">
+          View Student Queries
+        </div>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Student ID</th>
+              <th scope="col">Queries</th>
+              <th scope="col">Update Status</th>
+            </tr>
+          </thead>
+          <tbody class="table-striped">
+            <tr class="table-striped">
+              <th scope="row">st122283</th>
+              <td>Issue with internet connection in the dorm</td>
+              <td>
+                <button type="button" class="btn btn-success">Done</button>
+                <button type="button" class="btn btn-warning">In Progress</button>
+              </td>
+            </tr>
+            <tr class="table-striped">
+              <th scope="row">st122280</th>
+              <td>Rent Payment Query</td>
+              <td>
+                <button type="button" class="btn btn-success">Done</button>
+                <button type="button" class="btn btn-warning">In Progress</button>
+              </td>
+            </tr>
+            <tr class="table-striped" >
+              <th scope="row">st123456</th>
+              <td>Assistantship opportunities</td>
+              <td>
+                <button type="button" class="btn btn-success">Done</button>
+                <button type="button" class="btn btn-warning">In Progress</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th scope="col">SU Member</th>
-            <th scope="col">Committee</th>
-            <th scope="col">Action</th>
-          </tr>
-        </thead>
-        <tbody class="table-striped">
-          <tr class="table-striped">
-            <th scope="row">Ken Adamns</th>
-            <td>Accomodation</td>
-            <td>
-              <button type="button" class="btn btn-danger">Delete</button>
-              <button type="button" class="btn btn-warning">Edit</button>
-            </td>
-          </tr>
-          <tr class="table-striped">
-            <th scope="row">Ram Shrestha</th>
-            <td>Sports</td>
-            <td>
-              <button type="button" class="btn btn-danger">Delete</button>
-              <button type="button" class="btn btn-warning">Edit</button>
-            </td>
-          </tr>
-          <tr class="table-striped" >
-            <th scope="row">Dipesh Poudel</th>
-            <td>Academic Affairs</td>
-            <td>
-              <button type="button" class="btn btn-danger">Delete</button>
-              <button type="button" class="btn btn-warning">Edit</button>
-            </td>
-          </tr>
-          <tr class="table-striped">
-            <th scope="row">Hari Sharma</th>
-            <td>Campus and Environment</td>
-            <td>
-              <button type="button" class="btn btn-danger">Delete</button>
-              <button type="button" class="btn btn-warning">Edit</button>
-            </td>
-          </tr>
-          <tr class="table-striped">
-            <th scope="row">Test User</th>
-            <td>Media Affairs</td>
-            <td>
-              <button type="button" class="btn btn-danger">Delete</button>
-              <button type="button" class="btn btn-warning">Edit</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
     </div>
   </div>
-</div>
-<div class="card">
-  <div class="card-body">
-    <div class="card-title">
-      <b>SU Member Dashboard</b>
-    </div>
-    <div class="col-md-6">
-      <div class="card-text mb-3">
-        Create Posts
+  <div class="card">
+    <div class="card-body">
+      <p>Students and Guest Users will be able to see the homepage with all the posts of Admin and SU Users. They will be able to filter their view.</p>
+      <div class="col-md-6">
+        <div class="card-title">
+          Queries to SU
+        </div>
+        <form>
+          <!-- Student ID input -->
+          <div class="form-outline mb-4">
+            <input type="text"  class="form-control" />
+            <label class="form-label" >Student ID</label>
+          </div>
+          <!-- Student ID input -->
+          <div class="form-outline mb-4">
+            <input type="email"  class="form-control" />
+            <label class="form-label" >Email</label>
+          </div>
+          <!-- Query input -->
+          <div class="form-outline mb-4">
+            <input type="text"  class="form-control" />
+            <label class="form-label">Enter your query</label>
+          </div>
+          <!-- Submit button -->
+          <button type="submit" class="btn btn-primary mb-4">Submit</button>
+        </form>
       </div>
-      <form>
-        <!-- Post input -->
-        <div class="form-outline mb-4">
-          <input type="text"  class="form-control" />
-          <label class="form-label" >Post</label>
-        </div>
-        <label class="form-label" for="customFile">Upload File</label>
-        <input type="file" class="form-control mb-4" id="customFile" />
-        <!-- Submit button -->
-        <button type="submit" class="btn btn-primary mb-4">Post</button>
-      </form>
-    </div>
-    <div class="row">
-      <div class="card-title">
-        View Student Queries
-      </div>
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th scope="col">Student ID</th>
-            <th scope="col">Queries</th>
-            <th scope="col">Update Status</th>
-          </tr>
-        </thead>
-        <tbody class="table-striped">
-          <tr class="table-striped">
-            <th scope="row">st122283</th>
-            <td>Issue with internet connection in the dorm</td>
-            <td>
-              <button type="button" class="btn btn-success">Done</button>
-              <button type="button" class="btn btn-warning">In Progress</button>
-            </td>
-          </tr>
-          <tr class="table-striped">
-            <th scope="row">st122280</th>
-            <td>Rent Payment Query</td>
-            <td>
-              <button type="button" class="btn btn-success">Done</button>
-              <button type="button" class="btn btn-warning">In Progress</button>
-            </td>
-          </tr>
-          <tr class="table-striped" >
-            <th scope="row">st123456</th>
-            <td>Assistantship opportunities</td>
-            <td>
-              <button type="button" class="btn btn-success">Done</button>
-              <button type="button" class="btn btn-warning">In Progress</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</div>
-<div class="card">
-  <div class="card-body">
-    <p>Students and Guest Users will be able to see the homepage with all the posts of Admin and SU Users. They will be able to filter their view.</p>
-    <div class="col-md-6">
-      <div class="card-title">
-        Queries to SU
-      </div>
-      <form>
-        <!-- Student ID input -->
-        <div class="form-outline mb-4">
-          <input type="text"  class="form-control" />
-          <label class="form-label" >Student ID</label>
-        </div>
-        <!-- Student ID input -->
-        <div class="form-outline mb-4">
-          <input type="email"  class="form-control" />
-          <label class="form-label" >Email</label>
-        </div>
-        <!-- Query input -->
-        <div class="form-outline mb-4">
-          <input type="text"  class="form-control" />
-          <label class="form-label">Enter your query</label>
-        </div>
-        <!-- Submit button -->
-        <button type="submit" class="btn btn-primary mb-4">Submit</button>
-      </form>
     </div>
   </div>
 </div>

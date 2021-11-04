@@ -1,142 +1,146 @@
-<h5>User Management</h5>
-<div class="card mb-5">
-  <div class="card-body">
-    <p><b>Q. All social Web applications have users, content, and some kind of user-to-content map. Specify what
-        kind of information each of these areas will have in your application.</b></p>
-    <p>This application has two user roles - Admin (SU President, Committee Members) and Students.<br>
-      Content includes the event information posted by the admin or complaints submitted by the students.<br>
-      User to content map can be understood as follows:
-      <li>An admin should be able to create/edit events</li>
-      <li>A student should be able to view the upcoming events</li>
-      <li>A student should be able to view the student union information page</li>
-      <li>A student should be able to submit complains</li>
-      <li>An admin should be able to update the status of the complains raised by students</li>
-      <li>An admin should be able to view complaints in list format</li>
+<div class="container">
+  <h5>User Management</h5>
+  <div class="card mb-5">
+    <div class="card-body">
+      <p><b>Q. All social Web applications have users, content, and some kind of user-to-content map. Specify what
+          kind of information each of these areas will have in your application.</b></p>
+      <p>This application has two user roles - Admin (SU President, Committee Members) and Students.<br>
+        Content includes the event information posted by the admin or complaints submitted by the students.<br>
+        User to content map can be understood as follows:
+        <li>An admin should be able to create/edit events</li>
+        <li>A student should be able to view the upcoming events</li>
+        <li>A student should be able to view the student union information page</li>
+        <li>A student should be able to submit complains</li>
+        <li>An admin should be able to update the status of the complains raised by students</li>
+        <li>An admin should be able to view complaints in list format</li>
+      </p>
+    </div>
+  </div>
+  <div class="card mb-5">
+    <div class="card-body">
+      <p><b>Q. Learn how to avoid SQL injection and XSS attacks in your development framework and document and
+          follow your plan for the rest of the project.</b></p>
+      <%# https://guides.rubyonrails.org/security.html %>
+      <p>SQL injection attacks aim at influencing database queries by manipulating web application parameters.To avoid SQL injection we can follow some methods:
+        <li>Use built in filter of Ruby on Rails which will escape ' , " , NULL character, and line breaks. Using Model.find(id) or Model.find_by_some thing(something) automatically applies this countermeasure.</li>
+        <li>Instead of passing a string to the conditions option, pass an array to sanitize tainted strings</li>
+        <code>Model.where("login = ? AND password = ?", entered_user_name, entered_password).first
+        </code><br>
+        <br>
+        Cross-Site Scripting(XSS) is a malicious attack that injects client-side executable code. The common entry points of these code are input fields for Users for example message posts, user comments, and guest books.XSS can steal the cookie, hijack the session, redirect the victim to a fake website, display advertisements for the benefit of the attacker, change elements on the web site to get confidential information or install malicious software through security holes in the web browser.<br>
+        <br>
+        Countermeasure for XSS <br>
+        <li>HTML Escaping - escapeHTML() (or its alias h()) method to replace the HTML input characters &, ", <, and > by their uninterpreted representations in HTML (&amp;, &quot;, &lt;, and &gt;)</li>
+          <li>Sanitize - sanitize() allows only the given tags and prevents against all kinds of tricks and malformed tags. </li>
+        </p>
+      </div>
+    </div>
+    <div class="card mb-5">
+      <div class="card-body">
+        <p><b>Q. Audit your software for any sensitive data like database passwords make sure they are secure. Document
+            the result of your audit and plan..</b></p>
+        <p>In this application we are using devise for the authentication. We have included the OmniAuth feature supported by the devise for the Login using google.<br>
+          Devise is a secure authentication framework. It uses Bcrypt to secure passwords.<br>
+          Additional features of devise like two factor authentication, email verification during sign up can be included for more security.
+        </p>
+      </div>
+    </div>
+    <div class="card mb-5">
+      <div class="card-body">
+        <p><b>Q. Define your user data model.</b></p>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Field</th>
+              <th scope="col">Data Type</th>
+              <th scope="col">Description</th>
+            </tr>
+          </thead>
+          <tbody class="table-striped">
+            <tr class="table-striped">
+              <td>email</td>
+              <td>string</td>
+              <td>not null, unique</td>
+            </tr>
+            <tr class="table-striped">
+              <td>encrypted_password</td>
+              <td>string</td>
+              <td>Stores password encrypted by devise</td>
+            </tr>
+            <tr class="table-striped" >
+              <td>reset_password_token</td>
+              <td>string</td>
+              <td>Devise generated field</td>
+            </tr>
+            <tr class="table-striped">
+              <td>uid</td>
+              <td>string</td>
+              <td>This field stores the uid returned from the third party authentication api(Google, Facebook, Github,etc )</td>
+            </tr>
+            <tr class="table-striped">
+              <td>provider</td>
+              <td>string</td>
+              <td>This field stores the name of third party authentication provider for our app.</td>
+            </tr>
+            <tr class="table-striped">
+              <td>status</td>
+              <td>string</td>
+              <td>This field stores status of user. Check constraint to only allow 'A' for active user and 'D' for banned/deactivated user</td>
+            </tr>
+            <tr class="table-striped">
+              <td>is_admin</td>
+              <td>boolean</td>
+              <td>Default to false.</td>
+            </tr>
+            <tr class="table-striped">
+              <td>reset_password_sent_at</td>
+              <td>datetime</td>
+              <td>Devise generated field</td>
+            </tr>
+            <tr class="table-striped">
+              <td>created_at</td>
+              <td>datetime</td>
+              <td>Devise generated field</td>
+            </tr>
+            <tr class="table-striped">
+              <td>updated_at</td>
+              <td>datetime</td>
+              <td>Devise generated field</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="card mb-5">
+      <div class="card-body">
+        <p><b>Q. Sketch your user registration and management page 
+            flow.</b></p>
+        <%= image_tag "user_registration_managment_flow.jpg",alt: "flowchart", class: "_image"%>
+      </div>
+    </div>
+    <div class="card mb-5">
+      <div class="card-body">
+        <p><b>Q. Using the techniques of test-first and behavior-driven development we've studied in class and lab,
+            build up the basic user registration and login pages. Make sure you have SSL enabled for the complete
+            application to prevent password sniffing, make sure your session cookies are HttpOnly.</b></p>
+        <br>
+        <p>Test-first and behavior-driven development approach has been followed. Passed cucumber cases can be seen in screenshot below. Test coverage can be viewed at <%= link_to 'Coverage',  'https://ait-wae-2021.gitlab.io/web4/web4-app/coverage/index.html#_AllFiles' %></p>
+        <br>
+        <%= image_tag "web4_cucumber.PNG",alt: "admin", class: "_image"%>
+      </div>
+    </div>
+    <div class="card mb-5">
+      <div class="card-body">
+        <p><b>Q. Again using BDD, build the user administration pages. Make sure admin can 1) see recently registered
+            users, 2) ban a user, and 3) see statistics on user registrations.</b></p>
+        <%= image_tag "admin_dashboard.PNG",alt: "admin", class: "_image"%>
+      </div>
+    </div>
+    <p class="mb-5">References :
+      <a style="font-size:14px" href="https://guides.rubyonrails.org/security.html">Rails Security Guide</a>&nbsp;&nbsp;
+      <a style="font-size:14px" href="https://developers-dot-devsite-v2-prod.appspot.com/chart/interactive/docs/gallery/linechart.html">Google Charts</a>&nbsp;&nbsp;
+      <a style="font-size:14px" href="https://blog.arkency.com/2017/07/how-to-quickly-add-graphs-and-charts-to-rails-app/">Add Google charts to Rails</a>&nbsp;&nbsp;
+      <a style="font-size:14px" href="https://medium.com/swlh/google-authentication-strategy-for-rails-5-application-cd37947d2b1bl">Google Authentication</a>&nbsp;&nbsp;
+      <a style="font-size:14px" href="https://www.youtube.com/watch?v=Dd8dOAL6WYs&t=2159s">Rails + Devise + OmniAuth</a>&nbsp;&nbsp;
     </p>
   </div>
-</div>
-<div class="card mb-5">
-  <div class="card-body">
-    <p><b>Q. Learn how to avoid SQL injection and XSS attacks in your development framework and document and
-        follow your plan for the rest of the project.</b></p>
-    <%# https://guides.rubyonrails.org/security.html %>
-    <p>SQL injection attacks aim at influencing database queries by manipulating web application parameters.To avoid SQL injection we can follow some methods:
-      <li>Use built in filter of Ruby on Rails which will escape ' , " , NULL character, and line breaks. Using Model.find(id) or Model.find_by_some thing(something) automatically applies this countermeasure.</li>
-      <li>Instead of passing a string to the conditions option, pass an array to sanitize tainted strings</li>
-      <code>Model.where("login = ? AND password = ?", entered_user_name, entered_password).first
-      </code><br>
-      <br>
-      Cross-Site Scripting(XSS) is a malicious attack that injects client-side executable code. The common entry points of these code are input fields for Users for example message posts, user comments, and guest books.XSS can steal the cookie, hijack the session, redirect the victim to a fake website, display advertisements for the benefit of the attacker, change elements on the web site to get confidential information or install malicious software through security holes in the web browser.<br>
-      <br>
-      Countermeasure for XSS <br>
-      <li>HTML Escaping - escapeHTML() (or its alias h()) method to replace the HTML input characters &, ", <, and > by their uninterpreted representations in HTML (&amp;, &quot;, &lt;, and &gt;)</li>
-        <li>Sanitize - sanitize() allows only the given tags and prevents against all kinds of tricks and malformed tags. </li>
-      </p>
-    </div>
-  </div>
-  <div class="card mb-5">
-    <div class="card-body">
-      <p><b>Q. Audit your software for any sensitive data like database passwords make sure they are secure. Document
-          the result of your audit and plan..</b></p>
-      <p>In this application we are using devise for the authentication. We have included the OmniAuth feature supported by the devise for the Login using google.<br>
-        Devise is a secure authentication framework. It uses Bcrypt to secure passwords.<br>
-        Additional features of devise like two factor authentication, email verification during sign up can be included for more security.
-      </p>
-    </div>
-  </div>
-  <div class="card mb-5">
-    <div class="card-body">
-      <p><b>Q. Define your user data model.</b></p>
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th scope="col">Field</th>
-            <th scope="col">Data Type</th>
-            <th scope="col">Description</th>
-          </tr>
-        </thead>
-        <tbody class="table-striped">
-          <tr class="table-striped">
-            <td>email</td>
-            <td>string</td>
-            <td>not null, unique</td>
-          </tr>
-          <tr class="table-striped">
-            <td>encrypted_password</td>
-            <td>string</td>
-            <td>Stores password encrypted by devise</td>
-          </tr>
-          <tr class="table-striped" >
-            <td>reset_password_token</td>
-            <td>string</td>
-            <td>Devise generated field</td>
-          </tr>
-          <tr class="table-striped">
-            <td>uid</td>
-            <td>string</td>
-            <td>This field stores the uid returned from the third party authentication api(Google, Facebook, Github,etc )</td>
-          </tr>
-          <tr class="table-striped">
-            <td>provider</td>
-            <td>string</td>
-            <td>This field stores the name of third party authentication provider for our app.</td>
-          </tr>
-          <tr class="table-striped">
-            <td>status</td>
-            <td>string</td>
-            <td>This field stores status of user. Check constraint to only allow 'A' for active user and 'D' for banned/deactivated user</td>
-          </tr>
-          <tr class="table-striped">
-            <td>is_admin</td>
-            <td>boolean</td>
-            <td>Default to false.</td>
-          </tr>
-          <tr class="table-striped">
-            <td>reset_password_sent_at</td>
-            <td>datetime</td>
-            <td>Devise generated field</td>
-          </tr>
-          <tr class="table-striped">
-            <td>created_at</td>
-            <td>datetime</td>
-            <td>Devise generated field</td>
-          </tr>
-          <tr class="table-striped">
-            <td>updated_at</td>
-            <td>datetime</td>
-            <td>Devise generated field</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-  <div class="card mb-5">
-    <div class="card-body">
-      <p><b>Q. Sketch your user registration and management page 
-          flow.</b></p>
-      <%= image_tag "user_registration_managment_flow.jpg",alt: "flowchart", class: "_image"%>
-    </div>
-  </div>
-  <div class="card mb-5">
-    <div class="card-body">
-      <p><b>Q. Using the techniques of test-first and behavior-driven development we've studied in class and lab,
-          build up the basic user registration and login pages. Make sure you have SSL enabled for the complete
-          application to prevent password sniffing, make sure your session cookies are HttpOnly.</b></p><br>
-          <p>Test-first and behavior-driven development approach has been followed. Passed cucumber cases can be seen in screenshot below. Test coverage can be viewed at <%= link_to 'Coverage',  'https://ait-wae-2021.gitlab.io/web4/web4-app/coverage/index.html#_AllFiles' %></p><br>
-      <%= image_tag "web4_cucumber.PNG",alt: "admin", class: "_image"%>
-    </div>
-  </div>
-  <div class="card mb-5">
-    <div class="card-body">
-      <p><b>Q. Again using BDD, build the user administration pages. Make sure admin can 1) see recently registered
-          users, 2) ban a user, and 3) see statistics on user registrations.</b></p>
-      <%= image_tag "admin_dashboard.PNG",alt: "admin", class: "_image"%>
-    </div>
-  </div>
-  <p class="mb-5">References :
-    <a style="font-size:14px" href="https://guides.rubyonrails.org/security.html">Rails Security Guide</a>&nbsp;&nbsp;
-    <a style="font-size:14px" href="https://developers-dot-devsite-v2-prod.appspot.com/chart/interactive/docs/gallery/linechart.html">Google Charts</a>&nbsp;&nbsp;
-    <a style="font-size:14px" href="https://blog.arkency.com/2017/07/how-to-quickly-add-graphs-and-charts-to-rails-app/">Add Google charts to Rails</a>&nbsp;&nbsp;
-    <a style="font-size:14px" href="https://medium.com/swlh/google-authentication-strategy-for-rails-5-application-cd37947d2b1bl">Google Authentication</a>&nbsp;&nbsp;
-    <a style="font-size:14px" href="https://www.youtube.com/watch?v=Dd8dOAL6WYs&t=2159s">Rails + Devise + OmniAuth</a>&nbsp;&nbsp;
-  </p>
