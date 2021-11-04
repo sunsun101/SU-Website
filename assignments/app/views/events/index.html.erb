@@ -10,8 +10,8 @@
       <% @events.each do |event| %>
         <div class="card mb-2 mt-2">
           <div class="card-body">
-            <h5 class="card-title"><%= event.title %></h5>
-            <h6>Event Date: <%= event.event_date %></h6>
+            <h5 class="text-uppercase fw-bold mb-4"><%= event.title %></h5>
+            <h6 class="fw-bold mb-4"><i class="fas fa-calendar"></i> <%= event.event_date.strftime("%Y-%m-%d %I:%M %p") %></h6>
             <% if event.pictures.attached? %>
               <% if event.pictures.count == 1 %>
                 <%= image_tag(event.pictures[0], alt: "event_image", class: 'img-fluid') %>
@@ -81,7 +81,7 @@
             <% if event.pictures.attached? %>
               <%= image_tag(event.pictures.first,alt: "event_image", class: "event--img")%>
             <% end %>
-            <p class="mt-4">Event Date: <%= event.event_date %></p>
+            <p class="fw-bold mt-4"><i class="fas fa-calendar"></i> <%= event.event_date.strftime("%Y-%m-%d %I:%M %p") %></p>
             <p class="card-text" style="width:inherit ; white-space: nowrap; overflow: hidden; text-overflow:ellipsis;">
               <%= event.description %>
             </p>
