@@ -1,10 +1,10 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  title: MyString
-  description: MyString
-  event_date: 
-  updated_by: MyString
+  title: "Halloween Party"
+  description: "Event organized by SU Film and Entertainment Committee"
+  event_date: "2021-10-31 13:00:00 +0800"
+  updated_by: "SU Admin"
 
 two:
   title: MyString
