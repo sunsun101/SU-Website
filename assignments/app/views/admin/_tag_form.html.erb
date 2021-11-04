@@ -1,0 +1,22 @@
+<%= form_with(model: tag, url: admin_feedback_path) do |form| %>
+  <% if @tag.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@tag.errors.count, "error") %> prohibited this member from being saved:</h2>
+      <ul>
+        <% @tag.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <% if tag.id %>
+    <%= form.hidden_field :id, value: tag.id%>
+  <% end %>
+  <div class="form-outline mb-4">
+    <%= form.text_field :name, class:"input", placeholder: "Name" %>
+  </div>
+  <br>
+  <div class="modal-footer">
+    <%= form.submit 'Submit', class: 'btn btn-primary mb-4' %>
+  </div>
+<% end %>

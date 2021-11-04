@@ -10,19 +10,23 @@
     </div>
   <% end %>
   <% if current_user %>
-    <%= form.hidden_field :id, value: current_user.email%>
+    <%= form.hidden_field :user_id, value: current_user.id%>
+    <%= form.hidden_field :status, value: "New"%>
   <% end %>
   <div class="login">
     <%= form.text_field :subject, class:"input", placeholder: "Subject" %>
-    <%= form.select( :tag_id, ["Academic Affair", "Accomodation & Asset", "Campus & Environment", "Entertainment & Sport", "External Affair","Gender & Culture","Media  & Communication"],{}, {class:"input"})%>
+    <%= form.select( :tag_id, Tag.all.collect {|q| [ q.name, q.id] },{prompt: "Please Select Committee" }, {class:"input"})%>
   </div>
   <br>
   <div class = "row col-12">
     <div class="col-sm-8">
-      <%= form.file_field :picture, class:"input", id: "gallery-photo-add", :multiple => true %>
-      <a style="display:none;" id="removeImage" href="#">Remove</a>
+      <%= form.file_field :com_pics, class:"input", id: "gallery-photo-add", :multiple => true, accept: "image/*" %>
+    </div>
+    <div class = "col-sm-4">
+      <button id= "removeImage" type="button" class="btn btn-danger" style="display:none;" >Remove</button>
     </div>
   </div>
+  <br>
   <div class="gallery"></div>
   <br>
   <div class="msg" >
@@ -31,45 +35,44 @@
   <%= form.submit 'Send message', class: 'btn formbtn' %>
 <% end %>
 <script>
-  const div1 = document.getElementById("removeImage");
-    $(function() {
-        // Multiple images preview in browser
-        var imagesPreview = function(input, placeToInsertImagePreview) {
-            if (input.files) {
-                var filesAmount = input.files.length;
+  $(function() {
+      // Multiple images preview in browser
+      var imagesPreview = function(input, placeToInsertImagePreview) {
+        const btn1 = document.getElementById("removeImage");
+        $(placeToInsertImagePreview).html('');
+          if (input.files) {
+              var filesAmount = input.files.length;
   
-                if (filesAmount > 0){
+              if (filesAmount > 0){
   
-                    for (i = 0; i < filesAmount; i++) {
-                    var reader = new FileReader();
-                    var id = $(input.files[i]).attr('id');
-                    reader.onload = function(event) {
-                        $($.parseHTML('<img>')).attr('src', event.target.result).appendTo(placeToInsertImagePreview);
-                    }
+                  for (i = 0; i < filesAmount; i++) {
+                  var reader = new FileReader();
+                  var id = $(input.files[i]).attr('id');
+                  reader.onload = function(event) {
+                      $($.parseHTML('<img class = "contact-img">')).attr('src', event.target.result).appendTo(placeToInsertImagePreview);
+                  }
   
-                    reader.readAsDataURL(input.files[i]);
-                }
+                  reader.readAsDataURL(input.files[i]);
+              }
+              btn1.style.display = "block";
   
-                }else{
-                    console.log("imhere");
-                    $(placeToInsertImagePreview).html('');
-                }
-            }
+              }else{
+                  $(placeToInsertImagePreview).html('');
+                  btn1.style.display = "none";
+              }
+          }
   
-        };
+      };
   
-        $('#gallery-photo-add').on('change', function() {
-            imagesPreview(this, 'div.gallery');
-            $("#removeImage").toggle(); // show remove link
-        });
-        $("#removeImage").click(function(e) {
-          e.preventDefault(); // prevent default action of link
-          this.files= []
-          console.log(this.files);
+      $('#gallery-photo-add').on('change', function() {
           imagesPreview(this, 'div.gallery');
-        //   $('#blah').attr('src', ""); //clear image src
-          $("#gallery-photo-add").val(""); // clear image input value
-          $("#removeImage").toggle(); // hide remove link.
-          });
-    });
+      });
+      $("#removeImage").click(function(e) {
+        e.preventDefault(); // prevent default action of link
+        this.files= [];
+        $("#gallery-photo-add").val(""); // clear image input value
+        imagesPreview(this, 'div.gallery');
+  
+        });
+  });
 </script>

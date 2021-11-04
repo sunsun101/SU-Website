@@ -1,0 +1,108 @@
+<h1>Admin Dashboard</h1>
+<br>
+<h3>Feedback</h3>
+<br>
+<% if flash.any?%>
+  <%= render 'layouts/alerts'%>
+<% end %>
+<div style="float:right; margin-bottom:10px;">
+  <button type="button" class="btn btn-primary" style= "float:right" data-mdb-toggle="modal" data-mdb-target="#exampleModal" >
+    Add Tag
+  </button>
+</div>
+<table id="example1" class="table table-striped table-hover" cellspacing="0" width="100%">
+  <thead style = "background-color:#506477; color:white">
+    <tr style="text-align:center">
+      <th>tag</th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @tags.each do |tag| %>
+      <tr style="text-align:center">
+        <td><%= tag.name %></td>
+        <td><%= link_to 'Edit',  '#', 'data-mdb-target' => "#myModal_#{tag.id}", 'data-mdb-toggle' => 'modal', :class=>"btn btn-primary"  %>
+          <div class="modal fade" id='<%= "myModal_#{tag.id}" %>' tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Edit tag</h5>
+                  <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close" ></button>
+                </div>
+                <div class="modal-body">
+                  <%= render 'admin/tag_form', tag: tag%>
+                </div>
+              </div>
+            </div>
+          </div>
+        </td>
+        <td><%= link_to 'Delete', admin_feedback_path(tag: {id: tag.id}), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'%></td>
+      </tr>
+    <% end.empty? %>
+    <tr>
+      <td colspan="4" style="text-align:center"> No tags Found</td>
+    </tr>
+  <% end %>
+</tbody>
+</table>
+<br>
+<table id="example" class="table table-striped table-hover" cellspacing="0" width="100%">
+  <thead style = "background-color:#506477; color:white">
+    <tr style="text-align:center">
+      <th>subject</th>
+      <th>Date</th>
+      <th>Status</th>
+      <th>View</th>
+      <th>Updated By</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @complains.each do |complain| %>
+      <tr style="text-align:center">
+        <td><%= complain.subject %></td>
+        <td><%= complain.created_at.strftime("%d/%m/%Y") %></td>
+        <td><%= complain.status %></td>
+        <td><%= link_to 'View',  '#', 'data-mdb-target' => "#myModal_#{complain.id}", 'data-mdb-toggle' => 'modal', :class=>"btn btn-primary"  %>
+          <div class="modal fade" id='<%= "myModal_#{complain.id}" %>' tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">User feedback</h5>
+                  <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close" ></button>
+                </div>
+                <div class="modal-body">
+                  <%= render 'admin/com_form', complain: complain%>
+                </div>
+              </div>
+            </div>
+          </div>
+        </td>
+        <td><%= complain.updatedBy %></td>
+        <td><%= link_to 'Delete', admin_feedback_path(complain: {id: complain.id}), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'%></td>
+      </tr>
+    <% end.empty? %>
+    <tr>
+      <td colspan="6" style="text-align:center"> No complains Found</td>
+    </tr>
+  <% end %>
+</tbody>
+</table>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add tag</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-mdb-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body"><%= render 'admin/tag_form', tag: @tag%></div>
+    </div>
+  </div>
+</div>

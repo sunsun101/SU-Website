@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_22_132821) do
+ActiveRecord::Schema.define(version: 2021_11_04_202229) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,13 +50,15 @@ ActiveRecord::Schema.define(version: 2021_10_22_132821) do
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "subject"
+    t.string "updatedBy"
     t.index ["tag_id"], name: "index_complains_on_tag_id"
     t.index ["user_id"], name: "index_complains_on_user_id"
   end
 
   create_table "events", force: :cascade do |t|
     t.string "title"
-    t.string "description"
+    t.text "description"
     t.datetime "event_date"
     t.string "created_by"
     t.string "updated_by"

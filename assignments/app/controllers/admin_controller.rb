@@ -1,5 +1,6 @@
 class AdminController < ApplicationController
   before_action :admin_user
+  before_action :set_tag, only: %i[show edit update destroy]
   def users
     @users = User.all
     if params[:user]&.present?
@@ -81,7 +82,69 @@ class AdminController < ApplicationController
                     )
   end
 
+  def feedback
+    @complains = Complain.all
+    @tags = Tag.all
+    @tag = Tag.new
+    @complain = Complain.new
+  end
+
+  def new
+    @tag = Tag.new
+  end
+
+  def create
+    @tag = Tag.new(tag_params)
+    if @tag.save
+      flash[:success] = 'Tag created successfully'
+      redirect_to admin_feedback_path
+    else
+      render :new
+    end
+  end
+
+  def edit
+    if params[:complain]
+      if @complain.update(complain_params)
+        flash[:success] = 'Tag updated successfully'
+
+      else
+        flash[:error] = 'Error in updating Tag'
+      end
+    elsif @tag.update(tag_params)
+      flash[:success] = 'Tag updated successfully'
+
+    else
+      flash[:error] = 'Error in updating Tag'
+    end
+
+    redirect_to admin_feedback_path
+  end
+
+  def destroy
+    if params[:tag]
+      flash[:success] = 'Tag deleted successfully' if @tag.destroy
+    elsif params[:complain]
+      flash[:success] = 'complain deleted successfully' if @complain.destroy
+    end
+
+    redirect_to admin_feedback_path
+  end
+
   private
+
+  def set_tag
+    @tag = Tag.find(params[:tag][:id]) if params[:tag]
+    @complain = Complain.find(params[:complain][:id]) if params[:complain]
+  end
+
+  def tag_params
+    params.require(:tag).permit(:id, :name)
+  end
+
+  def complain_params
+    params.require(:complain).permit(:id, :updatedBy, :status)
+  end
 
   def admin_user
     redirect_to(root_path) unless current_user&.is_admin
