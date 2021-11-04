@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_22_132821) do
+ActiveRecord::Schema.define(version: 2021_11_03_162519) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,7 +56,7 @@ ActiveRecord::Schema.define(version: 2021_10_22_132821) do
 
   create_table "events", force: :cascade do |t|
     t.string "title"
-    t.string "description"
+    t.text "description"
     t.datetime "event_date"
     t.string "created_by"
     t.string "updated_by"
@@ -110,6 +110,11 @@ ActiveRecord::Schema.define(version: 2021_10_22_132821) do
     t.string "provider"
     t.boolean "is_admin", default: false
     t.string "status", default: "A"
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string "unconfirmed_email"
+    t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.check_constraint "(status)::text = ANY (ARRAY[('A'::character varying)::text, ('D'::character varying)::text])", name: "status_check"
