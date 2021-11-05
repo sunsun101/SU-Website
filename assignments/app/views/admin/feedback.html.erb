@@ -70,8 +70,8 @@
         <td><%= complain.tag.name %></td>
         <td><%= complain.status %></td>
         <td><%= complain.updatedBy %></td>
-        <td><%= link_to 'View',  '#', 'data-mdb-target' => "#myModal_#{complain.id}", 'data-mdb-toggle' => 'modal', :class=>"btn btn-primary"  %>
-          <div class="modal fade" id='<%= "myModal_#{complain.id}" %>' tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <td><%= link_to 'View',  '#', 'data-mdb-target' => "#myComplainModal_#{complain.id}", 'data-mdb-toggle' => 'modal', :class=>"btn btn-primary"  %>
+          <div class="modal fade" id='<%= "myComplainModal_#{complain.id}" %>' tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-xl">
               <div class="modal-content">
                 <div class="modal-header">
@@ -89,7 +89,7 @@
       </tr>
     <% end.empty? %>
     <tr>
-      <td colspan="6" style="text-align:center"> No complains Found</td>
+      <td colspan="7" style="text-align:center"> No complains Found</td>
     </tr>
   <% end %>
 </tbody>
