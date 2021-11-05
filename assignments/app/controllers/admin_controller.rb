@@ -106,13 +106,13 @@ class AdminController < ApplicationController
   def edit
     if params[:complain]
       if @complain.update(complain_params)
-        flash[:success] = 'Tag updated successfully'
+        flash[:success] = 'form updated'
 
       else
         flash[:error] = 'Error in updating Tag'
       end
     elsif @tag.update(tag_params)
-      flash[:success] = 'Tag updated successfully'
+      flash[:success] = 'Tag updated'
 
     else
       flash[:error] = 'Error in updating Tag'

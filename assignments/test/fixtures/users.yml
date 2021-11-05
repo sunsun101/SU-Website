@@ -5,13 +5,13 @@
 # below each fixture, per the syntax in the comments below
 #
 one:
-  email: 'admin@example.com'
+  email: 'admin@ait.asia'
   is_admin: true
   status: 'A'
   confirmed_at: "2020-09-09 07:01:51.461869"
 
 two:
-  email: 'user@example.com'
+  email: 'user@ait.asia'
   is_admin: false
   status: 'A'
   confirmed_at: "2020-09-09 07:01:51.461869"

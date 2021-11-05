@@ -5,5 +5,5 @@ class Complain < ApplicationRecord
   validates_presence_of :detail
   validates_presence_of :status
   validates_presence_of :tag_id
-  attr_accessor :subject
+  validates_presence_of :subject
 end

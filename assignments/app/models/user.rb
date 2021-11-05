@@ -16,7 +16,7 @@ class User < ApplicationRecord
   end
 
   def domain_check
-    errors.add(:email, 'is not from a valid domain') unless APPROVED_DOMAINS.any? { |word| email.end_with?(word) }
+    errors.add(:email, 'is not from a valid domain') if email && !APPROVED_DOMAINS.any? { |word| email.end_with?(word) }
   end
 
   def make_first_user_an_admin
