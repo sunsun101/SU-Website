@@ -35,4 +35,4 @@ plugin :tmp_restart
 
 # Activate the control app
 
-activate_control_app
+# activate_control_app
