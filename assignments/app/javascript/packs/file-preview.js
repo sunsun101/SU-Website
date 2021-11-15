@@ -1,55 +1,38 @@
-// $(document).ready(function () {
-//   imageHandler();
-// });
-// function imageHandler() {
-//   $("#event_pictures").on("keyup", function (event) {
-//     if (event.keyCode == 86) {
-//         clearMediaPreview()
-//         var imageUrl = $('#event_pictures').val()
-//         showImagePreview(imageUrl)
-//     }
-//     if (event.keyCode == 8) {
-//       if ($("#event_pictures").val() == "") {
-//         clearMediaPreview()
-//         showImageUrl()
-//       }
-//     }
-//   });
-// }
+$(function () {
+  // Multiple images preview in browser
+  var imagesPreview = function (input, placeToInsertImagePreview) {
+    const btn1 = document.getElementById("removeImage");
+    $(placeToInsertImagePreview).html("");
+    if (input.files) {
+      var filesAmount = input.files.length;
 
-// function clearMediaPreview() {
-//   $(".media-preview").html("");
-// }
+      if (filesAmount > 0) {
+        for (i = 0; i < filesAmount; i++) {
+          var reader = new FileReader();
+          var id = $(input.files[i]).attr("id");
+          reader.onload = function (event) {
+            $($.parseHTML('<img class = "contact-img">'))
+              .attr("src", event.target.result)
+              .appendTo(placeToInsertImagePreview);
+          };
 
-// function showImagePreview(imageUrl) {
-//   console.log("here is the url",)
-//   $(".media-preview").html("<img src=" + imageUrl + ">");
-// }
+          reader.readAsDataURL(input.files[i]);
+        }
+        btn1.style.display = "block";
+      } else {
+        $(placeToInsertImagePreview).html("");
+        btn1.style.display = "none";
+      }
+    }
+  };
 
-// function showImageUrl() {
-//   $("#event_pictures").show();
-// }
-// $(function () {
-//   // Multiple images preview in browser
-//   var imagesPreview = function (input, placeToInsertImagePreview) {
-//     if (input.files) {
-//       var filesAmount = input.files.length;
-
-//       for (i = 0; i < filesAmount; i++) {
-//         var reader = new FileReader();
-
-//         reader.onload = function (event) {
-//           $($.parseHTML("<img>"))
-//             .attr("src", event.target.result)
-//             .appendTo(placeToInsertImagePreview);
-//         };
-
-//         reader.readAsDataURL(input.files[i]);
-//       }
-//     }
-//   };
-
-//   $("#event_pictures").on("change", function () {
-//     imagesPreview(this, "div.gallery");
-//   });
-// });
+  $("#uploaded-pictures").on("change", function () {
+    imagesPreview(this, "div.gallery");
+  });
+  $("#removeImage").click(function (e) {
+    e.preventDefault(); // prevent default action of link
+    this.files = [];
+    $("#uploaded-pictures").val(""); // clear image input value
+    imagesPreview(this, "div.gallery");
+  });
+});

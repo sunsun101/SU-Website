@@ -17,6 +17,8 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import "mdb-ui-kit/css/mdb.min.css";
 import "styles/application.scss";
 import "packs/mdb.js";
+require("jquery")
+// import "packs/file-preview.js"
 
 Rails.start();
 Turbolinks.start();
