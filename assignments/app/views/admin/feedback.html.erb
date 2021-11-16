@@ -1,7 +1,7 @@
 <div class="container">
   <h1>Admin Dashboard</h1>
   <br>
-  <h3>Feedback</h3>
+  <h3>Tags</h3>
   <br>
   <% if flash.any?%>
     <%= render 'layouts/alerts'%>
@@ -48,14 +48,17 @@
   </tbody>
 </table>
 <br>
+<h3>Feedback</h3>
+<br>
 <table id="example" class="table table-striped table-hover" cellspacing="0" width="100%">
   <thead style = "background-color:#506477; color:white">
     <tr style="text-align:center">
       <th>subject</th>
       <th>Date</th>
+      <th>Committee</th>
       <th>Status</th>
-      <th>View</th>
       <th>Updated By</th>
+      <th>View</th>
       <th>Delete</th>
     </tr>
   </thead>
@@ -64,9 +67,11 @@
       <tr style="text-align:center">
         <td><%= complain.subject %></td>
         <td><%= complain.created_at.strftime("%d/%m/%Y") %></td>
+        <td><%= complain.tag.name %></td>
         <td><%= complain.status %></td>
-        <td><%= link_to 'View',  '#', 'data-mdb-target' => "#myModal_#{complain.id}", 'data-mdb-toggle' => 'modal', :class=>"btn btn-primary"  %>
-          <div class="modal fade" id='<%= "myModal_#{complain.id}" %>' tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <td><%= complain.updatedBy %></td>
+        <td><%= link_to 'View',  '#', 'data-mdb-target' => "#myComplainModal_#{complain.id}", 'data-mdb-toggle' => 'modal', :class=>"btn btn-primary"  %>
+          <div class="modal fade" id='<%= "myComplainModal_#{complain.id}" %>' tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-xl">
               <div class="modal-content">
                 <div class="modal-header">
@@ -80,12 +85,11 @@
             </div>
           </div>
         </td>
-        <td><%= complain.updatedBy %></td>
         <td><%= link_to 'Delete', admin_feedback_path(complain: {id: complain.id}), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'%></td>
       </tr>
     <% end.empty? %>
     <tr>
-      <td colspan="6" style="text-align:center"> No complains Found</td>
+      <td colspan="7" style="text-align:center"> No complains Found</td>
     </tr>
   <% end %>
 </tbody>

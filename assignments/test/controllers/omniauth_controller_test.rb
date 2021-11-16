@@ -9,7 +9,7 @@ class OmniauthControllerTest < ActionDispatch::IntegrationTest
                                                                          info: {
                                                                            first_name: 'Gaius',
                                                                            last_name: 'Baltar',
-                                                                           email: 'test@example.com'
+                                                                           email: 'test@ait.asia'
                                                                          },
                                                                          credentials: {
                                                                            token: '123456',

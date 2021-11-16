@@ -1,7 +1,9 @@
-require "test_helper"
+require 'test_helper'
 
 class ContactControllerTest < ActionDispatch::IntegrationTest
-  test "should get form" do
+  include Devise::Test::IntegrationHelpers
+  test 'should get contact form' do
+    sign_in users(:one)
     get contact_form_url
     assert_response :success
   end
