@@ -99,8 +99,9 @@ class AdminController < ApplicationController
       flash[:success] = 'Tag created successfully'
       redirect_to admin_feedback_path
     else
-      render :new
+      flash[:error] = 'Name cannot be empty'
     end
+    redirect_to admin_feedback_path
   end
 
   def edit

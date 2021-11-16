@@ -28,13 +28,15 @@
     <%= form.label :description, class: 'form-label' %>
   </div>
   <div class = "row col-12">
-    <%= form.label :add_pictures, class: "col-sm-4 col-form-label" %>
+    <%= form.label :add_pictures, class: "col-sm-2 col-form-label" %>
     <div class="col-sm-8">
-      <%= form.file_field :pictures, class:"form-control", multiple: true %>
+      <%= form.file_field :pictures, id: "uploaded-pictures", class:"form-control", multiple: true, accept: "image/*" %>
+    </div>
+    <div class = "col-sm-2">
+      <button id= "removeImage" type="button" class="btn btn-danger" style="display:none;" >Remove</button>
     </div>
   </div>
-  <div class="gallery"></div>
-  <div class="media-preview"></div>
+  <div class="preview"></div>
   <div class="modal-footer">
     <%= form.submit 'Submit', class: 'btn btn-primary mb-4' %>
   </div>

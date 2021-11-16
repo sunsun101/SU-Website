@@ -27,12 +27,12 @@ $(function () {
   };
 
   $("#uploaded-pictures").on("change", function () {
-    imagesPreview(this, "div.gallery");
+    imagesPreview(this, "div.preview");
   });
   $("#removeImage").click(function (e) {
     e.preventDefault(); // prevent default action of link
     this.files = [];
     $("#uploaded-pictures").val(""); // clear image input value
-    imagesPreview(this, "div.gallery");
+    imagesPreview(this, "div.preview");
   });
 });
