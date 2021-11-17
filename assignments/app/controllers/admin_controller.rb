@@ -84,9 +84,12 @@ class AdminController < ApplicationController
 
   def feedback
     @complains = Complain.all
+    @complain = Complain.new
+  end
+
+  def committee
     @tags = Tag.all
     @tag = Tag.new
-    @complain = Complain.new
   end
 
   def new
@@ -96,12 +99,11 @@ class AdminController < ApplicationController
   def create
     @tag = Tag.new(tag_params)
     if @tag.save
-      flash[:success] = 'Tag created successfully'
-      redirect_to admin_feedback_path
+      flash[:success] = 'Created successfully'
     else
       flash[:error] = 'Name cannot be empty'
     end
-    redirect_to admin_feedback_path
+    redirect_to admin_committee_path
   end
 
   def edit
@@ -112,24 +114,26 @@ class AdminController < ApplicationController
       else
         flash[:error] = 'Error in updating Tag'
       end
-    elsif @tag.update(tag_params)
-      flash[:success] = 'Tag updated'
-
+      redirect_to admin_feedback_path
     else
-      flash[:error] = 'Error in updating Tag'
-    end
+      if @tag.update(tag_params)
+        flash[:success] = 'Tag updated'
 
-    redirect_to admin_feedback_path
+      else
+        flash[:error] = 'Error in updating Tag'
+      end
+      redirect_to admin_committee_path
+    end
   end
 
   def destroy
     if params[:tag]
       flash[:success] = 'Tag deleted successfully' if @tag.destroy
+      redirect_to admin_committee_path
     elsif params[:complain]
       flash[:success] = 'complain deleted successfully' if @complain.destroy
+      redirect_to admin_feedback_path
     end
-
-    redirect_to admin_feedback_path
   end
 
   private

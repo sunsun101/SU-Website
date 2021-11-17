@@ -31,10 +31,13 @@
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
               <li>
-                <%= link_to "Users", admin_users_path, class: 'dropdown-item' %>
+                <%= link_to "Members", admin_users_path, class: 'dropdown-item' %>
               </li>
               <li>
-                <%= link_to "User feedback", admin_feedback_path, class: 'dropdown-item' %>
+                <%= link_to "Committees", admin_committee_path, class: 'dropdown-item' %>
+              </li>
+              <li>
+                <%= link_to "Feedback", admin_feedback_path, class: 'dropdown-item' %>
               </li>
             </ul>
           </li>

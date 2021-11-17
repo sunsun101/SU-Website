@@ -2,13 +2,16 @@ Rails.application.routes.draw do
   get 'contact/form'
   post 'contact/form', to: 'contact#create'
   root 'site#index'
-  devise_for :users, controllers: { omniauth_callbacks: 'omniauth', registrations: "registrations" }
+  devise_for :users, controllers: { omniauth_callbacks: 'omniauth', registrations: 'registrations' }
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   # get 'basics', to: 'basics#index'
   get 'admin/feedback'
-  post 'admin/feedback', to: 'admin#create'
   patch 'admin/feedback', to: 'admin#edit'
   delete 'admin/feedback', to: 'admin#destroy'
+  get 'admin/committee'
+  post 'admin/committee', to: 'admin#create'
+  patch 'admin/committee', to: 'admin#edit'
+  delete 'admin/committee', to: 'admin#destroy'
   get 'admin/users'
   patch 'admin/users'
   get 'problem-sets', to: 'site#problem_sets'
