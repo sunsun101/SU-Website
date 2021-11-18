@@ -12,9 +12,9 @@
       <i class="fas fa-bars"></i>
     </button>
     <div class="collapse navbar-collapse" id="navbar">
-      <a class="navbar-brand mt-2 mt-lg-0" href="#">
+      <%= link_to root_path, class: 'navbar-brand mt-2 mt-lg-0' do%>
         <%= image_tag "SU Logo.png",alt: "logo", loading: "lazy", class: "logo"%>
-      </a>
+      <% end %>
       <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
         <%= link_to 'Home', root_path, class:"nav-link"%>
         <% if current_user&.is_admin %>
@@ -52,7 +52,7 @@
           <%= link_to "Problem Sets", problem_sets_path, class: 'nav-link' %>
         </li>
         <li class="nav-item dropdown">
-            <a
+          <a
             class="nav-link dropdown-toggle"
             href="#"
             id="navbarDropdown"
@@ -60,17 +60,24 @@
             data-mdb-toggle="dropdown"
             aria-expanded="false"
           >
-              Events
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            Events
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li>
+              <%= link_to "Current Events", events_path, class: 'dropdown-item' %>
+            </li>
+            <li>
+              <%= link_to "Past Events", past_events_path, class: 'dropdown-item' %>
+            </li>
+            <% if current_user&.is_admin %>
               <li>
-                <%= link_to "Current Event", events_path, class: 'dropdown-item' %>
+                <%= link_to events_form_path, class: 'dropdown-item' do%>
+                  Create Event
+                <% end %>
               </li>
-              <li>
-                <%= link_to "Past Events", past_events_path, class: 'dropdown-item' %>
-              </li>
-            </ul>
-          </li>
+            <% end %>
+          </ul>
+        </li>
       </ul>
       <div id="user_status">
         <% if user_signed_in? %>

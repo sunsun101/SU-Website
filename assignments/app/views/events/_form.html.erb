@@ -1,11 +1,8 @@
-<%= form_with(model: event, url: events_path) do |form| %>
-  <% if event.errors.any? %>
+<%= form_with(model: event, url: events_form_path) do |form| %>
+  <% if @event.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(event.errors.count, "error") %> prohibited this event from being saved:</h2>
       <ul>
-        <% event.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
+        <li><%= @event.errors.first.full_message %></li>
       </ul>
     </div>
   <% end %>
@@ -13,24 +10,24 @@
     <div class="col-md-6">
       <%= form.label :title, class: 'form-label' %>
       <div class="form-outline mb-4">
-        <%= form.text_field :title, class: 'form-control' %>
+        <%= form.text_field :title, class: 'input' %>
       </div>
     </div>
     <div class="col-md-6">
       <%= form.label :event_date, class: 'form-label' %>
       <div class="form-outline mb-4">
-        <%= form.datetime_local_field  :event_date, class: 'form-control' %>
+        <%= form.date_field :event_date, class: 'datepicker input' %>
       </div>
     </div>
   </div>
+  <%= form.label :description, class: 'form-label' %>
   <div class="form-outline mb-4">
-    <%= form.text_area :description, class: 'form-control', rows: '6' %>
-    <%= form.label :description, class: 'form-label' %>
+    <%= form.text_area :description, class: 'input', rows: '6' %>
   </div>
   <div class = "row col-12">
-    <%= form.label :add_pictures, class: "col-sm-2 col-form-label" %>
+    <%= form.label :pictures, class: "col-sm-2 col-form-label" %>
     <div class="col-sm-8">
-      <%= form.file_field :pictures, id: "uploaded-pictures", class:"form-control", multiple: true, accept: "image/*" %>
+      <%= form.file_field :pictures, id: "uploaded-pictures", class:"input", multiple: true, accept: "image/*" %>
     </div>
     <div class = "col-sm-2">
       <button id= "removeImage" type="button" class="btn btn-danger" style="display:none;" >Remove</button>
@@ -38,14 +35,10 @@
   </div>
   <div class="preview"></div>
   <div class="modal-footer">
-    <%= form.submit 'Submit', class: 'btn btn-primary mb-4' %>
-    <input type="button" id="redirect" value="show alert" />
+    <%= form.submit 'Submit', class: 'btn btn-su mb-4' %>
   </div>
 <% end %>
 <script>
-$("#redirect").click(function(){
-  alert("Jquery working");
-});
   $(function () {
     // Multiple images preview in browser
     var imagesPreview = function (input, placeToInsertImagePreview) {
@@ -86,4 +79,5 @@ $("#redirect").click(function(){
       imagesPreview(this, "div.preview");
     });
   });
+  flatpickr(".datepicker", {enableTime: true})
 </script>

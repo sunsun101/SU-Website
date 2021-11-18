@@ -195,6 +195,8 @@ GEM
     faraday-patron (1.0.0)
     faraday-rack (1.0.0)
     ffi (1.15.4)
+    flatpickr_rails (1.1.0)
+      railties (>= 3.0)
     gems (1.2.0)
     globalid (0.5.2)
       activesupport (>= 5.0)
@@ -460,6 +462,7 @@ DEPENDENCIES
   dotenv-rails
   ed25519
   factory_bot_rails
+  flatpickr_rails
   google-http-actionmailer
   jbuilder (~> 2.7)
   jquery-rails

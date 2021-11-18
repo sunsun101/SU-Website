@@ -21,6 +21,9 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import "mdb-ui-kit/css/mdb.min.css";
 import "styles/application.scss";
 import "packs/mdb.js";
+import flatpickr from "flatpickr"
+import "flatpickr/dist/flatpickr.min.css"
+flatpickr(".datepicker", {enableTime: true,})
 // import "packs/file-preview.js"
 
 

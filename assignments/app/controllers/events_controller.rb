@@ -4,9 +4,24 @@ class EventsController < ApplicationController
     @events = Event.all
   end
 
+  def new
+    @event = Event.new
+  end
+
   def create 
-    event = Event.create!(event_params)
-    redirect_to events_path
+    @event = Event.new(event_params)
+    if @event.save
+      flash[:success] = 'Event created successfully'
+      redirect_to events_path
+    else
+      render :new
+    end
+  end
+
+  def past_events
+    
+    
+    @past_event = Event
   end
 
   private
