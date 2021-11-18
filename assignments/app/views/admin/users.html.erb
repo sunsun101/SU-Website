@@ -32,10 +32,10 @@
         <tr style="text-align:center">
           <td><%= user.email %></td>
           <td><%= user.created_at.strftime("%d/%m/%Y") %></td>
-          <% if user.status == 'A' %>
-            <td style="color:green">Active</td>
+          <% if user.is_admin %>
+            <td>Admin</td>
           <% else %>
-            <td style="color:red">Banned</td>
+            <td>Member</td>
           <% end %>
           <td>
             <%= link_to 'Edit',  '#', 'data-mdb-target' => "#myModal_#{user.id}", 'data-mdb-toggle' => 'modal', :class=>"btn btn-su"  %>
