@@ -9,14 +9,15 @@
       </ul>
     </div>
   <% end %>
-  <p style = "float:left;"> subject: <%= complain.subject %> </p>
-  <br>
-  <p style = "float:left;"> message: <%= complain.detail %> </p>
-  <br>
+  <div style="text-align:left">
+    <h3>subject: <%= complain.subject %></h3>
+    <br>
+    <h5 style="white-space: pre-wrap;"><%= complain.detail %></h5>
+  </div>
   <br>
   <% if complain.com_pics.attached? %>
     <% complain.com_pics.each do |pic| %>
-      <%= image_tag(pic, :class => "card-img-top contact-img") %>
+      <%= image_tag(pic, :class => "card-img-top contact-img", :style => "padding:10px") %>
     <% end %>
   <% end %>
   <br>
@@ -27,6 +28,6 @@
   <% end %>
   <br>
   <div class="modal-footer">
-    <%= form.submit 'Submit', class: 'btn btn-primary mb-4' %>
+    <%= form.submit 'Submit', class: 'btn btn-su mb-4' %>
   </div>
 <% end %>

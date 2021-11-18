@@ -2,7 +2,7 @@ class AdminController < ApplicationController
   before_action :admin_user
   before_action :set_tag, only: %i[show edit update destroy]
   def users
-    @users = User.all
+    @users = User.where('is_admin = true')
     if params[:user]&.present?
       if params[:user][:status] == 'Active'
         un_ban_user(params[:user][:id])
@@ -15,17 +15,8 @@ class AdminController < ApplicationController
       end
     end
     advanced_search if params[:adsearch]
-    @users = @users.where('email ILIKE ?', '%' + params[:search] + '%') if params[:search]&.present?
+    @users = User.where('email ILIKE ?', '%' + params[:search] + '%') if params[:search]&.present?
     @users = @users.order(:created_at).reverse_order
-    user_stats = count_by_date
-    @data = []
-    sts = []
-    user_stats.each do |val|
-      sts  << val['created_date'].strftime('%e %B')
-      sts  << val['total_count']
-      @data << sts
-      sts = []
-    end
   end
 
   def ban_user(id)
@@ -49,6 +40,7 @@ class AdminController < ApplicationController
   end
 
   def advanced_search
+    @users = User.all
     if params[:user_status]
       if params[:user_status] == 'Active'
         @users = @users.where('status = ?',  'A')

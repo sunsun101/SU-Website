@@ -12,7 +12,7 @@
     <%= form.hidden_field :user_id, value: current_user.id%>
     <%= form.hidden_field :status, value: "New"%>
   <% end %>
-  <div class="login">
+  <div>
     <%= form.text_field :subject, class:"input", placeholder: "Subject" %>
     <%= form.select( :tag_id, Tag.all.collect {|q| [ q.name, q.id] },{prompt: "Please Select Committee" }, {class:"input"})%>
   </div>
@@ -48,7 +48,7 @@
                   var reader = new FileReader();
                   var id = $(input.files[i]).attr('id');
                   reader.onload = function(event) {
-                      $($.parseHTML('<img class = "contact-img">')).attr('src', event.target.result).appendTo(placeToInsertImagePreview);
+                      $($.parseHTML('<img class = "contact-img" style = "padding:10px">')).attr('src', event.target.result).appendTo(placeToInsertImagePreview);
                   }
   
                   reader.readAsDataURL(input.files[i]);
