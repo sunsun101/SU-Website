@@ -6,7 +6,6 @@
   <div class="mask" style="background-color: rgba(0, 0, 0, 0.7);">
     <div class="d-flex justify-content-center align-items-center h-100">
       <div class="text-white">
-        <%# <h1 class="mb-3">Welcome to AIT Student Union Official Website</h1> %>
         <%= link_to 'View Events', events_path , class: "btn btn-outline-light btn-lg m-2", role: "button"%>
         <%= link_to 'Register Complain', contact_form_path , class: "btn btn-outline-light btn-lg m-2", role: "button"%>
       </div>
@@ -14,50 +13,33 @@
   </div>
 </div>
 <% if @events.present? %>
-  <div class="container mt-5 mb-5">
-    <div class="d-flex justify-content-between">
-      <h5 class = "text-uppercase fw-bold mb-4">Upcoming Events</h5>
-      <%= link_to 'More Events', events_path %>
+  <div class="container mt-5">
+    <div class="d-flex justify-content-between mb-4">
+      <h5 class = "text-uppercase fw-bold ">Event Highlights</h5>
+      <%= link_to  events_path, class: "btn btn-su" do%>
+        More Events &nbsp;&nbsp; <i class="fas fa-arrow-right"></i>
+      <% end %>
     </div>
     <div class="row">
       <% @events.each do |event| %>
-        <div class="col-md-4">
-          <div class="card text-center h-100" style="max-width: 22rem;">
-            <div class="card-header"><%= event.title %></div>
-            <div class="card-body">
-              <%# <h5 class="card-title">Special title treatment</h5> %>
-              <% if event.pictures.attached? %>
-                <%= image_tag(event.pictures.first,alt: "event_image", class: "event--img")%>
-              <% end %>
-              <p class="mt-4">Event Date: <%= event.event_date %></p>
-              <p class="card-text" style="width:inherit ; white-space: nowrap; overflow: hidden; text-overflow:ellipsis;">
-                <%= event.description %>
-              </p>
-            </div>
+        <div class="col-md-3 mb-5">
+          <div class="su-card">
+            <%= link_to events_path+'#'+event.id.to_s, style: "display: block;" do%>
+              <div class="card-header">
+                <% if event.pictures.attached? %>
+                  <%= image_tag(event.pictures.first,alt: "event_image", class: "img-responsive", style: "width: 100%")%>
+                <% end %>
+                <div class="card-header_overlay text-center">
+                  <span class="pill"><%= event.title %></span>
+                </div>
+              </div>
+              <div class="page-header text-center" style="padding-top:5px;">
+                <p>Event Date: <%= event&.event_date&.strftime("%d %B %Y %I:%M %p") %></p>
+              </div>
+            <% end %>
           </div>
         </div>
       <% end %>
     </div>
   </div>
 <% end %>
-<div class="p-5 text-center bg-image"
-          style="background-color: rgba(127, 149, 111, 0.7); height: 500px">
-  <div class="mask">
-    <div class="d-flex justify-content-center align-items-center h-100">
-      <div class="container p-2">
-        <div class="text-white">
-          <h1 class="mb-3">A message to the students</h1>
-          <h5>Dear AIT Students,</h5>
-          <p>
-            First of all, on behalf of Student Union, we would like to extend a warm welcome to be a part of the AIT family. Student Union or you can call “SU” tries to help all students to settle down in AIT as their new home by providing difference academic and non-academic activities.
-            We wish all new overseas students good health and speedy processing of their entry into Thailand.  We would be looking forward to the day when all of the students manage to reside in campus and the SU activities are resumed for the 2020 August semester in AIT’s journey as it transforms itself under the motto of “Social Impact With Innovation.”
-          </p>
-          <p>
-            SU Interim Committee<br>
-            2020 August
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>

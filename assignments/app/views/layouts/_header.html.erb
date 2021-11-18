@@ -51,14 +51,34 @@
         <li class="nav-item">
           <%= link_to "Problem Sets", problem_sets_path, class: 'nav-link' %>
         </li>
+        <li class="nav-item dropdown">
+            <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            data-mdb-toggle="dropdown"
+            aria-expanded="false"
+          >
+              Events
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li>
+                <%= link_to "Current Event", events_path, class: 'dropdown-item' %>
+              </li>
+              <li>
+                <%= link_to "Past Events", past_events_path, class: 'dropdown-item' %>
+              </li>
+            </ul>
+          </li>
       </ul>
       <div id="user_status">
         <% if user_signed_in? %>
-          Welcome <%= current_user.email %>!
-          <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
+          Welcome <%= current_user.email %>!&nbsp;&nbsp;
+          <%= link_to "Sign out", destroy_user_session_path, class: "btn btn-su", method: :delete %>
         <% else %>
-          <%= link_to "Sign up", new_user_registration_path %> or
-          <%= link_to "Sign in", new_user_session_path %>
+          <%= link_to "Sign up", new_user_registration_path, class: "btn btn-su" %>&nbsp;&nbsp;
+          <%= link_to "Sign in", new_user_session_path, class: "btn btn-su" %>
         <% end %>
       </div>
     </div>

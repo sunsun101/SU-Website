@@ -31,5 +31,6 @@ Rails.application.routes.draw do
   delete 'su_information', to: 'su_information#destroy'
   get 'events', to: 'events#index'
   post 'events', to: 'events#create'
+  get 'past-events', to: 'events#past_events'
   get 'feedback', to: 'plan#feedback'
 end

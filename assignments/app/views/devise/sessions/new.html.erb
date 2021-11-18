@@ -11,7 +11,7 @@
             <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
               <div class="form-outline mb-4">
                 <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
-                <%= f.label :email , class: 'form-label'%>
+                <%= f.label :email , class: 'form-label su'%>
               </div>
               <div class="form-outline mb-4">
                 <%= f.password_field :password, autocomplete: "current-password" , class: 'form-control'%>
@@ -24,7 +24,7 @@
                 </div>
               <% end %>
               <div class="actions">
-                <%= f.submit "Log in", class: 'btn btn-primary btn-block' %>
+                <%= f.submit "Log in", class: 'btn btn-su filled btn-block' %>
               </div>
             <% end %>
             <%= render "devise/shared/links" %>

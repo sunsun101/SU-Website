@@ -21,7 +21,7 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import "mdb-ui-kit/css/mdb.min.css";
 import "styles/application.scss";
 import "packs/mdb.js";
-import "packs/file-preview.js"
+// import "packs/file-preview.js"
 
 
 // Rails.start();
