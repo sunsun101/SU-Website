@@ -56,7 +56,7 @@ body {
 
 /* Clear floats after the columns */
 
-.row-cus:after {
+.row:after {
     content: "";
     display: table;
     clear: both;
@@ -264,6 +264,37 @@ th:first-child {
     border-left: none;
 }
 
-.modal-body {
-    overflow: auto;
+// .modal-body {
+//     overflow: auto;
+// }
+#myImg {
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#myImg:hover {
+    transform: scale(1.5);
+    /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
+
+#conImg:hover {
+    transform: scale(1.5);
+    /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
+
+.images {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 1em;
+    margin: 0 1em;
+}
+
+.images img {
+    width: 100%;
+    transition: 0.3s all ease;
+}
+
+.images img:hover {
+    transform: scale(1.5);
 }

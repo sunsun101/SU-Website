@@ -16,9 +16,11 @@
   </div>
   <br>
   <% if complain.com_pics.attached? %>
-    <% complain.com_pics.each do |pic| %>
-      <%= image_tag(pic, :class => "card-img-top contact-img", :style => "padding:10px") %>
-    <% end %>
+    <div class="images" >
+      <% complain.com_pics.each_with_index do |pic, index| %>
+        <%= image_tag(pic)%>
+      <% end %>
+    </div>
   <% end %>
   <br>
   <% if complain.id %>
