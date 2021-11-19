@@ -33,5 +33,6 @@ Rails.application.routes.draw do
   post 'events/form', to: 'events#create'
   get 'events/form', to: 'events#new'
   get 'past-events', to: 'events#past_events'
+  get 'event-detail', to: 'events#details'
   get 'feedback', to: 'plan#feedback'
 end

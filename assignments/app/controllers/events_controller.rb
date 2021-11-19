@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
   def index
     @event = Event.new
-    @events = Event.all
+    @events = Event.where('event_date >= ?', Date.today )
   end
 
   def new
@@ -19,9 +19,7 @@ class EventsController < ApplicationController
   end
 
   def past_events
-    
-    
-    @past_event = Event
+    @events = Event.where('event_date < ?', Date.today )
   end
 
   private

@@ -23,8 +23,7 @@ import "styles/application.scss";
 import "packs/mdb.js";
 import flatpickr from "flatpickr"
 import "flatpickr/dist/flatpickr.min.css"
-flatpickr(".datepicker", {enableTime: true,})
-// import "packs/file-preview.js"
+
 
 
 // Rails.start();

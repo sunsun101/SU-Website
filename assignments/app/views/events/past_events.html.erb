@@ -1,23 +1,8 @@
 <div class="container">
-  <div class="row">
-    <% @events.each do |event| %>
-      <div class="col-md-3 mb-5">
-        <div class="su-card">
-          <%= link_to events_path+'#'+event.id.to_s, style: "display: block;" do%>
-            <div class="card-header">
-              <% if event.pictures.attached? %>
-                <%= image_tag(event.pictures.first,alt: "event_image", class: "img-responsive", style: "width: 100%; max-height: 175px")%>
-              <% end %>
-              <div class="card-header_overlay text-center">
-                <span class="pill"><%= event.title %></span>
-              </div>
-            </div>
-            <div class="page-header text-center" style="padding-top:5px;">
-              <p><%= event&.event_date&.strftime("%d %B %Y %I:%M %p") %></p>
-            </div>
-          <% end %>
-        </div>
-      </div>
+  <div class="d-flex flex-row-reverse mt-3 mb-3">
+    <%= form_with(url: past_events_path) do |form| %>
+      <%= select_month(Date.today,{},class: "form-control") %>
     <% end %>
   </div>
 </div>
+<%= render 'list', locals: {events: @events} %>
