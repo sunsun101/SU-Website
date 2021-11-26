@@ -7,6 +7,19 @@
   <% end %>
   <h5>Feedback</h5>
   <br>
+  <div style="display:inline-block; margin-bottom:20px; margin-left:10px; float:right;">
+    <button type="button" class="btn btn-su" data-mdb-toggle="modal" data-mdb-target="#exampleModal" >
+      Advanced Search
+    </button>
+  </div>
+  <div style="display:inline-block; margin-bottom:20px; float:right;">
+    <%= form_tag(admin_feedback_path, method: :get) do%>
+      <div style="display:inline-block; "><%= text_field_tag(:search, params[:search], class:'form-control')%></div>
+      &nbsp;
+      <div style="display:inline-block;"><%= submit_tag("Search", :class => "btn btn-su")%></div>
+      &nbsp;
+    <% end %>
+  </div>
   <table class= "table table-striped table-hover">
     <thead style = "background-color:#325c52; color:white">
       <tr style="text-align:center">
@@ -24,7 +37,11 @@
         <tr style="text-align:center">
           <td><%= complain.subject %></td>
           <td><%= complain.created_at.strftime("%d/%m/%Y") %></td>
-          <td><%= complain.tag.name %></td>
+          <% if complain.tag_id %>
+            <td><%= complain.tag.name %></td>
+          <% else %>
+            <td>None</td>
+          <% end %>
           <td><%= complain.status %></td>
           <td><%= complain.updatedBy %></td>
           <td><%= link_to 'View',  '#', 'data-mdb-target' => "#myComplainModal_#{complain.id}", 'data-mdb-toggle' => 'modal', :class=>"btn btn-su"  %>
@@ -51,4 +68,22 @@
     <% end %>
   </tbody>
 </table>
+<div style="float:right;"><%= paginate @complains%></div>
+</div>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Advanced Search</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-mdb-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body"><%= render 'admin/search_feedback'%></div>
+    </div>
+  </div>
+</div>
 </div>

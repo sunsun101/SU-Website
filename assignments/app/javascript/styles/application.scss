@@ -72,12 +72,9 @@ body {
 }
 
 .form-contact {
-    background: #fff;
     margin: 50px auto;
-    box-shadow: 0 0 20px rgba(72, 98, 85, 0.6);
     box-sizing: border-box;
     padding: 40px;
-    text-align: center;
 }
 
 p.form-head {
@@ -292,9 +289,59 @@ th:first-child {
 
 .images img {
     width: 100%;
+    border: 1px solid black;
+    border-color: #325c52;
     transition: 0.3s all ease;
 }
 
 .images img:hover {
     transform: scale(1.5);
+}
+
+.pagination a,
+.pagination span.current,
+.pagination span.gap {
+    float: left;
+    padding: 0 14px;
+    line-height: 38px;
+    text-decoration: none;
+    background-color: #f5efe4;
+    border: 1px solid #DDD;
+    border-left-width: 0;
+}
+
+.pagination a:hover {
+    border: 1px solid #325c52;
+    border-color: rgba(127, 149, 111, 0.7);
+    box-shadow: 0 0 2px rgba(72, 98, 85, 0.6);
+}
+
+.pagination {
+    border-radius: 10px;
+    border-left: 1px solid #ddd;
+    .first {
+        padding: 0;
+        float: none;
+        border: none;
+    }
+    .prev {
+        padding: 0;
+        float: none;
+        border: none;
+    }
+    .page {
+        padding: 0;
+        float: none;
+        border: none;
+    }
+    .next {
+        padding: 0;
+        float: none;
+        border: none;
+    }
+    .last {
+        padding: 0;
+        float: none;
+        border: none;
+    }
 }

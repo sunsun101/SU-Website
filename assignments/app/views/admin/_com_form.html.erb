@@ -18,7 +18,10 @@
   <% if complain.com_pics.attached? %>
     <div class="images" >
       <% complain.com_pics.each_with_index do |pic, index| %>
-        <%= image_tag(pic)%>
+        <span>
+          <%= link_to image_tag(pic), pic, target: "_blank" %>
+          <%= link_to '<i class="fa fa-download" style="color:green;margin-top:5px;font-size:24px"></i>'.html_safe, pic, download: pic.filename%>
+        </span>
       <% end %>
     </div>
   <% end %>

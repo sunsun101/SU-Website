@@ -71,11 +71,12 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'activerecord-session_store'
 gem 'devise'
 gem 'dotenv-rails', groups: %i[development test production]
+gem 'google-http-actionmailer'
 gem 'jquery-rails'
+gem 'kaminari'
 gem 'nokogiri'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-rails_csrf_protection'
 gem 'pry'
 gem 'whenever', require: false
-gem 'google-http-actionmailer'
