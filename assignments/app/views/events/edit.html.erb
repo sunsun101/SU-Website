@@ -1,0 +1,14 @@
+<div class="container">
+  <% if flash.any?%>
+    <%= render 'layouts/alerts'%>
+  <% end %>
+  <br>
+  <div class= "col-md-6 offset-md-3 mb-5">
+    <div class="card">
+      <div class="card-body">
+        <h3 class="text-uppercase text-center">Edit Event</h3>
+        <%= render 'form', event: @event%>
+      </div>
+    </div>
+  </div>
+</div>

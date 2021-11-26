@@ -71,7 +71,7 @@
             </li>
             <% if current_user&.is_admin %>
               <li>
-                <%= link_to events_form_path, class: 'dropdown-item' do%>
+                <%= link_to new_event_path, class: 'dropdown-item' do%>
                   Create Event
                 <% end %>
               </li>

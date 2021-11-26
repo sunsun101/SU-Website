@@ -1,4 +1,4 @@
-  <div
+<div
           id="ait-background"
           class="p-5 text-center bg-image"
           style="background-image: url(<%= asset_path 'background.jpg' %>);"
@@ -24,10 +24,10 @@
       <% @events.each do |event| %>
         <div class="col-md-3 mb-5">
           <div class="su-card">
-            <%= link_to events_path+'#'+event.id.to_s, style: "display: block;" do%>
-              <div class="card-header">
+            <%= link_to event_path(event), style: "display: block;" do%>
+              <div class="su-card-header card-header">
                 <% if event.pictures.attached? %>
-                  <%= image_tag(event.pictures.first,alt: "event_image", class: "img-fluid", style: "width: 100%; max-height: 175px")%>
+                  <%= image_tag(event.pictures.first,alt: "event_image", class: "img-fluid", style: "width: 100%; max-height: 175px;")%>
                 <% end %>
                 <div class="card-header_overlay text-center">
                   <span class="pill"><%= event.title %></span>

@@ -29,10 +29,7 @@ Rails.application.routes.draw do
   post 'su_information', to: 'su_information#create'
   patch 'su_information', to: 'su_information#edit'
   delete 'su_information', to: 'su_information#destroy'
-  get 'events', to: 'events#index'
-  post 'events/form', to: 'events#create'
-  get 'events/form', to: 'events#new'
+  resources :events
   get 'past-events', to: 'events#past_events'
-  get 'event-detail', to: 'events#details'
   get 'feedback', to: 'plan#feedback'
 end

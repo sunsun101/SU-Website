@@ -21,10 +21,9 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import "mdb-ui-kit/css/mdb.min.css";
 import "styles/application.scss";
 import "packs/mdb.js";
-import flatpickr from "flatpickr"
-import "flatpickr/dist/flatpickr.min.css"
-
-
+import flatpickr from "flatpickr";
+import "flatpickr/dist/flatpickr.min.css";
+// import "packs/test.js";
 
 // Rails.start();
 // Turbolinks.start();

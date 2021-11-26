@@ -1,8 +1,8 @@
 <div class="container">
   <div class="d-flex flex-row-reverse mt-3 mb-3">
-    <%= form_with(url: past_events_path) do |form| %>
+    <div>
       <%= select_month(Date.today,{},class: "form-control") %>
-    <% end %>
+    </div>
   </div>
 </div>
 <%= render 'list', locals: {events: @events} %>

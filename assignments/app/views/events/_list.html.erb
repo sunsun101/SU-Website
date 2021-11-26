@@ -1,38 +1,40 @@
-<div class="row">
-  <% if flash.any?%>
-    <%= render 'layouts/alerts'%>
-  <% end %>
-  <% if @events.present? %>
-    <section class="" id="meetings">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="row">
-              <% @events.each do |event| %>
-                <div class="col-lg-4">
-                  <div class="meeting-item" id='<%= event.id%>'>
-                    <div class="thumb">
-                      <%= link_to  event_detail_path do%>
-                        <% if event.pictures.attached? %>
-                          <%= image_tag(event.pictures[0], alt: "event_image", class: 'img-fluid') %>
-                        <%end%>
-                      <% end %>
-                    </div>
-                    <div class="down-content">
-                      <div class="date">
-                        <h6><%= event&.event_date&.strftime("%b") %> <span><%= event&.event_date&.strftime("%d") %></span> </h6>
+<div class = "container">
+  <div class="row">
+    <% if flash.any?%>
+      <%= render 'layouts/alerts'%>
+    <% end %>
+    <% if @events.present? %>
+      <section class="" id="meetings">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="row">
+                <% @events.each do |event| %>
+                  <div class="col-lg-4">
+                    <div class="meeting-item" id='<%= event.id%>'>
+                      <div class="thumb">
+                        <%= link_to  event_path(event) do%>
+                          <% if event.pictures.attached? %>
+                            <%= image_tag(event.pictures[0], alt: "event_image", class: 'events-list') %>
+                          <%end%>
+                        <% end %>
                       </div>
-                      <a href="meeting-details.html">
-                        <h4><%= event.title %></h4>
-                      </a>
-                      <p style="width:inherit ; white-space: nowrap; overflow: hidden; text-overflow:ellipsis;" > <%= event.description %> </p>
+                      <div class="down-content">
+                        <div class="date">
+                          <h6><%= event&.event_date&.strftime("%b") %> <span><%= event&.event_date&.strftime("%d") %></span> </h6>
+                        </div>
+                        <%= link_to  event_path(event) do%>
+                          <h4><%= event.title %></h4>
+                        <% end %>
+                        <p style="width:inherit ; white-space: nowrap; overflow: hidden; text-overflow:ellipsis;" > <%= event.description %> </p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              <% end %>
+                <% end %>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
-  <% end %>
+       
+      </section>
+    <% end %>
+  </div>
+</div>
