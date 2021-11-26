@@ -21,6 +21,7 @@
     <thead style = "background-color:#325c52; color:white">
       <tr style="text-align:center">
         <th>Name</th>
+        <th>Email</th>
         <th>Edit</th>
         <th>Delete</th>
       </tr>
@@ -29,6 +30,7 @@
       <% if @tags.each do |tag| %>
         <tr style="text-align:center">
           <td><%= tag.name %></td>
+          <td><%= tag.email %></td>
           <td><%= link_to 'Edit',  '#', 'data-mdb-target' => "#myModal_#{tag.id}", 'data-mdb-toggle' => 'modal', :class=>"btn btn-su"  %>
             <div class="modal fade" id='<%= "myModal_#{tag.id}" %>' tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
               <div class="modal-dialog modal-dialog-centered">

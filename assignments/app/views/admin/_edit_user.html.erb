@@ -3,9 +3,9 @@
     <%= f.hidden_field :id, value: user.id%>
   </div>
   <div class="form-group row col-12" >
-    <%= f.label 'User Status: ', class:"col-sm-3 col-form-label"%>
+    <%= f.label 'Committee: ', class:"col-sm-3 col-form-label"%>
     <div class="col-sm-8">
-      <%= f.select( :status, [nil,'Active', 'Ban'],{}, {class:"form-select"})%>
+      <%= f.select( :tag_id, Tag.all.collect {|q| [ q.name, q.id] },{prompt: "Select Committee" }, {class:"form-select"})%>
     </div>
   </div>
   <br>

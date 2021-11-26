@@ -16,9 +16,14 @@
   </div>
   <br>
   <% if complain.com_pics.attached? %>
-    <% complain.com_pics.each do |pic| %>
-      <%= image_tag(pic, :class => "card-img-top contact-img", :style => "padding:10px") %>
-    <% end %>
+    <div class="images" >
+      <% complain.com_pics.each_with_index do |pic, index| %>
+        <span>
+          <%= link_to image_tag(pic), pic, target: "_blank" %>
+          <%= link_to '<i class="fa fa-download" style="color:green;margin-top:5px;font-size:24px"></i>'.html_safe, pic, download: pic.filename%>
+        </span>
+      <% end %>
+    </div>
   <% end %>
   <br>
   <% if complain.id %>

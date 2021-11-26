@@ -29,8 +29,10 @@ class SuInformationController < ApplicationController
 
   # DELETE /projects/1 or /projects/1.json
   def destroy
-    @su_member.avatar&.purge
-    flash[:success] = 'SU Member deleted successfully' if @su_member.destroy
+    if @su_member.destroy   # @complain.com_pics.purge
+      @su_member.avatar.purge
+      flash[:success] = 'SU Member deleted successfully' 
+    end
     redirect_to su_information_path
   end
 

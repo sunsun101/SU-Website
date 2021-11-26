@@ -4,30 +4,27 @@ class AdminController < ApplicationController
   def users
     @users = User.where('is_admin = true')
     if params[:user]&.present?
-      if params[:user][:status] == 'Active'
-        un_ban_user(params[:user][:id])
-      elsif params[:user][:status] == 'Ban'
-        ban_user(params[:user][:id])
-      elsif params[:user][:is_admin] == '1'
+      if params[:user][:is_admin] == '1'
         make_admin(params[:user][:id])
       elsif params[:user][:is_admin] == '0'
         remove_admin(params[:user][:id])
       end
+      usercommittee(params[:user][:id], params[:user][:tag_id]) if params[:user][:tag_id]&.present?
     end
     advanced_search if params[:adsearch]
     @users = User.where('email ILIKE ?', '%' + params[:search] + '%') if params[:search]&.present?
-    @users = @users.order(:created_at).reverse_order
+    @users = @users.order(:created_at).reverse_order.page(params[:page])
   end
 
-  def ban_user(id)
-    @user = User.find(id)
-    @user.update(status: 'D')
-  end
+  # def ban_user(id)
+  #   @user = User.find(id)
+  #   @user.update(status: 'D')
+  # end
 
-  def un_ban_user(id)
-    @user = User.find(id)
-    @user.update(status: 'A')
-  end
+  # def un_ban_user(id)
+  #   @user = User.find(id)
+  #   @user.update(status: 'A')
+  # end
 
   def make_admin(id)
     @user = User.find(id)
@@ -37,6 +34,12 @@ class AdminController < ApplicationController
   def remove_admin(id)
     @user = User.find(id)
     @user.update(is_admin: false)
+  end
+
+  def usercommittee(id, t_id)
+    @user = User.find(id)
+    @user.tag_id = t_id
+    @user.save
   end
 
   def advanced_search
@@ -59,6 +62,17 @@ class AdminController < ApplicationController
       @users = @users.where('created_at BETWEEN ? AND ?', Date.parse(params[:date_from]).beginning_of_day,
                             Date.parse(params[:date_to]).end_of_day)
     end
+    @users = @users.page(params[:page])
+  end
+
+  def advanced_search_feedback
+    @complains = Complain.all
+    @complains = @complains.where('status = ?', params[:status]) if params[:status].present?
+    @complains = @complains.where('tag_id = ?', params[:tag_id]) if params[:tag_id].present?
+    if params[:date_from].present? && params[:date_to].present?
+      @complains = @complains.where('created_at BETWEEN ? AND ?', Date.parse(params[:date_from]).beginning_of_day,
+                                    Date.parse(params[:date_to]).end_of_day)
+    end
   end
 
   def count_by_date
@@ -75,8 +89,16 @@ class AdminController < ApplicationController
   end
 
   def feedback
-    @complains = Complain.all
+    @complains = if current_user&.tag_id.present?
+                   Complain.where('tag_id = ?', current_user.tag_id)
+                 else
+                   Complain.all
+                 end
+
     @complain = Complain.new
+    advanced_search_feedback if params[:adsearch]
+    @complains = Complain.where('subject ILIKE ? ', '%' + params[:search] + '%') if params[:search]&.present?
+    @complains = @complains.order(:created_at).reverse_order.page(params[:page])
   end
 
   def committee
@@ -123,6 +145,7 @@ class AdminController < ApplicationController
       flash[:success] = 'Tag deleted successfully' if @tag.destroy
       redirect_to admin_committee_path
     elsif params[:complain]
+      @complain.com_pics.purge
       flash[:success] = 'complain deleted successfully' if @complain.destroy
       redirect_to admin_feedback_path
     end
@@ -136,7 +159,7 @@ class AdminController < ApplicationController
   end
 
   def tag_params
-    params.require(:tag).permit(:id, :name)
+    params.require(:tag).permit(:id, :name, :email)
   end
 
   def complain_params

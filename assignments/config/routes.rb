@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   delete 'admin/committee', to: 'admin#destroy'
   get 'admin/users'
   patch 'admin/users'
+  post 'admin/users'
   get 'problem-sets', to: 'site#problem_sets'
   get 'basics/news', to: 'basics#news'
   get 'basics/divide_by_zero', to: 'basics#divide_by_zero'

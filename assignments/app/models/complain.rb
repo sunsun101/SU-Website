@@ -1,4 +1,5 @@
 class Complain < ApplicationRecord
+  paginates_per 10
   has_many_attached :com_pics
   belongs_to :tag
   belongs_to :user
