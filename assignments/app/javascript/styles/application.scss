@@ -8,7 +8,7 @@
 
 body {
   margin: 0;
-  padding-top: 70px;
+  // padding-top: 70px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -434,7 +434,7 @@ pre {
 .events-list{
     width: 100%;
     object-fit: contain;
-    height: 350px;
+    max-height: 350px;
     background-color: #fff;
 }
 // .modal-body {

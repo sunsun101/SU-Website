@@ -23,7 +23,7 @@ import "styles/application.scss";
 import "packs/mdb.js";
 import flatpickr from "flatpickr";
 import "flatpickr/dist/flatpickr.min.css";
-// import "packs/test.js";
+import "packs/custom.js";
 
 // Rails.start();
 // Turbolinks.start();
