@@ -24,6 +24,14 @@
   <div class="form-outline mb-4">
     <%= form.text_area :description, class: 'input', rows: '6' %>
   </div>
+  <div class="row">
+    <div class="col-md-2">
+      <%= form.label :category, class: 'form-label' %>
+    </div>
+    <div class="col-md-4">
+      <%= form.select( :tag_id, Tag.all.collect {|q| [ q.name, q.id] },{prompt: "Select Category" }, {class:"input"})%>
+    </div>
+  </div>
   <div class = "row col-12">
     <%= form.label :pictures, class: "col-sm-2 col-form-label" %>
     <div class="col-sm-8">
@@ -33,7 +41,17 @@
       <button id= "removeImage" type="button" class="btn btn-danger" style="display:none;" >Remove</button>
     </div>
   </div>
-  <div class="preview"></div>
+  <div class="images"></div>
+  <div class="preview-images">
+  <% if event.pictures.present? %>
+    <% event.pictures.map do |picture| %>
+    <div>
+        <%= image_tag(picture ,alt: "event_image")%>
+        <%= link_to "Remove", events_removeImage_path(:id => picture.id), method: :post %>
+    </div>
+    <% end %>
+  <% end %>
+  </div>  
   <div class="modal-footer">
     <%= form.submit 'Submit', class: 'btn btn-su mb-4' %>
   </div>
@@ -52,11 +70,9 @@
           for (i = 0; i < filesAmount; i++) {
             var reader = new FileReader();
             var id = $(input.files[i]).attr("id");
-            reader.onload = function (event) {
-              $($.parseHTML('<img class = "contact-img">'))
-                .attr("src", event.target.result)
-                .appendTo(placeToInsertImagePreview);
-            };
+            reader.onload = function(event) {
+                  $($.parseHTML('<img >')).attr('src', event.target.result).appendTo(placeToInsertImagePreview);
+              }
   
             reader.readAsDataURL(input.files[i]);
           }
@@ -70,14 +86,15 @@
   
     $("#uploaded-pictures").on("change", function () {
       console.log("inside on change");
-      imagesPreview(this, "div.preview");
+      imagesPreview(this, "div.images");
     });
     $("#removeImage").click(function (e) {
       e.preventDefault(); // prevent default action of link
       this.files = [];
       $("#uploaded-pictures").val(""); // clear image input value
-      imagesPreview(this, "div.preview");
+      imagesPreview(this, "div.images");
     });
   });
   flatpickr(".datepicker", {enableTime: true})
 </script>
+
