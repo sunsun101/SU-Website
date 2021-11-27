@@ -20,54 +20,56 @@
       &nbsp;
     <% end %>
   </div>
-  <table class= "table table-striped table-hover">
-    <thead style = "background-color:#325c52; color:white">
-      <tr style="text-align:center">
-        <th>subject</th>
-        <th>Date</th>
-        <th>Committee</th>
-        <th>Status</th>
-        <th>Updated By</th>
-        <th>View</th>
-        <th>Delete</th>
-      </tr>
-    </thead>
-    <tbody style = "background-color:#f5efe4;">
-      <% if @complains.each do |complain| %>
+  <div style=" width: 100%; overflow-x:auto;">
+    <table class= "table table-striped table-hover">
+      <thead style = "background-color:#325c52; color:white">
         <tr style="text-align:center">
-          <td><%= complain.subject %></td>
-          <td><%= complain.created_at.strftime("%d/%m/%Y") %></td>
-          <% if complain.tag_id %>
-            <td><%= complain.tag.name %></td>
-          <% else %>
-            <td>None</td>
-          <% end %>
-          <td><%= complain.status %></td>
-          <td><%= complain.updatedBy %></td>
-          <td><%= link_to 'View',  '#', 'data-mdb-target' => "#myComplainModal_#{complain.id}", 'data-mdb-toggle' => 'modal', :class=>"btn btn-su"  %>
-            <div class="modal fade" id='<%= "myComplainModal_#{complain.id}" %>' tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-              <div class="modal-dialog modal-xl">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">User feedback</h5>
-                    <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close" ></button>
-                  </div>
-                  <div class="modal-body">
-                    <%= render 'admin/com_form', complain: complain%>
+          <th>subject</th>
+          <th>Date</th>
+          <th>Committee</th>
+          <th>Status</th>
+          <th>Updated By</th>
+          <th>View</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody style = "background-color:#f5efe4;">
+        <% if @complains.each do |complain| %>
+          <tr style="text-align:center">
+            <td><%= complain.subject %></td>
+            <td><%= complain.created_at.strftime("%d/%m/%Y") %></td>
+            <% if complain.tag_id %>
+              <td><%= complain.tag.name %></td>
+            <% else %>
+              <td>None</td>
+            <% end %>
+            <td><%= complain.status %></td>
+            <td><%= complain.updatedBy %></td>
+            <td><%= link_to 'View',  '#', 'data-mdb-target' => "#myComplainModal_#{complain.id}", 'data-mdb-toggle' => 'modal', :class=>"btn btn-su"  %>
+              <div class="modal fade" id='<%= "myComplainModal_#{complain.id}" %>' tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-xl">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">User feedback</h5>
+                      <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close" ></button>
+                    </div>
+                    <div class="modal-body">
+                      <%= render 'admin/com_form', complain: complain%>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </td>
-          <td><%= link_to 'Delete', admin_feedback_path(complain: {id: complain.id}), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'%></td>
+            </td>
+            <td><%= link_to 'Delete', admin_feedback_path(complain: {id: complain.id}), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'%></td>
+          </tr>
+        <% end.empty? %>
+        <tr>
+          <td colspan="7" style="text-align:center"> No complains Found</td>
         </tr>
-      <% end.empty? %>
-      <tr>
-        <td colspan="7" style="text-align:center"> No complains Found</td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 <div style="float:right;"><%= paginate @complains%></div>
 </div>
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
