@@ -1,8 +1,10 @@
-<div class="container">
+<div class="container mt-3">
   <div class="d-flex flex-row-reverse mt-3 mb-3">
-    <div>
-      <%= select_month(Date.today,{},class: "form-control") %>
-    </div>
+ 
+    <%= form_with(url: past_events_path, method: :get) do%>
+      <%= select_month(@selected_month, {}, {onchange: 'this.form.submit()', class: "input", style: "padding: 10px"})%>
+    <% end %>
   </div>
 </div>
-<%= render 'list', locals: {events: @events} %>
+<%= render :partial => 'list', locals: {events: @events} %>
+

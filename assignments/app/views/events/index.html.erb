@@ -1,9 +1,8 @@
-<div class="container">
+<div class="container mt-3">
   <div class="d-flex flex-row-reverse mt-3 mb-3">
-    <%= form_with(url: events_path) do |form| %>
-      <%= text_field_tag(:search, params[:search], class:'form-control', placeholder: 'Search Category')%>
+    <%= form_with(url: events_path, method: :get) do |form| %>
+      <%= form.select :tag_id, (Tag.all.collect {|q| [ q.name, q.id]}).unshift(["All",0]),{selected: @selected_tag},{class:"input", :onchange => 'this.form.submit()', style:"padding: 10px"}%>
     <% end %>
   </div>
 </div>
-<%= render 'list', events: @events%>
-
+<%= render :partial => 'list', events: @events%>

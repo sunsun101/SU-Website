@@ -33,4 +33,5 @@ Rails.application.routes.draw do
   resources :events
   get 'past-events', to: 'events#past_events'
   get 'feedback', to: 'plan#feedback'
+  post 'events/removeImage', to: "events#removeImage"
 end

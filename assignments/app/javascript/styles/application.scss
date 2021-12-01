@@ -6,12 +6,12 @@
 }
 
 body {
-    margin: 0;
-    padding-top: 70px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    min-height: 100vh;
+  margin: 0;
+  // padding-top: 70px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
 }
 
 // .circular_image {
@@ -427,9 +427,9 @@ a:hover {
 }
 
 .page-header {
-    padding-bottom: 9px;
-    margin: 40px 0 20px;
-    border-bottom: 1px solid #eee;
+  padding-bottom: 9px;
+  margin: 60px 0 20px;
+  border-bottom: 1px solid #eee;
 }
 
 pre {
@@ -466,7 +466,7 @@ pre {
 .events-list {
     width: 100%;
     object-fit: contain;
-    height: 350px;
+    max-height: 350px;
     background-color: #fff;
 }
 
@@ -506,7 +506,24 @@ pre {
 .images img:hover {
     transform: scale(1.5);
 }
+// Adding for testing
+.preview-images {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 1em;
+  margin: 0 1em;
+}
 
+.preview-images img {
+  width: 100%;
+  border: 1px solid black;
+  border-color: #325c52;
+  transition: 0.3s all ease;
+}
+
+.preview-images img:hover {
+  transform: scale(1.5);
+}
 .pagination a,
 .pagination span.current,
 .pagination span.gap {
