@@ -1,114 +1,76 @@
-<div class="container">
-  <br>
-  <div id="wrapper3">
-    <h3>Student Union Information</h3>
-    <% if current_user&.is_admin %>
-      <button type="button" class="btn btn-su" style="max-width: 15rem;" data-mdb-toggle="modal" data-mdb-target="#SUAddModal">
-        <i class="fas fa-plus"></i>
-        Add Member
-      </button>
-    <% end %>
-  </div>
-  <div class="row-cus">
-    <div class="column left">
-      <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
-        <div class="position-sticky">
-          <div class="list-group list-group-flush mx-3 mt-4">
-            <!-- Collapse 1 -->
-            <a
-          class="list-group-item list-group-item-action py-2 ripple"
-          aria-current="true"
-          data-mdb-toggle="collapse"
-          href="#collapseExample1"
-          aria-expanded="true"
-          aria-controls="collapseExample1"
-        >Expanded menu
-            </a>
-            <!-- Collapsed content -->
-            <ul id="collapseExample1" class="collapse show list-group list-group-flush">
-              <li class="list-group-item py-1">
-                <a href="" class="text-reset">Link </a>
-              </li>
-              <li class="list-group-item py-1">
-                <a href="" class="text-reset">Link</a>
-              </li>
-              <li class="list-group-item py-1">
-                <a href="" class="text-reset">Link</a>
-              </li>
-              <li class="list-group-item py-1">
-                <a href="" class="text-reset">Link</a>
-              </li>
-            </ul>
-            <!-- Collapse 1 -->
-          </div>
-        </div>
-      </nav>
+<div class="wrapper" id = "main">
+  <!-- Sidebar -->
+  <nav id="sidebar">
+    <div class="sidebar-header">
+      <h3>Committees</h3>
     </div>
-    <div class="column right">
-      <div class="mt-3">
-        <% if flash.any?%>
-          <%= render 'layouts/alerts'%>
+    <ul class="list-unstyled components">
+      <% if current_user&.is_admin %>
+        <li>
+          <a href="#" data-mdb-toggle="modal" data-mdb-target="#SUAddModal">
+            <i class="fas fa-plus"></i>
+            Add Member
+          </a>
+        </li>
+      <% end %>
+      <% Tag.all.each_with_index do |tag, index| %>
+        <% if index == 0 %>
+          <li class="active">
+            <%=link_to tag.name, su_information_path(:su_members => { :tagy => tag.id}), remote: true %>
+          </li>
+        <% else %>
+          <li>
+            <%=link_to tag.name, su_information_path(:su_members => { :tagy => tag.id}), remote: true %>
+          </li>
         <% end %>
-      </div>
-      <div class="row">
-        <% @su_members.each do |member| %>
-          <div class="col-md-4">
-            <div class="card mb-4" style="max-width: 22rem;">
-              <div class="card-body">
-                <% if current_user&.is_admin %>
-                  <%= link_to  '#', 'data-mdb-target' => "#myModal_#{member.id}", 'data-mdb-toggle' => 'modal', style: 'float: right' do%>
-                    <i class="fas fa-edit" style = 'border-radius: 50%;'></i>
-                  <% end %>
-                  <br>
-                  <div class="modal fade" id='<%= "myModal_#{member.id}" %>' tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title" id='<%= "myModal_#{member.id}" %>'>Edit Member - <%= member.first_name %></h5>
-                          <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close" ></button>
-                        </div>
-                        <div class="modal-body">
-                          <%= render 'form', su_member: member %>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                <% end %>
-                <div  class="image_container" style = "text-align:center">
-                  <% if member.avatar.attached? %>
-                    <%= image_tag(member.avatar,alt: "pp_image", class: "card-img-top circular_image")%>
-                  <% else %>
-                    <%= image_tag "pp.jpg",alt: "pp_image", class: "circular_image"%>
-                  <% end %>
-                </div>
-                <br>
-                <br>
-                <p style="text-align:center"><b><%= member.first_name + ' ' + member.last_name %></b></p>
-                <p style="text-align:center"><%= member.designation %></p>
-                <p style="text-align:center"><%= member.nationality %></p>
-                <p style="text-align:center"><%= member.program + '/' + member.department %></p>
-              </div>
-            </div>
-          </div>
-        <% end %>
-      </div>
+      <% end %>
+    </ul>
+  </nav>
+  <!-- Page Content -->
+  <div class="container-fluid" >
+    <h3 style="text-align: center;">Student Union</h3>
+    <button type="button" id="sidebarCollapse" class="btn btn-su" style="max-width: 15rem;">
+      <i class="fas fa-align-left"></i>
+      <span>Committee</span>
+    </button>
+    <div class="mt-3">
+      <% if flash.any?%>
+        <%= render 'layouts/alerts'%>
+      <% end %>
     </div>
+    <%= render 'members'%>
   </div>
-  <!-- Modal -->
-  <div class="modal fade" id="SUAddModal" tabindex="-1" aria-labelledby="SUAddModal" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="SUAddModal">Add member</h5>
-          <button
+</div>
+<div class="modal fade" id="SUAddModal" tabindex="-1" aria-labelledby="SUAddModal" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="SUAddModal">Add member</h5>
+        <button
           type="button"
           class="btn-close"
           data-mdb-dismiss="modal"
           aria-label="Close"
         ></button>
-        </div>
-        <div class="modal-body"><%= render 'form', su_member: @su_member%></div>
       </div>
+      <div class="modal-body"><%= render 'form', su_member: @su_member%></div>
     </div>
   </div>
 </div>
+<script>
+  $(document).ready(function () {
+  
+  
+      $('#sidebarCollapse').on('click', function (elem) {
+          $('#sidebar').toggleClass('active');
+      });
+  
+       $("li").click(function() {
+      // remove classes from all
+      $("li").removeClass("active");
+      // add class to the one we clicked
+      $(this).addClass("active");
+   });
+  
+  });
+</script>

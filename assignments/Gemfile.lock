@@ -485,6 +485,7 @@ DEPENDENCIES
   kaminari
   launchy
   listen (~> 3.3)
+  mini_magick
   nokogiri
   omniauth
   omniauth-google-oauth2

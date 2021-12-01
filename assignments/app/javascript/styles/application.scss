@@ -15,11 +15,11 @@ body {
 }
 
 // .circular_image {
-//   width: 200px;
-//   height: 200px;
-//   margin-left: auto;
-//   margin-right: auto;
-//   border-radius: 50%;
+//     width: 200px;
+//     height: 200px;
+//     margin-left: auto;
+//     margin-right: auto;
+//     border-radius: 50%;
 // }
 .circular_image {
     width: 200px;
@@ -27,7 +27,7 @@ body {
     margin-left: auto;
     margin-right: auto;
     border-radius: 50%;
-    object-fit: contain;
+    object-fit: cover;
 }
 
 
@@ -87,6 +87,19 @@ p.form-head {
     font-size: 45px;
     margin-bottom: 20px;
     color: #486255;
+}
+
+.input2 {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    margin-bottom: 5px;
+    border: 1px solid #384727;
+    font-size: 14px;
+    border-radius: 10px;
+    outline: none;
+    transform: all 0.5s ease;
+    background-color: white;
 }
 
 .input,
@@ -541,3 +554,77 @@ pre {
         border: none;
     }
 }
+
+.wrapper {
+    padding: 30px;
+    display: flex;
+    width: 100%;
+    align-items: stretch;
+}
+
+#sidebar {
+    min-width: 250px;
+    max-width: 250px;
+    background: #e1d6c1;
+    color: #325c52;
+    transition: all 0.3s;
+    text-align: center;
+    border-radius: 20px;
+}
+
+#sidebar.active {
+    margin-left: -280px;
+}
+
+@media (max-width: 768px) {
+    #sidebar {
+        margin-left: -280px;
+    }
+    #sidebar.active {
+        margin-left: 0;
+    }
+}
+
+#sidebar .sidebar-header {
+    padding: 20px;
+    background: #e1d6c1;
+    border-radius: 20px;
+}
+
+#sidebar ul.components {
+    padding: 20px 0;
+    border-bottom: 1px solid #e1d6c1;
+}
+
+#sidebar ul p {
+    color: #f6f1e8;
+    padding: 10px;
+}
+
+#sidebar ul li a {
+    padding: 10px;
+    font-size: 1.1em;
+    display: block;
+}
+
+#sidebar ul li a:hover {
+    color: #f6f1e8;
+    background: #325c52;
+}
+
+#sidebar ul li.active {
+    color: #f6f1e8;
+    background: #325c52;
+}
+
+#sidebar ul li.active a {
+    color: #f6f1e8;
+    background: #325c52;
+}
+
+// #sidebar ul li a {
+//     font-size: 0.9em !important;
+//     padding-left: 30px !important;
+//     background: #325c52;
+//     color: #f6f1e8;
+// }

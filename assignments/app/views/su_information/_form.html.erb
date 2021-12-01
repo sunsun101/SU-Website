@@ -15,39 +15,54 @@
     </div>
   <% end %>
   <div class="form-outline mb-4">
-    <%= form.text_field :first_name, class: 'form-control' %>
-    <%= form.label :first_name, class: 'form-label' %>
+    <%= form.text_field :first_name, class: 'input2', placeholder: 'First Name'%>
   </div>
   <div class="form-outline mb-4">
-    <%= form.text_field :last_name, class: 'form-control' %>
-    <%= form.label :last_name, class: 'form-label' %>
+    <%= form.text_field :last_name, class: 'input2', placeholder: 'Last Name' %>
   </div>
   <div class="form-outline mb-4">
-    <%= form.text_field :designation, class: 'form-control' %>
-    <%= form.label :designation, class: 'form-label' %>
+    <%= form.text_field :designation, class: 'input2', placeholder: 'Designation' %>
   </div>
   <div class="form-outline mb-4">
-    <%= form.text_field :nationality, class: 'form-control' %>
-    <%= form.label :nationality, class: 'form-label' %>
+    <%= form.text_field :nationality, class: 'input2', placeholder: 'Nationality' %>
   </div>
   <div class="form-outline mb-4">
-    <%= form.text_field :program, class: 'form-control' %>
-    <%= form.label :program, class: 'form-label' %>
+    <%= form.text_field :program, class: 'input2', placeholder: 'Program' %>
   </div>
   <div class="form-group row col-12" >
+    <%= form.label "Committee", class:"col-sm-4 col-form-label"%>
+    <div class="col-sm-8">
+      <%= form.select( :tag_id, Tag.all.collect {|q| [ q.name, q.id] },{prompt: "Select Committee" }, {class:"form-select"})%>
+    </div>
+  </div>
+  <br>
+  <div class = "row col-12" >
     <%= form.label :department, class:"col-sm-4 col-form-label"%>
     <div class="col-sm-8">
       <%= form.select( :department, ["SET", "SOM", "SERD"],{}, {class:"form-select"})%>
     </div>
   </div>
   <br>
-  <div class = "row col-12">
-    <%= form.label :profile_photo, class: "col-sm-4 col-form-label" %>
-    <div class="col-sm-8">
-      <%= form.file_field :avatar,id: "profile-picture", class:"form-control", accept: "image/*"%>
+  <div class="field" data-controller='instant-upload cropper' data-cropper-model-value='su_member'>
+    <div class = "row col-12">
+      <%= form.label :profile_photo, class: "col-sm-4 col-form-label" %>
+      <div class="col-sm-8">
+        <%= form.file_field :avatar, 'data-instant-upload-target': 'input', 'data-action': 'instant-upload#changed',id: "imgInp", class:"form-control", accept: "image/*" %>
+        <button id= "removeImage" type="button" class="btn btn-danger" style="display:none;" >Remove</button>
+      </div>
     </div>
+    <br>
+    <p style="text-align:center;">
+      <%= image_tag su_member.avatar.variant(resize_to_limit: [400, 300]), width: 400, height: 300, id: "blah",
+            'data-instant-upload-target': 'image',
+            'data-cropper-target': 'image',
+            'data-action': 'instant-uploaded->cropper#changed' if su_member.avatar.attached? %>
+      <%= content_tag :img, nil, src: nil, width: 400, height: 300,
+            'data-instant-upload-target': 'image',
+            'data-cropper-target': 'image',
+            'data-action': 'instant-uploaded->cropper#changed' unless su_member.avatar.attached? %>
+    </p>
   </div>
-  <div class="preview"></div>
   <div class="modal-footer">
     <% if su_member.id %>
       <%= link_to 'Delete', su_information_path(su_member: {id: su_member.id}), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger mb-4', style: 'float: left;'%>
@@ -55,3 +70,16 @@
     <%= form.submit 'Submit', class: 'btn btn-primary mb-4' %>
   </div>
 <% end %>
+<script>
+  $("#imgInp").change(function() {
+    readURL(this);
+    $("#removeImage").toggle(); // show remove link
+  });
+  
+  $("#removeImage").click(function(e) {
+    e.preventDefault(); // prevent default action of link
+    $('#blah').attr('src', ""); //clear image src
+    $("#imgInp").val(""); // clear image input value
+    $("#removeImage").toggle(); // hide remove link.
+  });
+</script>
