@@ -3,8 +3,8 @@
 one:
   detail: MyText
   tag: one
-  status: MyString
-  user: one
+  status: New
+  user: "1"
 
 two:
   detail: MyText

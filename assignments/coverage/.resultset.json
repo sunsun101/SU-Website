@@ -1,7 +1,47 @@
 {
   "RSpec": {
     "coverage": {
-      "/mnt/e/Projects/web-4/assignments/app/models/complain.rb": {
+      "/home/mufaddal/Projects/web4/web4-app/assignments/app/models/user.rb": {
+        "lines": [
+          1,
+          1,
+          null,
+          null,
+          1,
+          null,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          1,
+          1,
+          2,
+          2,
+          2,
+          null,
+          null,
+          null,
+          1,
+          13,
+          null,
+          null,
+          1,
+          7,
+          null,
+          null
+        ]
+      },
+      "/home/mufaddal/Projects/web4/web4-app/assignments/app/models/application_record.rb": {
+        "lines": [
+          1,
+          1,
+          null
+        ]
+      },
+      "/home/mufaddal/Projects/web4/web4-app/assignments/app/models/complain.rb": {
         "lines": [
           1,
           1,
@@ -15,7 +55,7 @@
           null
         ]
       },
-      "/mnt/e/Projects/web-4/assignments/app/models/event.rb": {
+      "/home/mufaddal/Projects/web4/web4-app/assignments/app/models/event.rb": {
         "lines": [
           1,
           1,
@@ -27,7 +67,7 @@
           null
         ]
       },
-      "/mnt/e/Projects/web-4/assignments/app/models/quotation.rb": {
+      "/home/mufaddal/Projects/web4/web4-app/assignments/app/models/quotation.rb": {
         "lines": [
           1,
           1,
@@ -37,7 +77,7 @@
           null
         ]
       },
-      "/mnt/e/Projects/web-4/assignments/app/models/su_member.rb": {
+      "/home/mufaddal/Projects/web4/web4-app/assignments/app/models/su_member.rb": {
         "lines": [
           1,
           1,
@@ -47,11 +87,28 @@
           1,
           1,
           1,
+          1,
+          1,
+          null,
+          1,
+          0,
+          null,
+          null,
+          0,
+          null,
+          null,
+          null,
+          0,
+          0,
+          null,
+          null,
+          null,
           null
         ]
       },
-      "/mnt/e/Projects/web-4/assignments/app/models/tag.rb": {
+      "/home/mufaddal/Projects/web4/web4-app/assignments/app/models/tag.rb": {
         "lines": [
+          1,
           1,
           1,
           1,
@@ -65,244 +122,22 @@
         "lines": [
           1,
           1,
-          1,
-          null,
-          null
-        ]
-      },
-      "/mnt/e/Projects/web-4/assignments/app/controllers/application_controller.rb": {
-        "lines": [
-          1,
-          1,
-          null,
-          1,
-          43,
-          null,
-          null
-        ]
-      },
-      "/mnt/e/Projects/web-4/assignments/app/helpers/admin_helper.rb": {
-        "lines": [
-          1,
-          null
-        ]
-      },
-      "/mnt/e/Projects/web-4/assignments/app/helpers/basics_helper.rb": {
-        "lines": [
-          1,
-          null
-        ]
-      },
-      "/mnt/e/Projects/web-4/assignments/app/helpers/contact_helper.rb": {
-        "lines": [
-          1,
-          null
-        ]
-      },
-      "/mnt/e/Projects/web-4/assignments/app/helpers/events_helper.rb": {
-        "lines": [
-          1,
-          null
-        ]
-      },
-      "/mnt/e/Projects/web-4/assignments/app/helpers/omniauth_helper.rb": {
-        "lines": [
-          1,
-          null
-        ]
-      },
-      "/mnt/e/Projects/web-4/assignments/app/helpers/plan_helper.rb": {
-        "lines": [
-          1,
-          null
-        ]
-      },
-      "/mnt/e/Projects/web-4/assignments/app/helpers/registrations_helper.rb": {
-        "lines": [
-          1,
-          null
-        ]
-      },
-      "/mnt/e/Projects/web-4/assignments/app/helpers/site_helper.rb": {
-        "lines": [
-          1,
-          null
-        ]
-      },
-      "/mnt/e/Projects/web-4/assignments/app/helpers/su_information_helper.rb": {
-        "lines": [
-          1,
-          null
-        ]
-      },
-      "/mnt/e/Projects/web-4/assignments/app/controllers/plan_controller.rb": {
-        "lines": [
-          1,
-          null
-        ]
-      },
-      "/mnt/e/Projects/web-4/assignments/app/controllers/events_controller.rb": {
-        "lines": [
-          1,
-          1,
           null,
           1,
           2,
           2,
-          1,
-          1,
-          null,
-          1,
-          null,
-          null,
-          null,
-          1,
-          1,
-          null,
-          null,
-          1,
-          2,
-          2,
-          1,
-          1,
-          2,
-          null,
-          null,
-          1,
-          1,
-          null,
-          1,
-          1,
-          null,
-          null,
-          null,
-          1,
-          2,
-          2,
-          1,
-          null,
-          2,
-          null,
-          null,
-          null,
-          1,
-          1,
-          null,
-          null,
-          1,
-          1,
-          null,
-          null,
-          1,
-          null,
-          null,
-          1,
-          2,
-          2,
-          1,
-          1,
-          2,
-          null,
-          null,
-          2,
-          1,
-          null,
-          2,
-          1,
-          null,
-          null,
-          null,
-          null,
-          1,
-          1,
-          1,
-          1,
-          2,
-          1,
-          null,
-          null,
-          null,
-          1,
-          1,
-          0,
-          0,
-          null,
-          null,
-          1,
-          1,
           4,
           null,
-          null,
-          1,
-          4,
-          null,
-          null
-        ]
-      },
-      "/mnt/e/Projects/web-4/assignments/app/controllers/omniauth_controller.rb": {
-        "lines": [
-          1,
-          null,
-          null,
-          1,
-          null,
           2,
           2,
           null,
+          2,
+          1,
+          1,
+          2,
           1,
           null,
           null,
-          1,
-          1,
-          null,
-          null,
-          null,
-          1,
-          0,
-          0,
-          null,
-          null
-        ]
-      },
-      "/mnt/e/Projects/web-4/assignments/app/controllers/contact_controller.rb": {
-        "lines": [
-          1,
-          1,
-          1,
-          1,
-          null,
-          null,
-          1,
-          0,
-          0,
-          0,
-          0,
-          null,
-          0,
-          null,
-          null,
-          null,
-          1,
-          null,
-          1,
-          0,
-          null,
-          null,
-          1,
-          1,
-          null,
-          null
-        ]
-      },
-      "/mnt/e/Projects/web-4/assignments/app/controllers/su_information_controller.rb": {
-        "lines": [
-          1,
-          1,
-          null,
-          1,
-          1,
-          1,
-          1,
           null,
           null,
           null,
@@ -329,8 +164,6 @@
           1,
           1,
           1,
-          1,
-          null,
           1,
           null,
           null,
@@ -347,7 +180,330 @@
           null
         ]
       },
-      "/mnt/e/Projects/web-4/assignments/app/controllers/basics_controller.rb": {
+      "/home/mufaddal/Projects/web4/web4-app/assignments/app/controllers/application_controller.rb": {
+        "lines": [
+          1,
+          1,
+          null,
+          1,
+          48,
+          null,
+          null
+        ]
+      },
+      "/home/mufaddal/Projects/web4/web4-app/assignments/app/helpers/admin_helper.rb": {
+        "lines": [
+          1,
+          null
+        ]
+      },
+      "/home/mufaddal/Projects/web4/web4-app/assignments/app/helpers/basics_helper.rb": {
+        "lines": [
+          1,
+          null
+        ]
+      },
+      "/home/mufaddal/Projects/web4/web4-app/assignments/app/helpers/contact_helper.rb": {
+        "lines": [
+          1,
+          null
+        ]
+      },
+      "/home/mufaddal/Projects/web4/web4-app/assignments/app/helpers/events_helper.rb": {
+        "lines": [
+          1,
+          null
+        ]
+      },
+      "/home/mufaddal/Projects/web4/web4-app/assignments/app/helpers/omniauth_helper.rb": {
+        "lines": [
+          1,
+          null
+        ]
+      },
+      "/home/mufaddal/Projects/web4/web4-app/assignments/app/helpers/plan_helper.rb": {
+        "lines": [
+          1,
+          null
+        ]
+      },
+      "/home/mufaddal/Projects/web4/web4-app/assignments/app/helpers/registrations_helper.rb": {
+        "lines": [
+          1,
+          null
+        ]
+      },
+      "/home/mufaddal/Projects/web4/web4-app/assignments/app/helpers/site_helper.rb": {
+        "lines": [
+          1,
+          null
+        ]
+      },
+      "/home/mufaddal/Projects/web4/web4-app/assignments/app/helpers/su_information_helper.rb": {
+        "lines": [
+          1,
+          null
+        ]
+      },
+      "/home/mufaddal/Projects/web4/web4-app/assignments/app/controllers/contact_controller.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          null,
+          null,
+          1,
+          2,
+          2,
+          1,
+          1,
+          null,
+          1,
+          null,
+          null,
+          null,
+          1,
+          null,
+          1,
+          2,
+          null,
+          null,
+          1,
+          3,
+          null,
+          null
+        ]
+      },
+      "/home/mufaddal/Projects/web4/web4-app/assignments/app/controllers/plan_controller.rb": {
+        "lines": [
+          1,
+          null
+        ]
+      },
+      "/home/mufaddal/Projects/web4/web4-app/assignments/app/controllers/admin_controller.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          1,
+          8,
+          8,
+          5,
+          1,
+          4,
+          1,
+          null,
+          5,
+          null,
+          8,
+          8,
+          8,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null,
+          1,
+          2,
+          2,
+          2,
+          1,
+          1,
+          1,
+          null,
+          null,
+          2,
+          2,
+          1,
+          1,
+          1,
+          null,
+          null,
+          2,
+          2,
+          2,
+          null,
+          null,
+          2,
+          null,
+          null,
+          1,
+          2,
+          2,
+          2,
+          2,
+          2,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          3,
+          1,
+          null,
+          2,
+          null,
+          null,
+          3,
+          3,
+          3,
+          3,
+          null,
+          null,
+          1,
+          1,
+          1,
+          null,
+          null,
+          null,
+          null,
+          1,
+          4,
+          null,
+          null,
+          1,
+          2,
+          2,
+          1,
+          0,
+          0,
+          null,
+          1,
+          null,
+          2,
+          null,
+          null,
+          1,
+          3,
+          1,
+          0,
+          null,
+          1,
+          null,
+          1,
+          null,
+          2,
+          1,
+          null,
+          null,
+          1,
+          null,
+          2,
+          null,
+          null,
+          null,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null,
+          null,
+          1,
+          null,
+          1,
+          5,
+          5,
+          null,
+          null,
+          1,
+          4,
+          null,
+          null,
+          1,
+          1,
+          null,
+          1,
+          19,
+          null,
+          null
+        ]
+      },
+      "/home/mufaddal/Projects/web4/web4-app/assignments/app/controllers/site_controller.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          null,
+          null
+        ]
+      },
+      "/home/mufaddal/Projects/web4/web4-app/assignments/app/controllers/registrations_controller.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          null,
+          null
+        ]
+      },
+      "/home/mufaddal/Projects/web4/web4-app/assignments/app/controllers/omniauth_controller.rb": {
+        "lines": [
+          1,
+          null,
+          2,
+          null,
+          1,
+          null,
+          2,
+          2,
+          null,
+          1,
+          null,
+          null,
+          1,
+          null,
+          1,
+          null,
+          null,
+          null,
+          1,
+          0,
+          0,
+          null,
+          null
+        ]
+      },
+      "/home/mufaddal/Projects/web4/web4-app/assignments/app/controllers/basics_controller.rb": {
         "lines": [
           1,
           1,
@@ -377,6 +533,7 @@
           null,
           1,
           null,
+          10,
           null,
           1,
           1,
@@ -384,9 +541,6 @@
           1,
           1,
           null,
-          1,
-          1,
-          1,
           1,
           1,
           1,
@@ -419,19 +573,44 @@
           1,
           null,
           null,
+          9,
           1,
           1,
           1,
           null,
+          9,
           1,
           1,
           null,
+          8,
+          null,
+          null,
+          9,
+          9,
+          null,
           null,
           1,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          9,
+          9,
+          9,
+          9,
+          null,
+          null,
           null,
           1,
           9,
           null,
+          2,
           null,
           1,
           9,
@@ -526,44 +705,38 @@
           null
         ]
       },
-      "/mnt/e/Projects/web-4/assignments/app/controllers/admin_controller.rb": {
+      "/home/mufaddal/Projects/web4/web4-app/assignments/app/controllers/events_controller.rb": {
         "lines": [
           1,
           1,
+          null,
           1,
           1,
-          7,
-          7,
-          4,
           1,
-          3,
+          0,
+          0,
+          null,
           1,
           null,
-          4,
-          null,
-          7,
-          7,
-          7,
           null,
           null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
+          1,
+          0,
           null,
           null,
           1,
           1,
           1,
+          1,
+          0,
+          0,
           null,
           null,
           1,
           1,
-          1,
+          null,
+          0,
+          null,
           null,
           null,
           1,
@@ -571,28 +744,31 @@
           0,
           0,
           null,
+          0,
           null,
-          1,
-          2,
-          2,
-          2,
-          1,
-          1,
+          null,
+          null,
           1,
           null,
           null,
-          2,
-          2,
-          1,
-          1,
           1,
           null,
           null,
-          2,
-          2,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
           null,
           null,
-          2,
+          0,
+          0,
+          null,
+          0,
+          0,
+          null,
+          null,
           null,
           null,
           1,
@@ -604,27 +780,7 @@
           null,
           null,
           null,
-          null,
           1,
-          0,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          1,
-          0,
-          0,
-          null,
-          0,
-          null,
-          null,
           0,
           0,
           0,
@@ -632,86 +788,17 @@
           null,
           null,
           1,
-          0,
-          0,
+          1,
+          1,
           null,
           null,
           1,
           0,
-          null,
-          null,
-          1,
-          0,
-          0,
-          0,
-          null,
-          0,
-          null,
-          0,
-          null,
-          null,
-          1,
-          0,
-          0,
-          0,
-          null,
-          null,
-          0,
-          null,
-          0,
-          null,
-          0,
-          0,
-          null,
-          null,
-          0,
-          null,
-          0,
-          null,
-          null,
-          null,
-          1,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          null,
-          null,
-          null,
-          1,
-          null,
-          1,
-          0,
-          0,
-          null,
-          null,
-          1,
-          0,
-          null,
-          null,
-          1,
-          0,
-          null,
-          null,
-          1,
-          7,
           null,
           null
         ]
       },
-      "/mnt/e/Projects/web-4/assignments/app/controllers/site_controller.rb": {
-        "lines": [
-          1,
-          1,
-          1,
-          null,
-          null
-        ]
-      },
-      "/mnt/e/Projects/web-4/assignments/app/mailers/gmail_api_mailer.rb": {
+      "/home/mufaddal/Projects/web4/web4-app/assignments/app/mailers/gmail_api_mailer.rb": {
         "lines": [
           null,
           null,
@@ -835,6 +922,6 @@
         }
       }
     },
-    "timestamp": 1638445678
+    "timestamp": 1638504485
   }
 }

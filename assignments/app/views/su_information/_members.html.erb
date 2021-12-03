@@ -1,0 +1,44 @@
+<div class="row" id="rowsss" style="display: flex; justify-content: center;">
+  <% @su_members.each do |member| %>
+    <div class="col-md-4"  style="max-width: 23rem;min-width: 18rem;">
+      <div class="card mb-4">
+        <div class="card-body">
+          <% if current_user&.is_admin %>
+            <%= link_to  '#', 'data-mdb-target' => "#myModal_#{member.id}", 'data-mdb-toggle' => 'modal', style: 'float: right' do%>
+              <i class="fas fa-edit" style = 'border-radius: 50%;'></i>
+            <% end %>
+            <br>
+            <div class="modal fade" id='<%= "myModal_#{member.id}" %>' tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id='<%= "myModal_#{member.id}" %>'>Edit Member - <%= member.first_name %></h5>
+                    <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close" ></button>
+                  </div>
+                  <div class="modal-body">
+                    <%= render 'form', su_member: member %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+          <p>
+          </p>
+          <div  class="image_container" style = "text-align:center">
+            <% if member.avatar.attached? %>
+              <%= image_tag(member.avatar.variant(member.crop_constraints.merge()), class: "card-img-top circular_image")%>
+            <% else %>
+              <%= image_tag "pp.jpg",alt: "pp_image", class: "circular_image"%>
+            <% end %>
+          </div>
+          <br>
+          <br>
+          <p style="text-align:center"><b><%= member.first_name + ' ' + member.last_name %></b></p>
+          <p style="text-align:center"><%= member.designation %></p>
+          <p style="text-align:center"><%= member.nationality %></p>
+          <p style="text-align:center"><%= member.program + '/' + member.department %></p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

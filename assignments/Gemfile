@@ -74,6 +74,7 @@ gem 'dotenv-rails', groups: %i[development test production]
 gem 'google-http-actionmailer'
 gem 'jquery-rails'
 gem 'kaminari'
+gem 'mini_magick'
 gem 'nokogiri'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'

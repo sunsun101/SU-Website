@@ -1,5 +1,6 @@
 <div class="container">
   <br>
+  <br>
   <h3>Admin Portal</h3>
   <br>
   <h5>Admin Users</h5>
@@ -9,7 +10,7 @@
       Advanced Search
     </button>
   </div>
-  <div style="display:inline-block; margin-bottom:20px; float:right;">
+  <div id = "search_user" style="display:inline-block; margin-bottom:20px; float:right;">
     <%= form_tag(admin_users_path, method: :get) do%>
       <div style="display:inline-block; "><%= text_field_tag(:search, params[:search], class:'form-control')%></div>
       &nbsp;
