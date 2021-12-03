@@ -30,4 +30,37 @@ FactoryBot.define do
     department { 'SET' }
     program {'CS'}
   end
+
+  factory :tag do
+    name {'Accomodation'}
+    email {'accomodation@ait.ac.th'}
+  end
+
+  factory :event, class: Event do
+    title {'Event'}
+    description {'Event of SU'}
+    event_date {'2021/12/5'}
+    association :tag, factory: :tag
+  end
+
+  factory :event1, class: Event do
+    title {'First test'}
+    description {'First test'}
+    event_date {'2021/12/5'}
+    association :tag, factory: :tag
+  end
+
+  factory :event2, class: Event do
+    title {'Second test'}
+    description {'Second test'}
+    event_date {'2021/12/5'}
+    association :tag, factory: :tag
+  end
+
+  factory :event3, class: Event do
+    title {'Third test'}
+    description {'Third test'}
+    event_date {'2021/12/5'}
+    association :tag, factory: :tag
+  end
 end

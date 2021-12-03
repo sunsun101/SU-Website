@@ -1,5 +1,5 @@
 Given('I want to create a SU Member') do
-  @su_member = FactoryBot.create :su_member
+  @su_member = FactoryBot.build :su_member
 end
 
 Then('I should see link to the SU Information Page') do

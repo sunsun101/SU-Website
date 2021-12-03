@@ -33,7 +33,6 @@ class BasicsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "create quote using new category if it exits" do
-    p @quote
     assert_difference("Quotation.count") do
       post basics_quotations_path, params: { quotation: { author_name: @quote.author_name, newcategory: 'New Category', quote: @quote.quote } }
     end

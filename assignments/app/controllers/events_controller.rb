@@ -26,6 +26,7 @@ class EventsController < ApplicationController
       flash[:success] = 'Event created successfully'
       redirect_to events_path
     else
+      flash[:error] = 'Failed to create event'
       render :new
     end
   end
@@ -39,7 +40,12 @@ class EventsController < ApplicationController
     
   end
 
+  def store_location(location)
+    session[:return_to] = location
+  end
+
   def show
+    store_location(request.referer)
   end
 
   def edit
@@ -66,13 +72,12 @@ class EventsController < ApplicationController
     @event.pictures&.purge
     @event.destroy
     respond_to do |format|
-      format.html { redirect_to events_url, notice: "Event was successfully destroyed." }
+      format.html { redirect_to session[:return_to], notice: "Event was successfully destroyed." }
       format.json { head :no_content }
     end
   end
 
   def removeImage
-      p "Here"
       @picture = ActiveStorage::Attachment.find(params[:id])
       @picture.purge
       redirect_back(fallback_location: request.referer)
