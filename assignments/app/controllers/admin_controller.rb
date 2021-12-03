@@ -58,6 +58,7 @@ class AdminController < ApplicationController
         @users = @users.where('is_admin = ?',  false)
       end
     end
+    @users = @users.where('tag_id = ?', params[:tag_id]) if params[:tag_id].present?
     if params[:date_from].present? && params[:date_to].present?
       @users = @users.where('created_at BETWEEN ? AND ?', Date.parse(params[:date_from]).beginning_of_day,
                             Date.parse(params[:date_to]).end_of_day)
@@ -75,18 +76,18 @@ class AdminController < ApplicationController
     end
   end
 
-  def count_by_date
-    User.find_by_sql(<<-SQL
-      SELECT
-        date_trunc('day', created_at) AS created_date,
-        count(id) as total_count
-      FROM users
-      WHERE date_part ('year', created_at) = date_part('year',current_date)
-      GROUP BY created_date
-      ORDER BY created_date, total_count
-    SQL
-                    )
-  end
+  # def count_by_date
+  #   User.find_by_sql(<<-SQL
+  #     SELECT
+  #       date_trunc('day', created_at) AS created_date,
+  #       count(id) as total_count
+  #     FROM users
+  #     WHERE date_part ('year', created_at) = date_part('year',current_date)
+  #     GROUP BY created_date
+  #     ORDER BY created_date, total_count
+  #   SQL
+  #                   )
+  # end
 
   def feedback
     @complains = if current_user&.tag_id.present?
@@ -106,9 +107,9 @@ class AdminController < ApplicationController
     @tag = Tag.new
   end
 
-  def new
-    @tag = Tag.new
-  end
+  # def new
+  #   @tag = Tag.new
+  # end
 
   def create
     @tag = Tag.new(tag_params)
@@ -123,10 +124,9 @@ class AdminController < ApplicationController
   def edit
     if params[:complain]
       if @complain.update(complain_params)
-        flash[:success] = 'form updated'
-
+        flash[:success] = 'From updated'
       else
-        flash[:error] = 'Error in updating Tag'
+        flash[:error] = 'Error in updating Form'
       end
       redirect_to admin_feedback_path
     else

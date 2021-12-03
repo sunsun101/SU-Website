@@ -16,11 +16,11 @@
       <% Tag.all.each_with_index do |tag, index| %>
         <% if index == 0 %>
           <li class="active">
-            <%=link_to tag.name, su_information_path(:su_members => { :tagy => tag.id}), remote: true %>
+            <%=link_to tag.name, su_information_path(:su_members => { :tagy => tag.id}, format: :js), remote: true%>
           </li>
         <% else %>
           <li>
-            <%=link_to tag.name, su_information_path(:su_members => { :tagy => tag.id}), remote: true %>
+            <%=link_to tag.name, su_information_path(:su_members => { :tagy => tag.id}, format: :js), remote: true%>
           </li>
         <% end %>
       <% end %>

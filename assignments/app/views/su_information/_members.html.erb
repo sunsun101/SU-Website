@@ -26,7 +26,7 @@
           </p>
           <div  class="image_container" style = "text-align:center">
             <% if member.avatar.attached? %>
-              <%= image_tag(member.avatar.variant(member.crop_constraints.merge()), class: "card-img-top circular_image") if member.avatar.attached? %>
+              <%= image_tag(member.avatar.variant(member.crop_constraints.merge()), class: "card-img-top circular_image")%>
             <% else %>
               <%= image_tag "pp.jpg",alt: "pp_image", class: "circular_image"%>
             <% end %>

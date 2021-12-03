@@ -12,6 +12,7 @@ class SuInformationController < ApplicationController
     if params[:su_members].present?
       @su_members = SuMember.where('tag_id = ?', params[:su_members][:tagy])
       respond_to do |format|
+        format.html { render(text: 'not implemented') }
         format.js
       end
     end

@@ -22,7 +22,4 @@ class QuotationTest < ActiveSupport::TestCase
     assert_equal ["can't be blank"], quotation.errors[:quote]
   end
 
-  test "should validate search quotation" do
-    
-  end
 end

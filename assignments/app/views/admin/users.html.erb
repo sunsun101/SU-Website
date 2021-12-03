@@ -10,7 +10,7 @@
       Advanced Search
     </button>
   </div>
-  <div style="display:inline-block; margin-bottom:20px; float:right;">
+  <div id = "search_user" style="display:inline-block; margin-bottom:20px; float:right;">
     <%= form_tag(admin_users_path, method: :get) do%>
       <div style="display:inline-block; "><%= text_field_tag(:search, params[:search], class:'form-control')%></div>
       &nbsp;

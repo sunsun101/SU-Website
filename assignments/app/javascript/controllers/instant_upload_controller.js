@@ -13,9 +13,7 @@ export default class extends Controller {
     }
 
     changed() {
-        console.log("I'm here 1");
         Array.from(this.inputTarget.files).forEach((file) => {
-            console.log("I'm here 2");
             const upload = new DirectUpload(file, this.postURL());
             upload.create((error, blob) => {
                 this.hiddenInput().value = blob.signed_id;
@@ -30,7 +28,6 @@ export default class extends Controller {
 
     hiddenInput() {
         if (this._hiddenInput == undefined) {
-            console.log("I'm here 3");
             this._hiddenInput = document.createElement("input");
             this._hiddenInput.name = this.inputTarget.name;
             this._hiddenInput.type = "hidden";
