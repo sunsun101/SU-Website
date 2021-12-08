@@ -36,11 +36,11 @@ When('I submit the user creation form') do
   end
 end
 
-Then('I should see new member added') do
-  expect(page).to have_content @su_member.first_name
-  expect(page).to have_content @su_member.last_name
-  expect(page).to have_content @su_member.designation
-  expect(page).to have_content @su_member.nationality
-  expect(page).to have_content @su_member.department
-  expect(page).to have_content @su_member.program
-end
+# Then('I should see new member added') do
+#   expect(page).to have_content @su_member.first_name
+#   expect(page).to have_content @su_member.last_name
+#   expect(page).to have_content @su_member.designation
+#   expect(page).to have_content @su_member.nationality
+#   expect(page).to have_content @su_member.department
+#   expect(page).to have_content @su_member.program
+# end
