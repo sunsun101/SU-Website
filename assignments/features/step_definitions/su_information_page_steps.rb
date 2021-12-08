@@ -37,7 +37,6 @@ When('I submit the user creation form') do
 end
 
 Then('I should see new member added') do
-  # find_link(@tag.name).click
   expect(page).to have_content @su_member.first_name
   expect(page).to have_content @su_member.last_name
   expect(page).to have_content @su_member.designation

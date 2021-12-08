@@ -23,8 +23,8 @@ FactoryBot.define do
   end
 
   factory :su_member, class: SuMember do
-    first_name { 'Test' }
-    last_name { 'test' }
+    first_name { 'Seasor' }
+    last_name { 'seasor' }
     designation { 'President' }
     nationality { 'Nepal' }
     department { 'SET' }
