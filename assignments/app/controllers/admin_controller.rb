@@ -124,7 +124,7 @@ class AdminController < ApplicationController
   def edit
     if params[:complain]
       if @complain.update(complain_params)
-        flash[:success] = 'From updated'
+        flash[:success] = 'Form updated'
       else
         flash[:error] = 'Error in updating Form'
       end

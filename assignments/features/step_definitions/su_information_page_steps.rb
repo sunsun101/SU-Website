@@ -1,5 +1,6 @@
 Given('I want to create a SU Member') do
   @su_member = FactoryBot.build :su_member
+  @tag = FactoryBot.create :committee
 end
 
 Then('I should see link to the SU Information Page') do
@@ -10,12 +11,12 @@ When('I click the link to the SU Information Page') do
   find_link('SU Information', href: su_information_path).click
 end
 
-Then('I should see a button to add member') do
-  expect(page).to have_button('Add Member')
+Then('I should see a link to add member') do
+  expect(page).to have_link('Add Member')
 end
 
-When('I click the button to add member') do
-  click_button 'Add Member'
+When('I click the link to add SU member') do
+  find_link('Add Member').click
 end
 
 Then('I should see a form to create user') do
@@ -24,17 +25,19 @@ end
 
 When('I submit the user creation form') do
   within('div#SUAddModal') do
-    fill_in 'First name', with: @su_member.first_name
-    fill_in 'Last name', with: @su_member.last_name
+    fill_in 'First Name', with: @su_member.first_name
+    fill_in 'Last Name', with: @su_member.last_name
     fill_in 'Designation', with: @su_member.designation
     fill_in 'Nationality', with: @su_member.nationality
     page.select(@su_member.department, from: 'su_member_department')
     fill_in 'Program', with: @su_member.program
+    page.select(@tag.name, from: 'su_member_tag_id')
     click_button 'Submit'
   end
 end
 
 Then('I should see new member added') do
+  # find_link(@tag.name).click
   expect(page).to have_content @su_member.first_name
   expect(page).to have_content @su_member.last_name
   expect(page).to have_content @su_member.designation

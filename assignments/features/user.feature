@@ -30,7 +30,7 @@ Scenario: Manage admin committee
     And A user has registered   
     When I visit the admin users page
     Then I should see a list of registered admin users
-    When I click button to edit user
+    When I click button to edit user committee
     Then I should see form to edit user
     And I select committee
     When I submit the edit form

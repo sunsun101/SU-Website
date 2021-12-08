@@ -12,6 +12,7 @@ end
 
 Given('A user has registered') do
   @user = FactoryBot.create :user
+  @committee = FactoryBot.create :tag
 end
 
 When('I visit the admin users page') do
@@ -93,4 +94,33 @@ end
 #     expect(page).to have_field('user_is_admin', checked: false)
 #   end
 # end
+
+Then('I should see a list of registered admin users') do
+  expect(page).to have_css('table', text: @admin.email)
+end
+
+When('I click button to edit user committee') do
+  find('tr', text: @admin.email).click_link('Edit')
+end
+
+
+Then('I should see form to edit user') do
+  expect(page).to have_selector('form#edit_user_' + @admin.id.to_s)
+end
+
+Then('I select committee') do
+  within('#edit_user_' + @admin.id.to_s) do
+    page.select(@committee.name, from: 'user_tag_id')
+  end
+end
+
+When('I submit the edit form') do
+  within('#edit_user_' + @admin.id.to_s) do
+    click_button 'Save changes'
+  end
+end
+
+Then('I should see the assigned committee to the user') do
+  expect(page).to have_css('table', text: @committee.name)
+end
 

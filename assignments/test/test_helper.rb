@@ -7,6 +7,7 @@ SimpleCov.start do
   add_filter 'app/jobs/application_job.rb'
   add_filter 'app/mailers/application_mailer.rb'
   add_filter 'app/helpers/application_helper.rb'
+  add_filter 'app/mailers/gmail_api_mailer.rb'
 end
 
 ENV['RAILS_ENV'] ||= 'test'

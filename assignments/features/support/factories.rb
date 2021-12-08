@@ -29,6 +29,7 @@ FactoryBot.define do
     nationality { 'Nepal' }
     department { 'SET' }
     program {'CS'}
+
   end
 
   factory :tag do
@@ -37,9 +38,9 @@ FactoryBot.define do
   end
 
   factory :event, class: Event do
-    title {'Event'}
-    description {'Event of SU'}
-    event_date {'2021/12/5'}
+    title {'Talk show'}
+    description {'Talk show of SU'}
+    event_date {'2022/12/5'}
     association :tag, factory: :tag
   end
 
@@ -62,5 +63,10 @@ FactoryBot.define do
     description {'Third test'}
     event_date {'2021/12/5'}
     association :tag, factory: :tag
+  end
+
+  factory :committee, class: Tag do
+    name { 'Accommodation' }
+    email { 'test@help.com' }
   end
 end

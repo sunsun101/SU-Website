@@ -52,7 +52,7 @@ When("I click the edit button") do
   find_link('Edit',href: edit_event_path(@event)).click
 end
 
-Then("I should see the edit form") do
+Then("I should see the event edit form") do
   expect(page).to have_selector('form#event_form')
 end
 
@@ -74,9 +74,9 @@ When("I click the delete button") do
   find_link('Delete',href: event_path(@event)).click
 end
 
-Then("I should get an alert") do
-  selenium.is_alert_present.should be_true
-end
+# Then("I should get an alert") do
+#   selenium.is_alert_present.should be_true
+# end
 
 # When("I click okay") do
 #   pending # Write code here that turns the phrase above into concrete actions
@@ -85,18 +85,4 @@ end
 Then("I should see that the event has been deleted") do
   expect(page).to have_no_content @event.title
   expect(page).to have_no_content @event.description
-end
-
-Given('There are events') do
-  @event1 = FactoryBot.create :event1
-  @event2 = FactoryBot.create :event2
-  @event3 = FactoryBot.create :event3
-end
-
-When('I select category') do
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-Then('I should see filtered events') do
-  pending # Write code here that turns the phrase above into concrete actions
 end
