@@ -1,2 +1,3 @@
-This is a repository for web 4 project and assignments
+This is a repository for Student Union Website developed for Asian Institute of Technology.
+Covers course requirement for Web Application Engineering.
 
